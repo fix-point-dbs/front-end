@@ -1,0 +1,22 @@
+import React from "react";
+import { motion } from "framer-motion";
+import Navbar from "../views/navbar/Navbar";
+import Footer from "../views/footer/footer";
+import { IndexPage } from "../views/landing-page/index";
+
+
+export function LandingPage() {
+  return (
+    <>
+      <Navbar />
+      <IndexPage />
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.5, duration: 0.8 }}
+      >
+        <Footer />
+      </motion.div>
+    </>
+  );
+}

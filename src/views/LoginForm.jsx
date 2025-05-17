@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useState } from "react";
 
 export function LoginForm({ onSubmit }) {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -29,5 +29,6 @@ export function LoginForm({ onSubmit }) {
       /><br />
       <button type="submit">Login</button>
     </form>
+
   );
 }

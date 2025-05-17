@@ -2,7 +2,7 @@ export function UserTable({ users, onEdit, onDelete }) {
     return (
       <table className="table-auto w-full border mt-4">
         <thead>
-          <tr className="bg-gray-200">
+          <tr className="bg-blue">
             <th className="p-2">Nama</th>
             <th className="p-2">Email</th>
             <th className="p-2">Aksi</th>

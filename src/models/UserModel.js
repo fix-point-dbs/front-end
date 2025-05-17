@@ -1,5 +1,5 @@
 export class UserModel {
-    baseUrl = 'http://localhost:3000/users'; // sesuaikan jika beda
+    baseUrl = 'http://localhost:3000/users'; 
   
     async getUsers() {
       const res = await fetch(this.baseUrl);
