@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { UserPresenter } from "../presenters/UserPresenter";
-import { UserForm } from "../views/user/UserForm";
-import { UserTable } from "../views/user/UserTable";
+import { UserPresenter } from "../../presenters/UserPresenter";
+import { UserForm } from "../../views/home/user/UserForm";
+import { UserTable } from "../../views/home/user/UserTable";
 
 export function UserPage() {
   const [users, setUsers] = useState([]);
