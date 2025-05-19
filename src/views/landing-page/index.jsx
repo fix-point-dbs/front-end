@@ -27,11 +27,11 @@ export function IndexPage() {
       >
         <HeroSection />
         <ServiceSection />
-        <CurrentLocationMap/>
-        <Artikel/>
-        <About/>
-        <Question/>
-        <Member/>
+        <CurrentLocationMap />
+        <About />
+        <Artikel />
+        <Question />
+        <Member />
       </motion.div>
     </>
   );

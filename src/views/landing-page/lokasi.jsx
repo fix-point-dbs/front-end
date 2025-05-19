@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
@@ -25,7 +25,7 @@ function LocateButton({ position }) {
   return (
     <button
       onClick={handleClick}
-      className="absolute z-[1000] top-2 right-4 px-4 py-2 bg-biru text-white text-sm rounded shadow-md hover:bg-blue-700 transition mb-20"
+      className="absolute z-[1000] top-2 right-4 px-4 py-2 bg-biru text-white text-sm rounded shadow-md hover:bg-blue-700 transition"
     >
       Lokasi Saya
     </button>
@@ -45,16 +45,16 @@ export default function CurrentLocationMap() {
       navigator.permissions
         .query({ name: "geolocation" })
         .then((permissionStatus) => {
-          if (permissionStatus.state === "granted") {
-            getLocation();
-          } else if (permissionStatus.state === "prompt") {
+          if (
+            permissionStatus.state === "granted" ||
+            permissionStatus.state === "prompt"
+          ) {
             getLocation();
           } else if (permissionStatus.state === "denied") {
             alert(
               "Akses lokasi ditolak. Silakan aktifkan izin lokasi di pengaturan browser."
             );
           }
-
           permissionStatus.onchange = () => {
             console.log("Permission berubah jadi:", permissionStatus.state);
           };
@@ -77,29 +77,26 @@ export default function CurrentLocationMap() {
   }, []);
 
   return (
-    <section className="px-12 mt-20 sm:px-12 md:px-24 lg:px-24 xl:px-36">
+    <section className="w-[90%] max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 mt-[60px] mb-20">
       <div className="flex items-center justify-center">
-        <div className="w-24 border-t border-biru"></div>
-        <p className="mx-4 mb-1 text-sm font-black text-biru sm:text-sm">
+        <div className="w-20 border-t border-biru"></div>
+        <p className="mx-1 mb-1 text-sm font-black text-biru sm:text-sm">
           TOWING & BENGKEL
         </p>
-        <div className="w-24 border-t border-biru"></div>
+        <div className="w-20 border-t border-biru"></div>
       </div>
-      <h2 className="mb-0 text-sm font-bold text-center sm:text-xl md:text-xl lg:text-xl xl:text-xl">
-        Peta Persebaran Di Berbagai Wilayah
-      </h2>
-      <p className="mb-4 text-sm text-center sm:text-sm">
-        Berikut merupakan peta untuk menampilkan bengkel maupun towing di
-        beberapa wilayah!
-      </p>
 
-      <div className="relative w-full h-[400px] rounded-xl overflow-hidden mb-20">
+      <h2 className="mb-4 text-lg font-bold text-center text-gray-800">
+        Peta Persebaran Bengkel & Towing
+      </h2>
+
+      <div className="relative w-full h-[300px] sm:h-[400px] rounded-xl overflow-hidden mb-20">
         {position ? (
           <MapContainer
             center={position}
             zoom={15}
             scrollWheelZoom={true}
-            className="z-10 w-full h-full"
+            className="z-10 w-full h-full rounded-xl"
           >
             <TileLayer
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

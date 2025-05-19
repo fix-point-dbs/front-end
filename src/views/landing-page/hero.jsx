@@ -2,7 +2,7 @@ import background from "../../assets/images/bg-new-2.png";
 
 export default function HeroSection() {
   return (
-    <section className="relative h-[650px] pt-[70px] overflow-hidden">
+    <section className="relative h-[650px] pt-[70px] overflow-x-hidden">
       <img
         src={background}
         alt="Hero background"
@@ -16,19 +16,19 @@ export default function HeroSection() {
           data-aos-delay="300"
           
         >
-          <h1 className="text-xl font-black sm:text-3xl">
+          <h1 className="text-2xl font-extrabold sm:text-3xl">
             Pencarian{" "}
             <span className="px-3 text-white bg-orange-500 rounded">
               Towing & Bengkel
             </span>{" "}
             Terpercaya!
           </h1>
-          <p className="mt-4 text-sm font-medium sm:text-sm md:text-base">
+          <p className="mt-4 text-sm font-regular sm:text-sm md:text-base">
             Teman setia saat kendaraanmu butuh pertolongan. Cari towing dan
             bengkel terdekat dari lokasi mogokmu dengan cepat dan mudah.
             FixPoint, solusi cepat di saat darurat.
           </p>
-          <button className="px-5 py-2 mt-6 text-sm font-medium text-white rounded shadow bg-merah hover:bg-red-700 sm:text-sm md:text-sm">
+          <button className="px-5 py-2 mt-6 text-sm font-semibold text-white rounded shadow bg-merah hover:bg-red-700 sm:text-sm md:text-sm">
             Mulai sekarang →
           </button>
         </div>

@@ -8,20 +8,17 @@ import about from "../../assets/images/bg-about.png";
 
 export default function About() {
   return (
-    <section className="relative w-[90%] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 mt-[60px]">
-      <div className="flex items-center justify-start ">
-        <p className="mb-1 ml-2 mr-4 text-sm font-black text-biru sm:text-sm">
-          ABOUT
-        </p>
+    <section className="relative w-[90%] max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 mt-[60px] overflow-hidden">
+      <div className="flex items-center justify-start">
+        <p className="mx-4 mb-1 text-sm font-black text-biru">ABOUT</p>
         <div className="w-24 border-t border-biru"></div>
       </div>
-
-      <h2 className="mb-4 ml-2 text-sm font-bold text-start sm:text-xl md:text-xl lg:text-xl xl:text-xl">
-        Mengapa Harus FIXPOINT?
+      <h2 className="mx-4 mb-20 text-lg font-bold text-gray-800">
+        Mengapa Harus Fixpoint?
       </h2>
 
-      <div className="flex flex-col-reverse items-center gap-8 lg:flex-row">
-        <div className="flex-1 space-y-6" data-aos="fade-right">
+      <div className="flex flex-col-reverse items-center gap-8 px-2 lg:flex-row lg:items-start">
+        <div className="flex-1 space-y-6 text-left" data-aos="fade-right">
           <div className="flex items-start gap-4">
             <FontAwesomeIcon
               icon={faWrench}
@@ -69,7 +66,11 @@ export default function About() {
         </div>
 
         <div className="flex-1" data-aos="fade-left">
-          <img src={about} alt="About Bg" className="w-[110%] h-auto" />
+          <img
+            src={about}
+            alt="About Bg"
+            className="object-contain w-full h-auto max-w-md lg:max-w-full"
+          />
         </div>
       </div>
     </section>

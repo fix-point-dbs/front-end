@@ -43,22 +43,39 @@ export default function Artikel() {
     autoplay: true,
     autoplaySpeed: 3000,
     responsive: [
-      { breakpoint: 1280, settings: { slidesToShow: 3 } },
-      { breakpoint: 1024, settings: { slidesToShow: 2 } },
-      { breakpoint: 640, settings: { slidesToShow: 1 } },
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 640,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          arrows: false,
+        },
+      },
     ],
   };
 
   return (
-    <section className="w-[90%] max-w-8xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 mt-[60px] mb-20">
+    <section className="relative w-[90%] max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 mt-[60px]">
       <div className="flex items-center justify-start">
-        <p className="mb-1 ml-2 mr-4 text-sm font-black text-biru sm:text-sm">
-          ARTIKEL
-        </p>
+        <p className="mx-4 mb-1 text-sm font-black text-biru">ARTIKEL</p>
         <div className="w-24 border-t border-biru"></div>
       </div>
-      <h2 className="mb-4 ml-2 text-sm font-bold text-start sm:text-xl md:text-xl lg:text-xl xl:text-xl">
-        Berita dan Info Terkini Seputar Kendaraan
+      <h2 className="mx-4 mb-4 text-lg font-bold text-gray-800">
+        Berita Seputar Kendaraan
       </h2>
 
       <Slider {...settings}>

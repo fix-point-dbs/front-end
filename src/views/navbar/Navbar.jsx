@@ -232,17 +232,7 @@ export default function Navbar() {
                       isActive ? "text-black block" : "text-gray-500 block"
                     }
                   >
-                    Home
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to="/about"
-                    className={({ isActive }) =>
-                      isActive ? "text-black block" : "text-gray-500 block"
-                    }
-                  >
-                    About
+                    Beranda
                   </NavLink>
                 </li>
                 <li>
@@ -306,12 +296,23 @@ export default function Navbar() {
                 </li>
                 <li>
                   <NavLink
+                    to="/about"
+                    className={({ isActive }) =>
+                      isActive ? "text-black block" : "text-gray-500 block"
+                    }
+                  >
+                    Artikel
+                  </NavLink>
+                </li>
+
+                <li>
+                  <NavLink
                     to="/contact"
                     className={({ isActive }) =>
                       isActive ? "text-black block" : "text-gray-500 block"
                     }
                   >
-                    Contact
+                    Mitra
                   </NavLink>
                 </li>
               </ul>

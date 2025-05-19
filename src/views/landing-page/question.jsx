@@ -35,7 +35,7 @@ export default function Question() {
       initial={{ opacity: 0, y: 50 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.7, ease: "easeOut" }}
-      className="w-[90%] max-w-8xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 mt-[60px] mb-20"
+      className="w-[90%] max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 mt-[60px] mb-20"
     >
       <div className="flex items-center justify-center">
         <div className="w-24 border-t border-biru"></div>
@@ -44,7 +44,7 @@ export default function Question() {
         </p>
         <div className="w-24 border-t border-biru"></div>
       </div>
-      <h2 className="mb-6 text-sm font-bold text-center sm:text-xl md:text-xl lg:text-xl xl:text-xl">
+      <h2 className="mb-4 text-lg font-bold text-center text-gray-800">
         Pertanyaan yang Sering Diajukan
       </h2>
 

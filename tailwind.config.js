@@ -19,9 +19,6 @@ export default {
       animation: {
         "fade-slide": "fade-slide 0.6s ease-out forwards",
       },
-      fontFamily: {
-        montserrat: ["Montserrat", "sans-serif"],
-      },
     },
   },
   plugins: [],

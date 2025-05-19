@@ -8,10 +8,10 @@ export default function Member() {
     { name: "Asyam", role: "ML Engineer", category: "ML" },
     { name: "Angga", role: "ML Engineer", category: "ML" },
     { name: "Abim", role: "ML Engineer", category: "ML" },
-  ];
+  ]; 
 
   return (
-    <section className="w-[90%] max-w-8xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 mt-[60px] mb-20">
+    <section className="w-[90%] max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 mt-[60px] mb-20">
       <div className="flex items-center justify-center">
         <div className="w-24 border-t border-biru"></div>
         <p className="mx-4 mb-1 text-sm font-black text-biru sm:text-sm">
@@ -19,10 +19,8 @@ export default function Member() {
         </p>
         <div className="w-24 border-t border-biru"></div>
       </div>
-      <h2 className="mb-6 text-sm font-bold text-center text-montserrat sm:text-xl md:text-xl lg:text-xl xl:text-xl">
-        Team Pengembang
-      </h2>
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
+      <h2 className="mb-4 text-lg font-bold text-center text-gray-800">Team Pengembang</h2>
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:gap-8">
         {team.map((member, idx) => (
           <motion.div
             key={idx}
@@ -32,13 +30,14 @@ export default function Member() {
             transition={{ duration: 0.6, delay: idx * 0.15 }}
             viewport={{ once: false, amount: 0.4 }}
           >
-            <div className="flex items-center justify-center w-24 h-24 mb-4 bg-gray-400 rounded-full">
+            <div className="flex items-center justify-center w-24 h-24 mb-4 overflow-hidden bg-gray-400 rounded-full">
               <img
                 src="https://tse4.mm.bing.net/th?id=OIP.u6yI_QLH7-RzpWirGJViHgHaEK&pid=Api&P=0&h=180"
                 alt="profile"
-                className="w-12 h-12"
+                className="object-cover w-full h-full"
               />
             </div>
+
             <p className="font-semibold text-gray-800">{member.name}</p>
             <p className="text-sm text-gray-600">{member.role}</p>
           </motion.div>
