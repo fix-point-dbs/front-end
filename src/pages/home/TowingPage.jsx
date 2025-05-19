@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "../views/navbar/navbar";
-import Footer from "../views/footer/footer";
-import Towing from "../views/layanan/towing/towing";
+import Footer from "../../views/home/footer/footer";
+import Towing from "../../views/home/layanan/towing/towing";
 
 export function TowingPage() {
   return (
