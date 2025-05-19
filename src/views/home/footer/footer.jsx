@@ -1,5 +1,5 @@
 import { FiPhone, FiMail, FiMapPin, FiPrinter } from "react-icons/fi";
-import logo from "../../assets/images/logo.png";
+import logo from "../../../assets/images/logo.png";
 
 export default function Footer() {
   return (

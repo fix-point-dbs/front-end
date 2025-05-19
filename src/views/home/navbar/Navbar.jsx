@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link, NavLink } from "react-router-dom";
-import logo from "../../assets/images/logo.png";
+import logo from "../../../assets/images/logo.png";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);

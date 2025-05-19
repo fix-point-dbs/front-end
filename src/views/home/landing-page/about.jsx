@@ -4,7 +4,7 @@ import {
   faComments,
   faHandshake,
 } from "@fortawesome/free-solid-svg-icons";
-import about from "../../assets/images/bg-about.png";
+import about from "../../../assets/images/bg-about.png";
 
 export default function About() {
   return (

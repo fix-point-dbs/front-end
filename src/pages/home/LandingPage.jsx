@@ -1,8 +1,8 @@
 import React from "react";
 import { motion } from "framer-motion";
-import Navbar from "../views/navbar/navbar";
+import Navbar from "../../views/home/navbar/Navbar";
 import Footer from "../../views/home/footer/footer";
-import { IndexPage } from "../../views/landing-page/index";
+import { IndexPage } from "../../views/home/landing-page/index";
 
 export function LandingPage() {
   return (

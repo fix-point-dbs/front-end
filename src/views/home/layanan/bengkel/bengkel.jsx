@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import background from "../../../assets/images/bg-white.png";
+import background from "../../../../assets/images/bg-white.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhone, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 

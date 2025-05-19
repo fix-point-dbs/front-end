@@ -1,4 +1,4 @@
-import background from "../../assets/images/bg-new-2.png";
+import background from "../../../assets/images/bg-new-2.png";
 
 export default function HeroSection() {
   return (

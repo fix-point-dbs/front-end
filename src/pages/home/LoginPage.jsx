@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { AuthPresenter } from "../presenters/AuthPresenter";
-import { LoginForm } from "../views/LoginForm";
+import { AuthPresenter } from "../../presenters/AuthPresenter";
+import { LoginForm } from "../../views/LoginForm";
 
 export function LoginPage() {
   const [message, setMessage] = useState("");

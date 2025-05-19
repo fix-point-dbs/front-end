@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
-import background from "../../assets/images/bg-white.png";
-import orang from "../../assets/images/orang.png";
+import background from "../../../assets/images/bg-white.png";
+import orang from "../../../assets/images/orang.png";
 import {
   faUpload,
   faStar,

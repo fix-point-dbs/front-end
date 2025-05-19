@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import background from "../../../assets/images/bg-white.png";
+import background from "../../../../assets/images/bg-white.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faClock,

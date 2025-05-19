@@ -1,12 +1,12 @@
 import "./App.css";
 import { Routes, Route, Navigate } from "react-router-dom";
-import { LoginPage } from "./pages/LoginPage";
-import { UserPage } from "./pages/UserPage";
-import { LandingPage } from "./pages/LandingPage";
-import { BengkelPage } from "./pages/BengkelPage";
-import { TowingPage } from "./pages/TowingPage";
-import { DetailBengkelPage } from "./pages/DetailBengkelPage";
-import { PemesananPage } from "./pages/PemesananPage";
+import { LoginPage } from "./pages/home/LoginPage";
+import { UserPage } from "./pages/home/UserPage";
+import { LandingPage } from "./pages/home/LandingPage";
+import { BengkelPage } from "./pages/home/BengkelPage";
+import { TowingPage } from "./pages/home/TowingPage";
+import { DetailBengkelPage } from "./pages/home/DetailBengkelPage";
+import { PemesananPage } from "./pages/home/PemesananPage";
 
 function App() {
   return (

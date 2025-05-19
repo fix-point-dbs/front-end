@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "../views/navbar/navbar";
+import Navbar from "../../views/home/navbar/Navbar";
 import Footer from "../../views/home/footer/footer";
 import Bengkel from "../../views/home/layanan/bengkel/bengkel";
 
