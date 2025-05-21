@@ -7,6 +7,7 @@ import { BengkelPage } from "./pages/home/BengkelPage";
 import { TowingPage } from "./pages/home/TowingPage";
 import { DetailBengkelPage } from "./pages/home/DetailBengkelPage";
 import { PemesananPage } from "./pages/home/PemesananPage";
+import { Dashboard } from "./pages/admin/dashboard";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/towing" element={<TowingPage />} />
         <Route path="/bengkel/detail" element={<DetailBengkelPage />} />
         <Route path="/bengkel/pemesanan" element={<PemesananPage />} />
+        <Route path="/admin/dashboard" element={<Dashboard />} />
       </Routes>
     </>
   );
