@@ -1,7 +1,7 @@
 import React from "react";
-import Sidebar from "../../views/admin/sidebar/sidebar";
-import Header from "../../views/admin/header/header";
-import IndexPage from "../../views/admin/dashboard";
+import Sidebar from "../../views/admin/sidebar/Sidebar";
+import Header from "../../views/admin/header/Header";
+import Index from "../../views/admin/dashboard/Index";
 
 export function Dashboard() {
     return (
@@ -10,7 +10,7 @@ export function Dashboard() {
                 <Sidebar />
                 <div className=" flex-1 flex flex-col p-3 bg-gray-50">
                     <Header />
-                    <IndexPage />
+                    <Index />
                 </div>  
             </div>
         </>

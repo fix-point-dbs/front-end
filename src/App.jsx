@@ -7,7 +7,7 @@ import { BengkelPage } from "./pages/home/BengkelPage";
 import { TowingPage } from "./pages/home/TowingPage";
 import { DetailBengkelPage } from "./pages/home/DetailBengkelPage";
 import { PemesananPage } from "./pages/home/PemesananPage";
-import { Dashboard } from "./pages/admin/dashboard";
+import { Dashboard } from "./pages/admin/Dashboard";
 import { KonfirmasiPemesananPage } from "./pages/home/KonfirmasiPemesananPage";
 
 function App() {

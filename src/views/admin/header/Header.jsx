@@ -1,5 +1,5 @@
 import React from "react";
-import Breadcrumbs from "./breadcrumbs";
+import Breadcrumbs from "./Breadcrumbs";
 import { FiEdit2 } from "react-icons/fi";
 import { FaGlobe, FaUsers, FaWrench } from "react-icons/fa";
 import background from "../../../assets/images/bg-new-2.png";

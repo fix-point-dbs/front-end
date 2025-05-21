@@ -1,5 +1,5 @@
 import React from "react";
-export default function Projects() {
+export default function Project() {
     const items = [
         { title: "Modern", description: "As Uber works through a huge amount of internal management turmoil", img: "https://i.pravatar.cc/300" },
         { title: "Scandinavian", description: "Music is something that every person has his or her own opinion about", img: "https://i.pravatar.cc/300" },

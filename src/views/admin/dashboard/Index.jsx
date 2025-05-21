@@ -1,7 +1,7 @@
 import React from "react";
-import Shortcuts from "./shortcut";
+import Shortcuts from "./Shortcut";
 
-export default function IndexPage() {
+export default function Index() {
     return (
         <>
             <Shortcuts />
