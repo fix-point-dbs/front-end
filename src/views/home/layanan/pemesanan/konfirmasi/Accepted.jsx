@@ -4,9 +4,9 @@ import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import background from "../../../../../assets/images/bg-white.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBullhorn } from "@fortawesome/free-solid-svg-icons";
+import { faBullhorn, faComments } from "@fortawesome/free-solid-svg-icons";
 
-const Waiting = () => {
+const Accepted = () => {
   useEffect(() => {
     const map = L.map("map").setView([-7.8259926, 113.8286264], 13);
 
@@ -54,62 +54,79 @@ const Waiting = () => {
             Silahkan pantau dashboard untuk melihat pesanan anda!
           </p>
         </motion.div>
-        <motion.div
-          className="grid grid-cols-1 gap-6 mb-2 md:grid-cols-3"
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-        ></motion.div>
 
         <div className="grid max-w-6xl grid-cols-1 gap-6 mx-auto md:grid-cols-4">
-          <div className="col-span-1 p-4 bg-white shadow-md rounded-xl h-fit">
-            <h2 className="mb-6 text-base font-bold text-gray-800">
-              Konfirmasi Pesanan
-            </h2>
-            <div className="relative ml-6 border-l-2 border-gray-200">
-              <div className="relative flex items-center mb-10 space-x-4">
-                <div className="absolute -left-6">
-                  <span className="absolute inline-flex w-8 h-8 bg-blue-400 rounded-full opacity-75 animate-ping"></span>
-                  <span className="relative flex items-center justify-center w-8 h-8 text-sm font-semibold text-white bg-blue-700 rounded-full">
+          <div className="col-span-1 space-y-4">
+            <div className="p-4 bg-white shadow-md rounded-xl h-fit">
+              <h2 className="mb-6 text-base font-bold text-gray-800">
+                Konfirmasi Pesanan
+              </h2>
+              <div className="relative ml-6 border-l-2 border-gray-200">
+                <div className="relative flex items-center mb-10 space-x-4">
+                  <div className="absolute flex items-center justify-center w-8 h-8 text-sm font-semibold text-white bg-blue-700 rounded-full -left-6">
                     1
+                  </div>
+                  <span className="text-sm font-semibold text-blue-700">
+                    Menunggu
                   </span>
                 </div>
-                <span className="text-sm font-semibold text-blue-700">
-                  Menunggu
-                </span>
-              </div>
-              
 
-              <div className="relative flex items-center mb-10 space-x-4">
-                <div className="absolute flex items-center justify-center w-8 h-8 text-sm font-semibold text-white bg-gray-300 rounded-full -left-6">
-                  2
+                <div className="relative flex items-center mb-10 space-x-4">
+                  <div className="absolute -left-6">
+                    <span className="absolute inline-flex w-8 h-8 bg-blue-400 rounded-full opacity-75 animate-ping"></span>
+                    <span className="relative flex items-center justify-center w-8 h-8 text-sm font-semibold text-white bg-blue-700 rounded-full">
+                      2
+                    </span>
+                  </div>
+                  <span className="text-sm font-semibold text-blue-700">
+                    Diterima
+                  </span>
                 </div>
-                <span className="text-sm text-gray-400">Diterima</span>
-              </div>
 
-              <div className="relative flex items-center mb-10 space-x-4">
-                <div className="absolute flex items-center justify-center w-8 h-8 text-sm font-semibold text-white bg-gray-300 rounded-full -left-6">
-                  3
+                <div className="relative flex items-center mb-10 space-x-4">
+                  <div className="absolute flex items-center justify-center w-8 h-8 text-sm font-semibold text-white bg-gray-300 rounded-full -left-6">
+                    3
+                  </div>
+                  <span className="text-sm text-gray-400">
+                    Dalam Perjalanan
+                  </span>
                 </div>
-                <span className="text-sm text-gray-400">Dalam Perjalanan</span>
-              </div>
 
-              <div className="relative flex items-center mb-10 space-x-4">
-                <div className="absolute flex items-center justify-center w-8 h-8 text-sm font-semibold text-white bg-gray-300 rounded-full -left-6">
-                  4
+                <div className="relative flex items-center mb-10 space-x-4">
+                  <div className="absolute flex items-center justify-center w-8 h-8 text-sm font-semibold text-white bg-gray-300 rounded-full -left-6">
+                    4
+                  </div>
+                  <span className="text-sm text-gray-400">Selesai</span>
                 </div>
-                <span className="text-sm text-gray-400">Selesai</span>
               </div>
+            </div>
+
+            {/* Card Chat */}
+            <div className="p-4 bg-white shadow-md rounded-xl">
+              <h2 className="mb-3 text-base font-bold text-gray-800">
+                Chat dengan Bengkel
+              </h2>
+              <p className="mb-2 text-sm text-gray-600">
+                Ingin menanyakan estimasi waktu atau konfirmasi ulang?
+              </p>
+              <button className="w-full px-4 py-2 text-white transition bg-blue-700 rounded hover:bg-blue-800">
+                <FontAwesomeIcon icon={faComments} className="mr-2" />
+                Buka Chat
+              </button>
             </div>
           </div>
 
           <div className="col-span-1 space-y-4 md:col-span-3">
-            <div className="p-4 text-blue-800 bg-blue-100 rounded-md shadow-sm">
+            <div className="p-4 text-black bg-green-300 rounded-md shadow-sm">
               <p>
-                {" "}
-                <FontAwesomeIcon icon={faBullhorn} className="mr-2 text-biru" />
-                <strong>Terimakasih atas pesanan anda!</strong> Pesanan anda
-                akan dikirim kepada layanan terkait. Harap pantau.
+                <FontAwesomeIcon
+                  icon={faBullhorn}
+                  className="mr-2 text-black"
+                />
+                <strong>Terimakasih!</strong> Pesanan anda telah{" "}
+                <strong>diterima</strong> oleh bengkel terkait. Montir akan
+                segera datang ke tempat anda. Jika ada masalah, silahkan chat
+                bengkel terkait!
               </p>
             </div>
 
@@ -123,10 +140,12 @@ const Waiting = () => {
                 <span className="font-semibold text-red-600">
                   PS2321313131833
                 </span>{" "}
-                sudah dikirim kepada pihak bengkel <strong>Jali Go</strong>.
-                Silahkan tunggu beberapa menit.
+                telah diterima oleh bengkel <strong>Jali Go</strong>. Montir
+                akan segera datang ke tempat anda. Jika ada masalah, silahkan
+                chat bengkel terkait.
               </p>
             </div>
+
             <div className="p-4 space-y-3 border rounded-md shadow-sm bg-gray-50">
               <h4 className="pb-2 font-semibold border-b text-md">
                 Detail Pesanan Anda
@@ -176,4 +195,4 @@ const Waiting = () => {
   );
 };
 
-export default Waiting;
+export default Accepted;
