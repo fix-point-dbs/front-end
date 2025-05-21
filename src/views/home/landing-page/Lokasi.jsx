@@ -32,7 +32,7 @@ function LocateButton({ position }) {
   );
 }
 
-export default function CurrentLocationMap() {
+export default function Lokasi() {
   const [position, setPosition] = useState(null);
 
   useEffect(() => {

@@ -12,7 +12,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 
-export default function ServiceSection() {
+export default function Service() {
   const [kategori, setKategori] = useState("Semua");
 
   const settings = {

@@ -2,7 +2,7 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import Navbar from "../../views/home/navbar/Navbar";
 import Footer from "../../views/home/footer/Footer";
-import { Konfirmasi } from "../../views/home/layanan/pemesanan/konfirmasi/konfirmasi";
+import { Konfirmasi } from "../../views/home/layanan/pemesanan/konfirmasi/Konfirmasi";
 
 export function KonfirmasiPemesananPage() {
   const location = useLocation();
