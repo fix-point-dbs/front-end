@@ -1,16 +1,16 @@
 import React,{ useEffect} from "react";
 import { motion } from "framer-motion";
-import HeroSection from "./hero";
-import ServiceSection from "./service";
-import CurrentLocationMap from "./lokasi";
-import Artikel from "./artikel";
-import About from "./about";
+import Hero from "./Hero";
+import Service from "./Service";
+import Lokasi from "./Lokasi";
+import Artikel from "./Artikel";
+import About from "./About";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import Question from "./question";
-import Member from "./member";
+import Question from "./Question";
+import Member from "./Member";
 
-export function IndexPage() {
+export function Index() {
   useEffect(() => {
     AOS.init({
       duration: 1000, 
@@ -25,9 +25,9 @@ export function IndexPage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
       >
-        <HeroSection />
-        <ServiceSection />
-        <CurrentLocationMap />
+        <Hero />
+        <Service />
+        <Lokasi />
         <About />
         <Artikel />
         <Question />

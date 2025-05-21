@@ -12,7 +12,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 
-export default function ServiceSection() {
+export default function Service() {
   const [kategori, setKategori] = useState("Semua");
 
   const settings = {
@@ -137,7 +137,9 @@ export default function ServiceSection() {
                       />
                       {item.rating} / 5 • {item.jenis} • {item.waktu}
                     </p>
-                    <p className="mt-1 font-medium text-green-500">{item.harga}</p>
+                    <p className="mt-1 font-medium text-green-500">
+                      {item.harga}
+                    </p>
                     <div className="flex justify-between mt-4">
                       <button className="px-3 py-1 text-sm font-semibold text-white bg-red-500 rounded">
                         <FontAwesomeIcon
@@ -146,9 +148,11 @@ export default function ServiceSection() {
                         />
                         Booking
                       </button>
-                      <button className="px-3 py-1 text-sm font-semibold border rounded text-biru border-biru">
-                        Lihat Detail
-                      </button>
+                      <a href="/bengkel/detail">
+                        <button className="px-3 py-1 text-sm font-semibold border rounded text-biru border-biru">
+                          Lihat Detail
+                        </button>
+                      </a>
                     </div>
                     <h3 className="mt-4 text-sm font-semibold text-center text-biru">
                       Ringkasan

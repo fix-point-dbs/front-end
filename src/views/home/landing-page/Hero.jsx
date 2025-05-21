@@ -1,6 +1,6 @@
 import background from "../../../assets/images/bg-new-2.png";
 
-export default function HeroSection() {
+export default function Hero() {
   return (
     <section className="relative h-[650px] pt-[70px] overflow-x-hidden">
       <img

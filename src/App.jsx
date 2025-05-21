@@ -8,6 +8,7 @@ import { TowingPage } from "./pages/home/TowingPage";
 import { DetailBengkelPage } from "./pages/home/DetailBengkelPage";
 import { PemesananPage } from "./pages/home/PemesananPage";
 import { Dashboard } from "./pages/admin/dashboard";
+import { KonfirmasiPemesananPage } from "./pages/home/KonfirmasiPemesananPage";
 
 function App() {
   return (
@@ -21,6 +22,11 @@ function App() {
         <Route path="/bengkel/detail" element={<DetailBengkelPage />} />
         <Route path="/bengkel/pemesanan" element={<PemesananPage />} />
         <Route path="/admin/dashboard" element={<Dashboard />} />
+        <Route path="/pemesanan" element={<PemesananPage />} />
+        <Route
+          path="/pemesanan/konfirmasi"
+          element={<KonfirmasiPemesananPage />}
+        />
       </Routes>
     </>
   );
