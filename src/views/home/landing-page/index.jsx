@@ -1,14 +1,14 @@
 import React,{ useEffect} from "react";
 import { motion } from "framer-motion";
-import HeroSection from "./hero";
-import ServiceSection from "./service";
-import CurrentLocationMap from "./lokasi";
-import Artikel from "./artikel";
-import About from "./about";
+import HeroSection from "./Hero";
+import ServiceSection from "./Service";
+import CurrentLocationMap from "./Lokasi";
+import Artikel from "./Artikel";
+import About from "./About";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import Question from "./question";
-import Member from "./member";
+import Question from "./Question";
+import Member from "./Member";
 
 export function IndexPage() {
   useEffect(() => {
