@@ -9,7 +9,7 @@ export default function ProfileInformation({
   socialMedia = "@alecthompson",
 }) {
   return (
-    <div className="flex flex-col bg-white rounded-lg p-5 gap-4 w-full h-full">
+    <div className="flex flex-col bg-white rounded-lg p-5 gap-2 w-full h-full">
       <div className="text-base font-semibold text-black">
         <h2>Profile Information</h2>
       </div>
