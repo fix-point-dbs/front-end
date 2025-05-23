@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import { Link } from "react-router-dom";
 import {
   MapContainer,
   TileLayer,
@@ -11,6 +12,7 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import currentIconUrl from "../../../assets/icons/current-location.png";
 import serviceIconUrl from "../../../assets/icons/service.png";
+import RoutingMachine from "../components/RoutingMachine";
 
 const currentLocationIcon = new L.Icon({
   iconUrl: currentIconUrl,
@@ -38,7 +40,15 @@ L.Icon.Default.mergeOptions({
 
 export default function Lokasi({ data }) {
   const [position, setPosition] = useState(null);
+  const [target, setTarget] = useState(null);
+  const mapRef = useRef();
+  const [infoJarak, setInfoJarak] = useState(null);
+  const [name, setName] = useState(null);
+  const [notelp, setNotelp] = useState(null);
+  const [id, setId] = useState(null);
 
+  console.log(mapRef);
+  console.log(infoJarak);
   useEffect(() => {
     if (!navigator.geolocation) {
       alert("Geolocation tidak didukung oleh browser ini.");
@@ -85,7 +95,7 @@ export default function Lokasi({ data }) {
 
     const handleClick = () => {
       if (position) {
-        map.flyTo(position, 13, { duration: 1.5 });
+        map.flyTo(position, 15, { duration: 1.5 });
       }
     };
     return (
@@ -98,11 +108,16 @@ export default function Lokasi({ data }) {
     );
   }
 
-  function FlyToMarker({ lat, lng, name, alamat }) {
-    const map = useMap();
-
+  function FlyToMarker({ lat, lng, name, notelp, id }) {
     const handleClick = () => {
-      map.flyTo([lat, lng], 17, { duration: 1.5 });
+      setTarget([lat, lng]);
+      setName(name);
+      setNotelp(notelp);
+      setId(id);
+      setInfoJarak({
+        distance: null,
+        duration: null,
+      });
     };
 
     return (
@@ -113,8 +128,6 @@ export default function Lokasi({ data }) {
       >
         <Popup>
           <strong>{name}</strong>
-          <br />
-          {alamat}
         </Popup>
       </Marker>
     );
@@ -138,9 +151,10 @@ export default function Lokasi({ data }) {
         {position ? (
           <MapContainer
             center={position}
-            zoom={15}
+            zoom={13}
             scrollWheelZoom={true}
             className="z-10 w-full h-full rounded-xl"
+            ref={mapRef}
           >
             <TileLayer
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -170,12 +184,56 @@ export default function Lokasi({ data }) {
                     lat={item.latitude}
                     lng={item.longitude}
                     name={item.bussiness_name}
-                    alamat={item.address}
+                    notelp={item.alternative_phone}
+                    id={item.id}
                   />
                 ) : null
               )}
 
             <LocateButton position={position} />
+            {infoJarak && target && (
+  <div className="absolute bottom-4 right-4 z-[1000] bg-white border border-gray-300 shadow-xl rounded-md px-5 py-4 text-sm max-w-sm w-[300px]">
+    <h3 className="text-base text-center font-bold text-gray-700 mb-2">
+      Informasi Rute
+    </h3>
+    <p className="text-gray-700 mb-1">
+      <span className="font-semibold">Tujuan:</span> {infoJarak.nama}
+    </p>
+    <p className="text-gray-700 mb-1">
+      <span className="font-semibold">Nomor Telepon:</span> {infoJarak.nohp}
+    </p>
+    <div className="flex justify-between text-gray-800 text-sm mb-3">
+      <span>
+        <strong>Jarak:</strong> {infoJarak.distance} km
+      </span>
+      <span>
+        <strong>Waktu:</strong> {infoJarak.duration} menit
+      </span>
+    </div>
+
+    <Link
+  to={`/bengkel/detail/`}
+  className="block mt-2 text-center bg-slate-300 hover:bg-slate-400 text-white font-semibold py-2 px-4 rounded transition duration-300"
+>
+  Lihat Detail Bengkel
+</Link>
+
+  </div>
+)}
+
+
+            {target && position && mapRef.current && (
+              <RoutingMachine
+                key={target.join(",")}
+                map={mapRef.current}
+                from={position}
+                to={target}
+                name={name}
+                notelp={notelp}
+                id={id}
+                onRouteFound={(info) => setInfoJarak(info)}
+              />
+            )}
           </MapContainer>
         ) : (
           <p className="mt-10 text-center text-gray-500 font">

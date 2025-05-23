@@ -1,5 +1,6 @@
 import "./App.css";
 import { Routes, Route, Navigate } from "react-router-dom";
+import ScrollToTop from "./views/home/components/ScrollToTop";
 import { LoginPage } from "./pages/home/LoginPage";
 import { UserPage } from "./pages/home/UserPage";
 import { LandingPage } from "./pages/home/LandingPage";
@@ -13,6 +14,7 @@ import { KonfirmasiPemesananPage } from "./pages/home/KonfirmasiPemesananPage";
 function App() {
   return (
     <>
+      <ScrollToTop/>
       <Routes>
         <Route path="/users" element={<UserPage />} />
         <Route path="/login" element={<LoginPage />} />
