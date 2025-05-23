@@ -16,8 +16,9 @@ import AOS from "aos";
 
 export function LandingPage() {
   const [services, setServices] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const presenter = new ServicePresenter({ setServices });
+  const presenter = new ServicePresenter({ setServices, setIsLoading });
 
   useEffect(() => {
     presenter.loadServices();
@@ -33,7 +34,7 @@ export function LandingPage() {
     <>
       <Navbar />
       <Hero />
-      <Service data={services.data} />
+      <Service data={services.data} isLoading={true}/>
       <Lokasi data={services.data}/>
       <About />
       <Artikel />

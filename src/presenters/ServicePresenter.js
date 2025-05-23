@@ -7,10 +7,13 @@ export class ServicePresenter {
 
     async loadServices(){
         try {
+            this.view.setIsLoading(true);
             const services = await this.model.getServices();
             this.view.setServices(services);
         } catch (error) {
             console.log(error);
+        } finally {
+            this.view.setIsLoading(false);
         }
         
     }
