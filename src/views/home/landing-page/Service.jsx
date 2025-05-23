@@ -12,9 +12,9 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 
-export default function Service() {
+export default function Service({data = []}) {
   const [kategori, setKategori] = useState("Semua");
-
+  
   const settings = {
     dots: true,
     infinite: true,
@@ -29,58 +29,58 @@ export default function Service() {
       { breakpoint: 640, settings: { slidesToShow: 1 } },
     ],
   };
-
-  const dataLayanan = [
-    {
-      id: 1,
-      name: "Jali Go",
-      kategori: "Bengkel",
-      rating: 4.5,
-      jenis: "Bengkel & Towing",
-      waktu: "5 mnt",
-      harga: "Rp50.000 – 100.000",
-      alamat:
-        "Tegalbatu Selatan, Badean, Kec.Bondowoso, Kabupaten Bondowoso, Jawa Timur 68214",
-      buka: "Buka 24 jam",
-      telepon: "0816-0789-2456",
-    },
-    {
-      id: 2,
-      name: "Towing Cepat",
-      kategori: "Towing",
-      rating: 4.7,
-      jenis: "Towing",
-      waktu: "3 mnt",
-      harga: "Rp70.000 – 150.000",
-      alamat: "Jl. Merdeka No.10, Kota Bondowoso, Jawa Timur",
-      buka: "Buka 24 jam",
-      telepon: "0816-1234-5678",
-    },
-    {
-      id: 3,
-      name: "Bengkel Sukses",
-      kategori: "Bengkel",
-      rating: 4.2,
-      jenis: "Bengkel",
-      waktu: "7 mnt",
-      harga: "Rp40.000 – 80.000",
-      alamat: "Jl. Sudirman No.5, Kota Bondowoso, Jawa Timur",
-      buka: "Buka 24 jam",
-      telepon: "0816-4321-8765",
-    },
-    {
-      id: 4,
-      name: "Towing Bondowoso",
-      kategori: "Towing",
-      rating: 4.8,
-      jenis: "Towing",
-      waktu: "4 mnt",
-      harga: "Rp60.000 – 120.000",
-      alamat: "Jl. Ahmad Yani No.12, Kota Bondowoso, Jawa Timur",
-      buka: "Buka 24 jam",
-      telepon: "0816-9876-5432",
-    },
-  ];
+  const dataLayanan = data;
+  // const dataLayanan = [
+  //   {
+  //     id: 1,
+  //     name: "Jali Go",
+  //     kategori: "Bengkel",
+  //     rating: 4.5,
+  //     jenis: "Bengkel & Towing",
+  //     waktu: "5 mnt",
+  //     harga: "Rp50.000 – 100.000",
+  //     alamat:
+  //       "Tegalbatu Selatan, Badean, Kec.Bondowoso, Kabupaten Bondowoso, Jawa Timur 68214",
+  //     buka: "Buka 24 jam",
+  //     telepon: "0816-0789-2456",
+  //   },
+  //   {
+  //     id: 2,
+  //     name: "Towing Cepat",
+  //     kategori: "Towing",
+  //     rating: 4.7,
+  //     jenis: "Towing",
+  //     waktu: "3 mnt",
+  //     harga: "Rp70.000 – 150.000",
+  //     alamat: "Jl. Merdeka No.10, Kota Bondowoso, Jawa Timur",
+  //     buka: "Buka 24 jam",
+  //     telepon: "0816-1234-5678",
+  //   },
+  //   {
+  //     id: 3,
+  //     name: "Bengkel Sukses",
+  //     kategori: "Bengkel",
+  //     rating: 4.2,
+  //     jenis: "Bengkel",
+  //     waktu: "7 mnt",
+  //     harga: "Rp40.000 – 80.000",
+  //     alamat: "Jl. Sudirman No.5, Kota Bondowoso, Jawa Timur",
+  //     buka: "Buka 24 jam",
+  //     telepon: "0816-4321-8765",
+  //   },
+  //   {
+  //     id: 4,
+  //     name: "Towing Bondowoso",
+  //     kategori: "Towing",
+  //     rating: 4.8,
+  //     jenis: "Towing",
+  //     waktu: "4 mnt",
+  //     harga: "Rp60.000 – 120.000",
+  //     alamat: "Jl. Ahmad Yani No.12, Kota Bondowoso, Jawa Timur",
+  //     buka: "Buka 24 jam",
+  //     telepon: "0816-9876-5432",
+  //   },
+  // ];
 
   const filteredData =
     kategori === "Semua"
@@ -89,7 +89,7 @@ export default function Service() {
 
   return (
     <>
-      <div className="absolute mt-[-50px] left-1/2 transform -translate-x-1/2 w-[90%] max-w-6xl z-20 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 space-y-6">
+      <div className="absolute mt-[-50px] right-0 left-0 m-auto w-[100%] max-w-6xl z-20">
         <div className="px-4 py-4 bg-white shadow rounded-xl">
           <div className="flex flex-wrap items-center justify-between gap-y-3">
             <div className="flex gap-3 text-sm sm:text-base">
@@ -125,20 +125,20 @@ export default function Service() {
                 <div className="overflow-hidden bg-white shadow rounded-xl">
                   <img
                     src={orang}
-                    alt={item.name}
+                    alt={item.bussiness_name}
                     className="block object-cover w-full h-40 max-w-full rounded-t-xl"
                   />
                   <div className="p-4 min-h-[350px] flex flex-col justify-between">
-                    <h2 className="mb-0 text-lg font-bold">{item.name}</h2>
+                    <h2 className="mb-0 text-lg font-bold">{item.bussiness_name}</h2>
                     <p className="mt-0 text-sm text-gray-500">
                       <FontAwesomeIcon
                         icon={faStar}
                         className="mr-2 text-yellow-400"
                       />
-                      {item.rating} / 5 • {item.jenis} • {item.waktu}
+                      {item.average_rating} / 5 • {item.type} • {item.opening_time}
                     </p>
                     <p className="mt-1 font-medium text-green-500">
-                      {item.harga}
+                      Rp.{item.start_price_range} - {item.end_price_range}
                     </p>
                     <div className="flex justify-between mt-4">
                       <button className="px-3 py-1 text-sm font-semibold text-white bg-red-500 rounded">
@@ -164,7 +164,7 @@ export default function Service() {
                           icon={faMapMarkerAlt}
                           className="text-biru"
                         />
-                        <span>{item.alamat}</span>
+                        <span>{item.address}</span>
                       </li>
                       <li className="flex items-center space-x-4">
                         <FontAwesomeIcon
@@ -172,12 +172,12 @@ export default function Service() {
                           className="text-green-600"
                         />
                         <span className="font-medium text-green-600">
-                          {item.buka}
+                          {item.opening_time} - {item.closing_time}
                         </span>
                       </li>
                       <li className="flex items-center space-x-4">
                         <FontAwesomeIcon icon={faPhone} className="text-biru" />
-                        <span>{item.telepon}</span>
+                        <span>{item.alternative_phone}</span>
                       </li>
                     </ul>
                   </div>
