@@ -8,6 +8,8 @@ import { TowingPage } from "./pages/home/TowingPage";
 import { DetailBengkelPage } from "./pages/home/DetailBengkelPage";
 import { PemesananPage } from "./pages/home/PemesananPage";
 import { KonfirmasiPemesananPage } from "./pages/home/KonfirmasiPemesananPage";
+import { ArtikelPage } from "./pages/home/ArtikelPage";
+import { MitraPage } from "./pages/home/MitraPage";
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
         <Route path="/towing" element={<TowingPage />} />
         <Route path="/bengkel/detail" element={<DetailBengkelPage />} />
         <Route path="/pemesanan" element={<PemesananPage />} />
+        <Route path="/artikel" element={<ArtikelPage />} />
+        <Route path="/mitra" element={<MitraPage/>} />
         <Route
           path="/pemesanan/konfirmasi"
           element={<KonfirmasiPemesananPage />}

@@ -14,7 +14,6 @@ export default function Hero() {
           data-aos="fade-down"
           data-aos-duration="1000"
           data-aos-delay="300"
-          
         >
           <h1 className="text-2xl font-extrabold sm:text-3xl">
             Pencarian{" "}
