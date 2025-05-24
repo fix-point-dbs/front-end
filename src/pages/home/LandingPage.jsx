@@ -10,7 +10,7 @@ import Question from "../../views/home/landing-page/Question";
 import Member from "../../views/home/landing-page/Member";
 import Footer from "../../views/home/footer/Footer";
 import { useState } from "react";
-import { ServicePresenter } from "../../presenters/ServicePresenter";
+import { LandingPagePresenter } from "../../presenters/LandingPagePresenter";
 import { useEffect } from "react";
 import AOS from "aos";
 
@@ -18,7 +18,7 @@ export function LandingPage() {
   const [services, setServices] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const presenter = new ServicePresenter({ setServices, setIsLoading });
+  const presenter = new LandingPagePresenter({ setServices, setIsLoading });
 
   useEffect(() => {
     presenter.loadServices();
@@ -34,7 +34,7 @@ export function LandingPage() {
     <>
       <Navbar />
       <Hero />
-      <Service data={services.data} isLoading={true}/>
+      <Service data={services.data} isLoading={isLoading}/>
       <Lokasi data={services.data}/>
       <About />
       <Artikel />

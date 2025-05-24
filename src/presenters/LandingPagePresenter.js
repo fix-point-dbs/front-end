@@ -1,5 +1,5 @@
 import { ServiceModel } from "../models/ServiceModel";
-export class ServicePresenter {
+export class LandingPagePresenter {
     constructor(view) {
         this.view = view;
         this.model = new ServiceModel;
