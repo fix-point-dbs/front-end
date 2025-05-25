@@ -3,6 +3,8 @@ import background from "../../../../assets/images/bg-white.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { formatRupiah } from "../../../../utils/FormatRupiah";
 import { formatTanggal, formatJam } from "../../../../utils/FormatDateTime";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 import {
   faMapMarkerAlt,
   faStar,
@@ -173,7 +175,6 @@ const Detail = ({ data = [], isLoading }) => {
       return "Buruk";
     }
   }
-  
 
   return (
     <section className="relative pb-10 overflow-hidden">
@@ -215,68 +216,98 @@ const Detail = ({ data = [], isLoading }) => {
       >
         <div className="mb-6">
           <div className="flex flex-wrap gap-2 text-sm text-black sm:gap-4 sm:text-base">
-            <span className="flex items-center bg-biru px-4 py-1 text-white rounded-full gap-1">
-              <FontAwesomeIcon icon={faTools} className="text-yellow-500" />
-              <span className="whitespace-nowrap">{service.type}</span>
-            </span>
-            <span className="flex items-center border border-yellow-400 px-4 py-1 rounded-full gap-1">
-              <FontAwesomeIcon icon={faToolbox} className="text-biru" />
-              <span className="whitespace-nowrap">{service.vehicle_type}</span>
-            </span>
-            <span className="flex items-center">
-              <FontAwesomeIcon icon={faStar} className="text-yellow-500 mr-1" />
-              <span className="whitespace-nowrap font-bold text-[25px]">
-                {parseFloat(service.average_rating)}
+            {isLoading ? (
+              <Skeleton width={90} height={35} />
+            ) : (
+              <span className="flex items-center bg-biru px-4 py-1 text-white rounded-full gap-1">
+                <FontAwesomeIcon icon={faTools} className="text-yellow-500" />
+                <span className="whitespace-nowrap">{service.type}</span>
               </span>
-              /5 (230 Ulasan)
-            </span>
+            )}
+            {isLoading ? (
+              <Skeleton width={90} height={35} />
+            ) : (
+              <span className="flex items-center border border-yellow-400 px-4 py-1 rounded-full gap-1">
+                <FontAwesomeIcon icon={faToolbox} className="text-biru" />
+                <span className="whitespace-nowrap">
+                  {service.vehicle_type}
+                </span>
+              </span>
+            )}
+            {isLoading ? (
+              <Skeleton width={90} height={35} />
+            ) : (
+              <span className="flex items-center">
+                <FontAwesomeIcon
+                  icon={faStar}
+                  className="text-yellow-500 mr-1"
+                />
+                <span className="whitespace-nowrap font-bold text-[25px]">
+                  {parseFloat(service.average_rating)}
+                </span>
+                /5 dari {parseFloat(service.review_count)} ulasan
+              </span>
+            )}
           </div>
           <h1 className="mb-2 text-2xl mt-2 font-bold text-black sm:text-3xl">
-            {service.bussiness_name}
+            {isLoading ? <Skeleton width={200} /> : service.bussiness_name}
           </h1>
 
-          <div className="flex flex-wrap gap-2 text-sm text-black sm:gap-4 sm:text-base">
-            <span className="flex items-center gap-1">
-              <FontAwesomeIcon icon={faClock} className="text-biru" />
-              <span className="whitespace-nowrap">
-                {formatJam(service.opening_time)} - {formatJam(service.closing_time)}
+          {isLoading ? (
+            <Skeleton width={800} height={25} />
+          ) : (
+            <div className="flex flex-wrap gap-2 text-sm text-black sm:gap-4 sm:text-base">
+              <span className="flex items-center gap-1">
+                <FontAwesomeIcon icon={faClock} className="text-biru" />
+                <span className="whitespace-nowrap">
+                  {formatJam(service.opening_time)} -{" "}
+                  {formatJam(service.closing_time)}
+                </span>
               </span>
-            </span>
 
-            <span className="flex items-center gap-1">
-              <FontAwesomeIcon icon={faMoneyBill} className="text-biru" />
-              <span className="whitespace-nowrap">
-                {formatRupiah(service.start_price_range)} -{" "}
-                {formatRupiah(service.end_price_range)}
+              <span className="flex items-center gap-1">
+                <FontAwesomeIcon icon={faMoneyBill} className="text-biru" />
+                <span className="whitespace-nowrap">
+                  {formatRupiah(service.start_price_range)} -{" "}
+                  {formatRupiah(service.end_price_range)}
+                </span>
               </span>
-            </span>
-            <span className="flex items-center gap-1">
-              <FontAwesomeIcon icon={faPhone} className="text-biru" />
-              <span className="whitespace-nowrap">
-                {service.alternative_phone}
+              <span className="flex items-center gap-1">
+                <FontAwesomeIcon icon={faPhone} className="text-biru" />
+                <span className="whitespace-nowrap">
+                  {service.alternative_phone}
+                </span>
               </span>
-            </span>
-            <span className="flex items-center gap-1">
-              <FontAwesomeIcon icon={faLocation} className="text-biru" />
-              <span className="whitespace-nowrap">{service.address}</span>
-            </span>
-          </div>
+              <span className="flex items-center gap-1">
+                <FontAwesomeIcon icon={faLocation} className="text-biru" />
+                <span className="whitespace-nowrap">{service.address}</span>
+              </span>
+            </div>
+          )}
         </div>
 
         <Slider {...settings} className="mb-5">
-          {photos.map((item) => (
-            <div key={item.id} className="px-2">
-              <div className="relative overflow-hidden transition duration-300 shadow group rounded-xl hover:shadow-lg">
-                <img
-                  src={`${
-                    import.meta.env.VITE_API_BASE_URL
-                  }/uploads/photo-services/${item.url_photo}`}
-                  alt={item.title}
-                  className="object-cover w-full h-48"
-                />
-              </div>
-            </div>
-          ))}
+          {isLoading
+            ? Array(3)
+                .fill()
+                .map((_, i) => (
+                  <div key={i} className="px-2">
+                    <Skeleton height={192} />
+                  </div>
+                ))
+            : photos.map((item) => (
+                <div key={item.id} className="px-2">
+                  <div className="relative overflow-hidden transition duration-300 shadow group rounded-xl hover:shadow-lg">
+                    <img
+                      src={`${
+                        import.meta.env.VITE_API_BASE_URL
+                      }/uploads/photo-services/${item.url_photo}`}
+                      alt={item.title}
+                      className="object-cover w-full h-48"
+                    />
+                  </div>
+                </div>
+              ))}
         </Slider>
 
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
@@ -285,8 +316,9 @@ const Detail = ({ data = [], isLoading }) => {
               <h2 className="mb-2 text-lg font-semibold text-black sm:text-xl md:text-2xl">
                 Deskripsi Layanan
               </h2>
+
               <p className="text-sm text-gray-800 sm:text-base md:text-lg">
-                {service.description}
+                {isLoading ? <Skeleton count={3} /> : service.description}
               </p>
 
               <div className="flex justify-between flex-col md:flex-row mt-3">
@@ -295,14 +327,25 @@ const Detail = ({ data = [], isLoading }) => {
                     Detail Layanan
                   </h2>
                   <ul className="ml-5 space-y-1 text-sm text-gray-800 list-disc sm:text-base md:text-lg">
-                    {detailService.map((item) => (
-                      <li>
-                        {item.type} <br />
-                        <span className="text-slate-600 text-[15px]">
-                          {item.description}
-                        </span>
-                      </li>
-                    ))}
+                    {isLoading
+                      ? Array.from({ length: 3 }).map((_, index) => (
+                          <li key={index}>
+                            <Skeleton width={120} /> {/* untuk item.type */}
+                            <Skeleton
+                              width={`80%`}
+                              style={{ marginTop: 4 }}
+                            />{" "}
+                            {/* untuk item.description */}
+                          </li>
+                        ))
+                      : detailService.map((item, index) => (
+                          <li key={index}>
+                            {item.type} <br />
+                            <span className="text-slate-600 text-[15px]">
+                              {item.description}
+                            </span>
+                          </li>
+                        ))}
                   </ul>
                 </div>
                 <div className="w-100 md:w-1/2">
@@ -310,14 +353,25 @@ const Detail = ({ data = [], isLoading }) => {
                     Spesialis
                   </h2>
                   <ul className="ml-5 space-y-1 text-sm text-gray-800 list-disc sm:text-base md:text-lg">
-                    {specialist.map((item) => (
-                      <li>
-                        {item.name} <br />
-                        <span className="text-slate-600 text-[15px]">
-                          {item.description}
-                        </span>
-                      </li>
-                    ))}
+                    {isLoading
+                      ? Array.from({ length: 3 }).map((_, index) => (
+                          <li key={index}>
+                            <Skeleton width={120} /> {/* untuk item.type */}
+                            <Skeleton
+                              width={`80%`}
+                              style={{ marginTop: 4 }}
+                            />{" "}
+                            {/* untuk item.description */}
+                          </li>
+                        ))
+                      : specialist.map((item) => (
+                          <li>
+                            {item.name} <br />
+                            <span className="text-slate-600 text-[15px]">
+                              {item.description}
+                            </span>
+                          </li>
+                        ))}
                   </ul>
                 </div>
               </div>
@@ -334,7 +388,7 @@ const Detail = ({ data = [], isLoading }) => {
                 </p>
               </div>
             </div>
-            {position ? (
+            {position && !isLoading ? (
               <MapContainer
                 center={position}
                 zoom={12}
@@ -370,90 +424,127 @@ const Detail = ({ data = [], isLoading }) => {
                 )}
               </MapContainer>
             ) : (
-              <p className="mt-10 text-center text-gray-500 font">
-                Mengambil lokasi...
-              </p>
+              <div className="w-full border bg-gray-200 h-80 rounded-lg z-0">
+                <p className="mt-10 text-center text-gray-900 font">
+                  Mengambil lokasi... <br />
+                  Aktifkan Permission!!!
+                </p>
+              </div>
             )}
             <section className="border-t-2 pt-5">
               <div className="flex justify-between items-center mb-3">
                 <h2 className="mb-2 text-xl font-semibold text-black">
                   Ulasan Pengguna
                 </h2>
-                <div className="flex gap-4">
-                  <h2>
-                    <span className="font-bold text-[30px] mr-1">{parseFloat(service.average_rating)}</span>
-                    <span className="text-slate-500 font-bold ">/5</span>
-                  </h2>
-                  <div>
-                    <p className="font-bold text-[22px] text-center">{cekReview()}</p>
-                    <p className="text-[15px] font-semibold text-slate-500">
-                      Dari <span className="text-biru font-extrabold">{service.review_count}</span>{" "}
-                      Reviews
-                    </p>
+                {isLoading ? (
+                  <Skeleton width={200} height={50} />
+                ) : (
+                  <div className="flex gap-4">
+                    <h2>
+                      <span className="font-bold text-[30px] mr-1">
+                        {parseFloat(service.average_rating)}
+                      </span>
+                      <span className="text-slate-500 font-bold ">/5</span>
+                    </h2>
+                    <div>
+                      <p className="font-bold text-[22px] text-center">
+                        {cekReview()}
+                      </p>
+                      <p className="text-[15px] font-semibold text-slate-500">
+                        Dari{" "}
+                        <span className="text-biru font-extrabold">
+                          {service.review_count}
+                        </span>{" "}
+                        Reviews
+                      </p>
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
 
               <Slider {...settingsReview} className="mb-5">
-                {review.map((item) => (
-                  <div key={item.id} className="px-2">
-                    <div className="relative overflow-hidden transition p-5 duration-300 shadow group rounded-xl hover:shadow-lg">
-                      <div className="flex justify-between">
-                        <h1>{item.user.name}</h1>
-                        <p>
-                          <FontAwesomeIcon
-                            icon={faStar}
-                            className="text-yellow-500"
-                          />
-                          <span className="font-bold ml-2 text-[19px]">
-                            {item.rating}/
-                          </span>{" "}
-                          <span className="text-[14px]">5</span>
-                        </p>
+                {isLoading
+                  ? Array.from({ length: 3 }).map((_, index) => (
+                      <div key={index} className="px-2">
+                        <div className="relative overflow-hidden transition p-5 duration-300 shadow group rounded-xl">
+                          <div className="flex justify-between">
+                            <Skeleton width={100} height={20} />
+                            <div className="flex items-center space-x-2">
+                              <Skeleton circle width={20} height={20} />
+                              <Skeleton width={40} height={20} />
+                              <Skeleton width={20} height={15} />
+                            </div>
+                          </div>
+                          <Skeleton count={2} className="mt-3" />
+                          <Skeleton width={100} height={14} className="mt-4" />
+                        </div>
                       </div>
-                      <p className="mt-3 text-slate-700 text-[15px]">
-                        {item.review}
-                      </p>
-                      <small className="mt-3 inline-block text-biru">
-                        <FontAwesomeIcon icon={faCalendar} className="mr-2" />
-                        {formatTanggal(item.createdAt)}
-                      </small>
-                    </div>
-                  </div>
-                ))}
+                    ))
+                  : review.map((item) => (
+                      <div key={item.id} className="px-2">
+                        <div className="relative overflow-hidden transition p-5 duration-300 shadow group rounded-xl hover:shadow-lg">
+                          <div className="flex justify-between">
+                            <h1>{item.user.name}</h1>
+                            <p>
+                              <FontAwesomeIcon
+                                icon={faStar}
+                                className="text-yellow-500"
+                              />
+                              <span className="font-bold ml-2 text-[19px]">
+                                {item.rating}/
+                              </span>
+                              <span className="text-[14px]">5</span>
+                            </p>
+                          </div>
+                          <p className="mt-3 text-slate-700 text-[15px]">
+                            {item.review}
+                          </p>
+                          <small className="mt-3 inline-block text-biru">
+                            <FontAwesomeIcon
+                              icon={faCalendar}
+                              className="mr-2"
+                            />
+                            {formatTanggal(item.createdAt)}
+                          </small>
+                        </div>
+                      </div>
+                    ))}
               </Slider>
             </section>
           </div>
 
-          <div className="space-y-4">
-            <div className="p-6 text-black bg-yellow-400 shadow-lg rounded-xl">
-              <h3 className="mb-2 text-xl font-bold">
-                Butuh Bantuan Sekarang?
-              </h3>
-              <p className="mb-2 text-sm">
-                Hubungi kami untuk booking atau konsultasi langsung dengan
-                teknisi.
-              </p>
-              <p className="text-[15px]">
-                <strong>Alamat:</strong> {service.address}
-              </p>
-              <p className="text-[15px]">
-                <strong>Jam Buka:</strong>   {formatJam(service.opening_time)} - {formatJam(service.closing_time)}
-              </p>
-              <p className="text-[15px] mb-2">
-                <strong>No. Telepon:</strong> {service.alternative_phone}
-              </p>
-              <a
-                href={`/pemesanan`}
-                className="flex items-center justify-center w-full px-4 py-2 mb-2 text-white transition bg-red-600 rounded hover:bg-red-700"
-              >
-                <FontAwesomeIcon icon={faPhone} className="mr-2" />
-                Pesan Sekarang
-              </a>
+          {isLoading ? (
+            <Skeleton width={`100%`} height={300} />
+          ) : (
+            <div className="space-y-4">
+              <div className="p-6 text-black bg-yellow-400 shadow-lg rounded-xl">
+                <h3 className="mb-2 text-xl font-bold">
+                  Butuh Bantuan Sekarang?
+                </h3>
+                <p className="mb-2 text-sm">
+                  Hubungi kami untuk booking atau konsultasi langsung dengan
+                  teknisi.
+                </p>
+                <p className="text-[15px]">
+                  <strong>Alamat:</strong> {service.address}
+                </p>
+                <p className="text-[15px]">
+                  <strong>Jam Buka:</strong> {formatJam(service.opening_time)} -{" "}
+                  {formatJam(service.closing_time)}
+                </p>
+                <p className="text-[15px] mb-2">
+                  <strong>No. Telepon:</strong> {service.alternative_phone}
+                </p>
+                <a
+                  href={`/pemesanan`}
+                  className="flex items-center justify-center w-full px-4 py-2 mb-2 text-white transition bg-red-600 rounded hover:bg-red-700"
+                >
+                  <FontAwesomeIcon icon={faPhone} className="mr-2" />
+                  Pesan Sekarang
+                </a>
+              </div>
             </div>
-
-        
-          </div>
+          )}
         </div>
       </motion.div>
     </section>
