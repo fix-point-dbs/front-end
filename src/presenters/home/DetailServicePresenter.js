@@ -1,4 +1,4 @@
-import { ServiceModel } from "../models/ServiceModel";
+import { ServiceModel } from "../../models/ServiceModel";
 export class DetailServicePresenter{
 
     constructor(view){

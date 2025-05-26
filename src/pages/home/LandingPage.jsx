@@ -10,7 +10,7 @@ import Question from "../../views/home/landing-page/Question";
 import Member from "../../views/home/landing-page/Member";
 import Footer from "../../views/home/footer/Footer";
 import { useState } from "react";
-import { LandingPagePresenter } from "../../presenters/LandingPagePresenter";
+import { LandingPagePresenter } from "../../presenters/home/LandingPagePresenter";
 import { useEffect } from "react";
 import AOS from "aos";
 

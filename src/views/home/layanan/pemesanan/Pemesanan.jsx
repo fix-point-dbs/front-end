@@ -4,20 +4,35 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import background from "../../../../assets/images/bg-white.png";
 import orang from "../../../../assets/images/orang.png";
-
+import { formatJam } from "../../../../utils/FormatDateTime";
 import {
   faUpload,
   faStar,
   faClock,
   faPhone,
+  faSpinner
 } from "@fortawesome/free-solid-svg-icons";
 import { motion } from "framer-motion";
 
-export default function Pemesanan() {
+export default function Pemesanan({data = [], onSubmit, isLoading}) {
+  const detailService = data.detail_services ?? [];
   const [coords, setCoords] = useState({ lat: -6.2, lng: 106.8 });
   const [map, setMap] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
+  const [form, setForm] = useState({
+    description: "",
+    vehicle: "",
+    vehicle_brand: "",
+    police_number: "",
+    detail_service_name: "",
+  });
+  // console.log(data);
+  
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm({ ...form, [name]: value });
+  };  
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
@@ -51,6 +66,20 @@ export default function Pemesanan() {
       if (map) map.remove();
     };
   }, []);
+
+  const handleSubmit = (e) =>{
+    e.preventDefault();
+    onSubmit({
+      description: form.description,
+      vehicle: form.vehicle,
+      vehicle_brand: form.vehicle_brand,
+      police_number: form.police_number,
+      detail_service_name: form.detail_service_name,
+      photo: selectedImage,
+      longitude: coords.lng,
+      latitude: coords.lat
+    });
+  }
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -92,33 +121,35 @@ export default function Pemesanan() {
             <h3 className="text-lg font-bold">Bengkel Andalan Motor</h3>
             <p className="mt-1 text-sm text-gray-500 ">
               <FontAwesomeIcon icon={faStar} className="mr-2 text-yellow-400" />
-              4 / 5 • Bengkel • 10 mnt
+              {parseFloat(data.average_rating)} / 5 • {data.type}
             </p>
             <p className="flex items-center mt-1 space-x-4 text-sm">
               <FontAwesomeIcon icon={faClock} className="text-green-600" />
-              <span className="font-medium text-green-600">Buka 24 Jam</span>
+              <span className="font-medium text-green-600">{formatJam(data.opening_time)} - {formatJam(data.closing_time)}</span>
             </p>
             <p className="flex items-center mt-1 space-x-4 text-sm">
               <FontAwesomeIcon icon={faPhone} className="text-biru" />
-              <span>0816-0789-2456</span>
+              <span>{data.alternative_phone}</span>
             </p>
             <p className="mt-4 mb-1 text-sm font-bold text-black">Deskripsi</p>
             <p className="text-sm text-gray-600 ">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry.
+              {data.description}
             </p>
           </div>
 
-          <form className="w-full col-span-2 p-6 space-y-4 bg-white rounded-lg shadow-md">
+          <form onSubmit={handleSubmit} className="w-full col-span-2 p-6 space-y-4 bg-white rounded-lg shadow-md">
             <label className="font-bold">Deskripsi Keluhan</label>
             <textarea
               className="w-full p-2 border border-gray-300 rounded"
               rows="3"
+              name="description"
               placeholder="Silahkan masukkan keluhan anda"
-            ></textarea>
+              value={form.description}
+              onChange={handleChange}
+            />
 
             <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-              <select className="p-2 border border-gray-300 rounded">
+              <select name="vehicle" value={form.vehicle} onChange={handleChange} className="p-2 border border-gray-300 rounded">
                 <option value="">Pilih Jenis Kendaraan</option>
                 <option value="mobil">Mobil</option>
                 <option value="truk">Truk</option>
@@ -129,30 +160,35 @@ export default function Pemesanan() {
               <input
                 type="text"
                 className="p-2 border border-gray-300 rounded"
-                placeholder="Tipe Kendaraan"
+                name="vehicle_brand"
+                placeholder="Merk Kendaraan"
+                value={form.vehicle_brand}
+                onChange={handleChange}
               />
               <input
                 type="text"
+                name="police_number"
                 className="p-2 border border-gray-300 rounded"
                 placeholder="Nomor Polisi"
+                value={form.police_number}
+                onChange={handleChange}
               />
             </div>
 
             <div className="space-y-2">
               <label className="font-bold">Metode Layanan</label>
               <div className="space-y-1">
-                <label className="block">
-                  <input type="radio" name="layanan" className="mr-2" />
-                  Antar ke bengkel
-                </label>
-                <label className="block">
-                  <input type="radio" name="layanan" className="mr-2" />
-                  Bengkel datang ke lokasi
-                </label>
-                <label className="block">
-                  <input type="radio" name="layanan" className="mr-2" />
-                  Layanan Towing
-                </label>
+                  <div className="flex gap-5 flex-wrap md:grid md:grid-cols-2">
+                {detailService.map((item, index) => (
+                    <div className="w-100 border rounded border-slate-200 p-2" key={index}>
+                  <label >
+                    <input type="radio" value={item.type} onChange={handleChange} name="detail_service_name" className="mr-2 border" />
+                    {item.type}
+                  </label>
+                    <p className="text-sm text-gray-600 mt-2">{item.description}</p>
+                    </div>
+                ))}
+                    </div>
               </div>
             </div>
 
@@ -203,19 +239,25 @@ export default function Pemesanan() {
                 placeholder="Longitude"
               />
             </div>
-            <a
-              href="/pemesanan/waiting"
-              className="block w-full px-4 py-2 mt-4 font-bold text-center text-white bg-red-600 rounded hover:bg-red-700"
-            >
-              Kirim
-            </a>
+ 
+            {isLoading ? (
+  <button
+    type="button"
+    disabled
+    className="w-full px-4 py-2 mt-4 font-bold text-white bg-red-700 rounde flex justify-center items-center gap-2"
+  >
+    <FontAwesomeIcon icon={faSpinner} className="animate-spin" />
+    Sedang Mengirim
+  </button>
+) : (
+  <button
+    type="submit"
+    className="w-full px-4 py-2 mt-4 font-bold text-white bg-red-600 rounded hover:bg-red-700"
+  >
+    Kirim
+  </button>
+)}
 
-            {/* <button
-              type="submit"
-              className="w-full px-4 py-2 mt-4 font-bold text-white bg-red-600 rounded hover:bg-red-700"
-            >
-              Kirim
-            </button> */}
           </form>
         </motion.div>
       </div>

@@ -1,4 +1,4 @@
-import { ServiceModel } from "../models/ServiceModel";
+import { ServiceModel } from "../../models/ServiceModel";
 export class LandingPagePresenter {
     constructor(view) {
         this.view = view;

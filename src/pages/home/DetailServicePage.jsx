@@ -4,7 +4,7 @@ import Footer from "../../views/home/footer/Footer";
 import Detail from "../../views/home/layanan/bengkel/detail";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { DetailServicePresenter } from "../../presenters/DetailServicePresenter";
+import { DetailServicePresenter } from "../../presenters/home/DetailServicePresenter";
 export function DetailServicePage() {
   const { id } = useParams();
   const [service, setService] = useState([]);

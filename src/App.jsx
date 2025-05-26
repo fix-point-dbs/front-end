@@ -7,7 +7,7 @@ import { LandingPage } from "./pages/home/LandingPage";
 import { BengkelPage } from "./pages/home/BengkelPage";
 import { TowingPage } from "./pages/home/TowingPage";
 import { DetailServicePage } from "./pages/home/DetailServicePage";
-import { PemesananPage } from "./pages/home/PemesananPage";
+import { PemesananPage } from "./pages/home/BookingPage";
 import { Dashboard } from "./pages/admin/Dashboard";
 import { KonfirmasiPemesananPage } from "./pages/home/KonfirmasiPemesananPage";
 
@@ -24,7 +24,7 @@ function App() {
         <Route path="/bengkel/detail/:id" element={<DetailServicePage />} />
         <Route path="/bengkel/pemesanan" element={<PemesananPage />} />
         <Route path="/admin/dashboard" element={<Dashboard />} />
-        <Route path="/pemesanan" element={<PemesananPage />} />
+        <Route path="/pemesanan/:id" element={<PemesananPage />} />
         <Route
           path="/pemesanan/konfirmasi"
           element={<KonfirmasiPemesananPage />}
