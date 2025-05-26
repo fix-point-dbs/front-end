@@ -246,7 +246,10 @@ export default function Pemesanan({data = [], onSubmit, isLoading}) {
     disabled
     className="w-full px-4 py-2 mt-4 font-bold text-white bg-red-700 rounde flex justify-center items-center gap-2"
   >
-    <FontAwesomeIcon icon={faSpinner} className="animate-spin" />
+    <span
+  className="inline-block w-4 h-4 mr-2 border-2 border-t-2 border-gray-300 border-t-gray-800 rounded-full animate-spin align-middle"
+/>
+
     Sedang Mengirim
   </button>
 ) : (
