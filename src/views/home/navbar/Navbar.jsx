@@ -296,7 +296,7 @@ export default function Navbar() {
                 </li>
                 <li>
                   <NavLink
-                    to="/about"
+                    to="/artikel"
                     className={({ isActive }) =>
                       isActive ? "text-black block" : "text-gray-500 block"
                     }
@@ -307,7 +307,7 @@ export default function Navbar() {
 
                 <li>
                   <NavLink
-                    to="/contact"
+                    to="/mitra"
                     className={({ isActive }) =>
                       isActive ? "text-black block" : "text-gray-500 block"
                     }
