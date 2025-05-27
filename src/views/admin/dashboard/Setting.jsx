@@ -19,12 +19,12 @@ export default function Setting() {
   };
 
   return (
-    <div className="flex flex-col bg-white rounded-lg p-5 gap-1 w-full h-full">
-      <div className="text-base font-semibold text-black">
+    <div className="flex flex-col bg-white rounded-lg p-5 gap-3 w-full h-full dark:bg-gray-700">
+      <div className="text-base font-semibold text-gray-900 dark:text-gray-100">
         <h1>Platform Setting</h1>
       </div>
-      <div className="flex flex-col gap-2 text-gray-500">
-        <p className="font-medium">Account</p>
+      <div className="flex flex-col gap-3 text-gray-600 dark:text-gray-300">
+        <p className="font-medium text-gray-700 dark:text-gray-100">Account</p>
         <label htmlFor="toggle-follow" className="inline-flex items-center cursor-pointer">
           <input
             type="checkbox"
@@ -33,8 +33,8 @@ export default function Setting() {
             onChange={() => handleToggle("follow")}
             className="sr-only peer"
           />
-          <div className="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-[22px] rtl:peer-checked:after:-translate-x-[22px] peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
-          <span className="ml-3 text-sm font-medium text-gray-500 dark:text-gray-300">
+          <div className="relative w-11 h-6 bg-gray-300 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-500 rounded-full peer dark:bg-gray-600 peer-checked:after:translate-x-[22px] rtl:peer-checked:after:-translate-x-[22px] peer-checked:after:border-gray-200 after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-500 peer-checked:bg-blue-500 dark:peer-checked:bg-blue-600"></div>
+          <span className="ml-3 text-sm font-medium text-gray-600 dark:text-gray-300">
             Email me when someone follows me
           </span>
         </label>
@@ -46,8 +46,8 @@ export default function Setting() {
             onChange={() => handleToggle("answer")}
             className="sr-only peer"
           />
-          <div className="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-[22px] rtl:peer-checked:after:-translate-x-[22px] peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
-          <span className="ml-3 text-sm font-medium text-gray-500 dark:text-gray-300">
+          <div className="relative w-11 h-6 bg-gray-300 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-500 rounded-full peer dark:bg-gray-600 peer-checked:after:translate-x-[22px] rtl:peer-checked:after:-translate-x-[22px] peer-checked:after:border-gray-200 after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-500 peer-checked:bg-blue-500 dark:peer-checked:bg-blue-600"></div>
+          <span className="ml-3 text-sm font-medium text-gray-600 dark:text-gray-300">
             Email me when someone answers on my post
           </span>
         </label>
@@ -59,14 +59,14 @@ export default function Setting() {
             onChange={() => handleToggle("mention")}
             className="sr-only peer"
           />
-          <div className="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-[22px] rtl:peer-checked:after:-translate-x-[22px] peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
-          <span className="ml-3 text-sm font-medium text-gray-500 dark:text-gray-300">
+          <div className="relative w-11 h-6 bg-gray-300 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-500 rounded-full peer dark:bg-gray-600 peer-checked:after:translate-x-[22px] rtl:peer-checked:after:-translate-x-[22px] peer-checked:after:border-gray-200 after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-500 peer-checked:bg-blue-500 dark:peer-checked:bg-blue-600"></div>
+          <span className="ml-3 text-sm font-medium text-gray-600 dark:text-gray-300">
             Email me when mentions me
           </span>
         </label>
       </div>
-      <div className="flex flex-col gap-2 text-gray-500">
-        <p className="font-medium">Application</p>
+      <div className="flex flex-col gap-3 text-gray-600 dark:text-gray-300">
+        <p className="font-medium text-gray-700 dark:text-gray-100">Application</p>
         <label htmlFor="toggle-newproject" className="inline-flex items-center cursor-pointer">
           <input
             type="checkbox"
@@ -75,8 +75,8 @@ export default function Setting() {
             onChange={() => handleToggle("newproject")}
             className="sr-only peer"
           />
-          <div className="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-[22px] rtl:peer-checked:after:-translate-x-[22px] peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
-          <span className="ml-3 text-sm font-medium text-gray-500 dark:text-gray-300">
+          <div className="relative w-11 h-6 bg-gray-300 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-500 rounded-full peer dark:bg-gray-600 peer-checked:after:translate-x-[22px] rtl:peer-checked:after:-translate-x-[22px] peer-checked:after:border-gray-200 after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-500 peer-checked:bg-blue-500 dark:peer-checked:bg-blue-600"></div>
+          <span className="ml-3 text-sm font-medium text-gray-600 dark:text-gray-300">
             New launches and projects
           </span>
         </label>
@@ -88,8 +88,8 @@ export default function Setting() {
             onChange={() => handleToggle("monthly")}
             className="sr-only peer"
           />
-          <div className="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-[22px] rtl:peer-checked:after:-translate-x-[22px] peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
-          <span className="ml-3 text-sm font-medium text-gray-500 dark:text-gray-300">
+          <div className="relative w-11 h-6 bg-gray-300 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-500 rounded-full peer dark:bg-gray-600 peer-checked:after:translate-x-[22px] rtl:peer-checked:after:-translate-x-[22px] peer-checked:after:border-gray-200 after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-500 peer-checked:bg-blue-500 dark:peer-checked:bg-blue-600"></div>
+          <span className="ml-3 text-sm font-medium text-gray-600 dark:text-gray-300">
             Monthly product updates
           </span>
         </label>
@@ -101,8 +101,8 @@ export default function Setting() {
             onChange={() => handleToggle("subscribe")}
             className="sr-only peer"
           />
-          <div className="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-[22px] rtl:peer-checked:after:-translate-x-[22px] peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
-          <span className="ml-3 text-sm font-medium text-gray-500 dark:text-gray-300">
+          <div className="relative w-11 h-6 bg-gray-300 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-500 rounded-full peer dark:bg-gray-600 peer-checked:after:translate-x-[22px] rtl:peer-checked:after:-translate-x-[22px] peer-checked:after:border-gray-200 after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-500 peer-checked:bg-blue-500 dark:peer-checked:bg-blue-600"></div>
+          <span className="ml-3 text-sm font-medium text-gray-600 dark:text-gray-300">
             Subscribe to newsletter
           </span>
         </label>

@@ -8,11 +8,11 @@ export default function Conversation() {
     ];
 
     return (
-        <div className="flex flex-col bg-white rounded-lg p-5 gap-4 w-full h-full">
-            <div className="text-base font-semibold text-black">
+        <div className="flex flex-col bg-white rounded-lg p-5 gap-4 w-full h-full dark:bg-gray-700">
+            <div className="text-base font-semibold text-black dark:text-white">
                 <h2>Conversation</h2>
             </div>
-            <div className="flex flex-col gap-4 text-gray-500">
+            <div className="flex flex-col gap-4 text-gray-500 dark:text-gray-300">
                 {items.map((item, index) => (
                     <div key={index} className="flex items-center gap-3">
                         <img
@@ -21,7 +21,7 @@ export default function Conversation() {
                             className="w-10 h-10 rounded-full object-cover"
                         />
                         <div className="flex flex-col flex-1">
-                            <span className="text-sm font-medium text-black">{item.name}</span>
+                            <span className="text-sm font-medium text-black dark:text-white">{item.name}</span>
                             <span className="text-sm">{item.message}</span>
                         </div>
                         <button className="text-sm text-teal-500 hover:underline">REPLY</button>

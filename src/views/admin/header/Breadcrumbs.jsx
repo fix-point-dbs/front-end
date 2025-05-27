@@ -7,12 +7,13 @@ export default function Breadcrumbs( { className = "" } ) {
   const location = useLocation();
 
   const navItems = [
-    { name: "Dashboard", path: "/dashboard" },
-    { name: "Pengajuan Mitra", path: "/pengajuan-mitra" },
-    { name: "Mitra", path: "/mitra" },
-    { name: "Pemesanan", path: "/pemesanan" },
-    { name: "User", path: "/user" },
-    { name: "Laporan", path: "/laporan" },
+    { name: "Dashboard", path: "/admin/dashboard" },
+    { name: "Pengajuan Mitra", path: "/admin/pengajuan-mitra" },
+    { name: "Mitra", path: "/admin/mitra" },
+    { name: "Pemesanan", path: "/admin/pemesanan" },
+    { name: "User", path: "/admin/user" },
+    { name: "Laporan", path: "/admin/laporan" },
+    { name: "Tambah Mitra", path: "/admin/pengajuan-mitra/tambah" },
   ];
 
   const pathnames = location.pathname.split("/").filter((x) => x);
@@ -27,13 +28,13 @@ export default function Breadcrumbs( { className = "" } ) {
     navItems.find((item) => item.path === location.pathname)?.name || "Home";
 
   return (
-    <div className="flex w-full p-2 flex-row">
+    <div className="flex w-full flex-row">
         <div className="w-full px-4 py-2">
           <nav className={`text-sm dark:text-gray-300 mb-1 ${className}`}>
             Pages / {activePage}
           </nav>
 
-          <nav aria-label="Breadcrumb" className={`mb-4 font-semibold ${className}`}>
+          <nav aria-label="Breadcrumb" className={`mb-4 font-semibold dark:text-white ${className}`}>
             {activePage}
           </nav>
         </div>

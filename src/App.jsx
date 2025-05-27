@@ -9,6 +9,8 @@ import { DetailBengkelPage } from "./pages/home/DetailBengkelPage";
 import { PemesananPage } from "./pages/home/PemesananPage";
 import { Dashboard } from "./pages/admin/Dashboard";
 import { KonfirmasiPemesananPage } from "./pages/home/KonfirmasiPemesananPage";
+import { PengajuanMitra } from "./pages/admin/PengajuanMitra";
+import TambahMitra from "./pages/admin/TambahMitra";
 
 function App() {
   return (
@@ -22,6 +24,8 @@ function App() {
         <Route path="/bengkel/detail" element={<DetailBengkelPage />} />
         <Route path="/bengkel/pemesanan" element={<PemesananPage />} />
         <Route path="/admin/dashboard" element={<Dashboard />} />
+        <Route path="/admin/pengajuan-mitra" element={<PengajuanMitra />} />
+        <Route path="/admin/pengajuan-mitra/tambah" element={<TambahMitra />} />
         <Route path="/pemesanan" element={<PemesananPage />} />
         <Route
           path="/pemesanan/konfirmasi"
