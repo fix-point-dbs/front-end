@@ -4,6 +4,7 @@ import "slick-carousel/slick/slick-theme.css";
 import orang from "../../../assets/images/orang.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import SkeletonCard from "./SkeletonCard";
+import { Link } from "react-router-dom";
 import {
   faMapMarkerAlt,
   faClock,
@@ -142,11 +143,12 @@ export default function Service({ data = [], isLoading }) {
                             />
                             Booking
                           </button>
-                          <a href="/bengkel/detail">
-                            <button className="px-3 py-1 text-sm font-semibold border rounded text-biru border-biru">
-                              Lihat Detail
-                            </button>
-                          </a>
+                          <Link
+                            to={`/service/detail/${item.id}`}
+                            className="px-3 py-1 text-sm font-semibold border rounded text-biru border-biru"
+                          >
+                            Lihat Detail
+                          </Link>
                         </div>
                         <h3 className="mt-4 text-sm font-semibold text-center text-biru">
                           Ringkasan

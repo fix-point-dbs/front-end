@@ -5,7 +5,7 @@ import Pemesanan from "../../views/home/layanan/pemesanan/Pemesanan";
 import { BookingPresenter } from "../../presenters/home/BookingPresenter";
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-export function PemesananPage() {
+export function BookingPage() {
   const navigate = useNavigate();
   const { id } = useParams();
   const [service, setServices] = useState([]);
@@ -19,12 +19,13 @@ export function PemesananPage() {
   const handleAdd = async (booking) => {
     booking.service_id = id;
     booking.status = "pending";
+    
     await presenter.addBooking(booking);
   }
 
-  function onSuccess() {
+  function onSuccess(booking_id) {
     alert("Pemesanan Berhasil");
-    navigate("/pemesanan/konfirmasi");
+    navigate(`/booking/confirmation/${booking_id}`);
   }
   return (
     <>

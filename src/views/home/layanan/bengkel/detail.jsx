@@ -16,6 +16,7 @@ import {
   faMoneyBill,
   faLocation,
 } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import "leaflet/dist/leaflet.css";
 import Slider from "react-slick";
@@ -535,13 +536,13 @@ const Detail = ({ data = [], isLoading }) => {
                 <p className="text-[15px] mb-2">
                   <strong>No. Telepon:</strong> {service.alternative_phone}
                 </p>
-                <a
-                  href={`/pemesanan`}
-                  className="flex items-center justify-center w-full px-4 py-2 mb-2 text-white transition bg-red-600 rounded hover:bg-red-700"
+                <Link
+                  to={`/booking/${service.id}`}
+                  className="flex items-center justify-center w-full px-4 py-2 text-white transition bg-red-600 rounded hover:bg-red-700"
                 >
                   <FontAwesomeIcon icon={faPhone} className="mr-2" />
                   Pesan Sekarang
-                </a>
+                </Link>
               </div>
             </div>
           )}

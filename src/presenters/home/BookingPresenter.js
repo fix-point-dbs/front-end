@@ -20,8 +20,7 @@ export class BookingPresenter {
         try {
             this.view.setIsLoading(true);
             const res = await this.modelBooking.createBooking(booking);
-            console.log(res);
-            this.view.onSuccess();
+            this.view.onSuccess(res.data.data.id);
         } catch (error) {
             console.log(error);
         }finally{

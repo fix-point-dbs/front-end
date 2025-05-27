@@ -1,6 +1,6 @@
 import "./App.css";
 import { Routes, Route, Navigate } from "react-router-dom";
-import ScrollToTop from "./views/home/components/ScrollToTop";
+// import ScrollToTop from "./views/home/components/ScrollToTop";
 
 import { LoginPage } from "./pages/home/LoginPage";
 import { UserPage } from "./pages/home/UserPage";
@@ -8,9 +8,9 @@ import { LandingPage } from "./pages/home/LandingPage";
 import { BengkelPage } from "./pages/home/BengkelPage";
 import { TowingPage } from "./pages/home/TowingPage";
 import { DetailServicePage } from "./pages/home/DetailServicePage";
-import { PemesananPage } from "./pages/home/BookingPage";
+import { BookingPage } from "./pages/home/BookingPage";
 import { Dashboard } from "./pages/admin/Dashboard";
-import { KonfirmasiPemesananPage } from "./pages/home/KonfirmasiPemesananPage";
+import { ConfirmationBookingPage } from "./pages/home/ConfirmationBookingPage";
 import { ArtikelPage } from "./pages/home/ArtikelPage";
 import { MitraPage } from "./pages/home/MitraPage";
 import { DetailKontakPage } from "./pages/home/DetailKontakPage";
@@ -22,18 +22,16 @@ import { ReviewRegistrasiPage } from "./pages/home/ReviewRegistrasiPage";
 function App() {
   return (
     <>
-      <ScrollToTop/>
+      {/* <ScrollToTop/> */}
       <Routes>
         <Route path="/users" element={<UserPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/" element={<LandingPage />} />
         <Route path="/bengkel" element={<BengkelPage />} />
         <Route path="/towing" element={<TowingPage />} />
-        <Route path="/bengkel/detail/:id" element={<DetailServicePage />} />
-        <Route path="/bengkel/pemesanan" element={<PemesananPage />} />
+        <Route path="/service/detail/:id" element={<DetailServicePage />} />
         <Route path="/admin/dashboard" element={<Dashboard />} />
-        <Route path="/pemesanan/:id" element={<PemesananPage />} />
-        <Route path="/pemesanan" element={<PemesananPage />} />
+        <Route path="/booking/:id" element={<BookingPage />} />
         <Route path="/artikel" element={<ArtikelPage />} />
         <Route path="/mitra" element={<MitraPage />} />
         <Route path="/registrasi/data-diri" element={<DetailKontakPage />} />
@@ -52,8 +50,8 @@ function App() {
         />
 
         <Route
-          path="/pemesanan/konfirmasi"
-          element={<KonfirmasiPemesananPage />}
+          path="/booking/confirmation/:id"
+          element={<ConfirmationBookingPage />}
         />
       </Routes>
     </>

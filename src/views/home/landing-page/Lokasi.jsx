@@ -12,7 +12,7 @@ import { currentLocationIcon, serviceIcon } from "../../../utils/CustomIconMarke
 import "leaflet/dist/leaflet.css";
 import RoutingMachine from "../components/RoutingMachine";
 import { getCurrentPosition } from "../../../utils/GeoLocation";
-
+import L from "leaflet"; 
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
   iconRetinaUrl:
@@ -168,7 +168,7 @@ export default function Lokasi({ data }) {
                 </div>
 
                 <Link
-                  to={`/bengkel/detail/${infoJarak.idService}`}
+                  to={`/service/detail/${infoJarak.idService}`}
                   className="block mt-2 text-center bg-slate-300 hover:bg-slate-400 text-white font-semibold py-2 px-4 rounded transition duration-300"
                 >
                   Lihat Detail Bengkel
