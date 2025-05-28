@@ -117,7 +117,7 @@ const Waiting = ({ data, isLoading }) => {
 
             <div className="p-4 bg-white border rounded-md shadow-sm">
               <div className="flex items-center justify-between mb-2">
-                <h3 className="text-lg font-semibold">Jali Go</h3>
+                <h3 className="text-lg font-semibold">{data.service?.bussiness_name}</h3>
                 <span className="text-sm text-green-600">Buka 24 jam</span>
               </div>
               <p className="text-sm text-gray-700">

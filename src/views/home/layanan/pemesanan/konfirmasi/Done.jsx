@@ -8,9 +8,9 @@ import { faBullhorn, faComments } from "@fortawesome/free-solid-svg-icons";
 import { faStar as faSolidStar } from "@fortawesome/free-solid-svg-icons";
 import { faStar as faRegularStar } from "@fortawesome/free-regular-svg-icons";
 
-const StarRating = ({ rating, setRating }) => {
+const StarRating = () => {
   const [hover, setHover] = useState(0);
-
+  const [rating, setRating] = useState(0);
   return (
     <div className="flex space-x-1">
       {[1, 2, 3, 4, 5].map((star) => (

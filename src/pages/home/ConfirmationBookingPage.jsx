@@ -6,7 +6,7 @@ import { ConfirmationBookingPresenter } from "../../presenters/home/Confirmation
 import { useState, useEffect } from "react";
 import Accepted from "../../views/home/layanan/pemesanan/konfirmasi/Accepted";
 import Done from "../../views/home/layanan/pemesanan/konfirmasi/Done";
-import OnTheWay from "../../views/home/layanan/pemesanan/konfirmasi/OnTheWay";
+import InProgres from "../../views/home/layanan/pemesanan/konfirmasi/InProgres";
 import Waiting from "../../views/home/layanan/pemesanan/konfirmasi/Waiting";
 import Rejected from "../../views/home/layanan/pemesanan/konfirmasi/Rejected";
 export function ConfirmationBookingPage() {
@@ -30,7 +30,7 @@ export function ConfirmationBookingPage() {
         status === "done" && <Done data={data} isLoading={isLoading} />
       }
       {
-        status === "in progress" && <OnTheWay data={data} isLoading={isLoading} />
+        status === "in progress" && <InProgres data={data} isLoading={isLoading} />
       }
       {
         status === "pending" && <Waiting data={data} isLoading={isLoading} />

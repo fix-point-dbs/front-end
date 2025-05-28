@@ -1,13 +1,12 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import "leaflet/dist/leaflet.css";
-import L from "leaflet";
 import background from "../../../../../assets/images/bg-white.png";
 import sepeda from "../../../../../assets/images/sepeda.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBullhorn, faComments } from "@fortawesome/free-solid-svg-icons";
 
-const OnTheWay = () => {
+const InProgres = ({ data }) => {
   return (
     <section className="w-[90%] max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 mt-[60px] overflow-hidden bg-cover bg-center bg-no-repeat mb-10">
       <img
@@ -104,15 +103,15 @@ const OnTheWay = () => {
 
             <div className="p-4 bg-white border rounded-md shadow-sm">
               <div className="flex items-center justify-between mb-2">
-                <h3 className="text-lg font-semibold">Jali Go</h3>
+                <h3 className="text-lg font-semibold">{data.service?.bussiness_name}</h3>
                 <span className="text-sm text-green-600">Buka 24 jam</span>
               </div>
               <p className="text-sm text-gray-700">
                 Pesanan dengan nomor{" "}
                 <span className="font-semibold text-red-600">
-                  PS2321313131833
+                  {data?.id}
                 </span>{" "}
-                telah diterima oleh bengkel <strong>Jali Go</strong>. Montir
+                telah diterima oleh bengkel <strong>{data.service?.bussiness_name}</strong>. Montir
                 telah ditugasku menuju lokasi anda!.
               </p>
             </div>
@@ -127,9 +126,8 @@ const OnTheWay = () => {
                   alt="Motor Melaju"
                 />
                 <p className="text-center text-gray-700">
-                  Montir Sedang menuju lokasi anda dengan Nomor Polisi
+                  Montir Sedang menuju lokasi anda. Mohon bersabar!
                 </p>
-                <p className="text-lg font-bold text-green-600">AG 1284 GT</p>
               </div>
             </div>
           </div>
@@ -139,4 +137,4 @@ const OnTheWay = () => {
   );
 };
 
-export default OnTheWay;
+export default InProgres;
