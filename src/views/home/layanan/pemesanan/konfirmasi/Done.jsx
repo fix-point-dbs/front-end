@@ -4,36 +4,21 @@ import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import background from "../../../../../assets/images/bg-white.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBullhorn, faComments } from "@fortawesome/free-solid-svg-icons";
-import { faStar as faSolidStar } from "@fortawesome/free-solid-svg-icons";
-import { faStar as faRegularStar } from "@fortawesome/free-regular-svg-icons";
+import { faBullhorn } from "@fortawesome/free-solid-svg-icons";
+import StarRating from "../../../components/StarRating";
 
-const StarRating = ({ rating, setRating }) => {
-  const [hover, setHover] = useState(0);
-
-  return (
-    <div className="flex space-x-1">
-      {[1, 2, 3, 4, 5].map((star) => (
-        <button
-          type="button"
-          key={star}
-          onClick={() => setRating(star)}
-          onMouseEnter={() => setHover(star)}
-          onMouseLeave={() => setHover(0)}
-        >
-          <FontAwesomeIcon
-            icon={star <= (hover || rating) ? faSolidStar : faRegularStar}
-            className="text-xl text-yellow-400"
-          />
-        </button>
-      ))}
-    </div>
-  );
-};
-
-const Done = () => {
+const Done = ({ data, isLoading, onSubmit}) => {
   const [rating, setRating] = useState(0);
   const [review, setReview] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const reviewData = {
+      rating: rating,
+      review: review,
+    };
+    onSubmit(reviewData);
+  };
 
   return (
     <section className="w-[90%] max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 mt-[60px] overflow-hidden bg-cover bg-center bg-no-repeat mb-10">
@@ -102,13 +87,24 @@ const Done = () => {
                 />
                 <strong>Terimakasih!</strong> Pesanan anda dengan nomor {""}
                 <span className="font-semibold text-black">
-                  PS2321313131833
+                  {data.id}
                 </span>{" "}
                 telah <strong>Selesai</strong>. Harap beri ulasan anda yah!
               </p>
             </div>
 
+            <div className="p-4 bg-white border rounded-md shadow-sm">
+              <div className="flex items-center justify-between mb-2">
+                <h3 className="text-lg font-semibold">{data.service?.bussiness_name}</h3>
+                <span className="text-sm text-green-600">Buka 24 jam</span>
+              </div>
+              <p className="text-sm text-gray-700">
+                Terima kasih telah menggunakan layanan kami. Silahkan beri ulasan anda untuk perbaikan pelayanan kami.
+              </p>
+            </div>
+
             <div className="p-4 space-y-4 border rounded-md shadow-sm bg-gray-50">
+              <form onSubmit={handleSubmit}>
               <h4 className="pb-2 font-semibold border-b text-md">
                 Bagaimana pelayanan yang dilakukan?
               </h4>
@@ -117,7 +113,7 @@ const Done = () => {
                 <label className="block text-sm font-bold text-gray-700">
                   Penilaian:
                 </label>
-                <StarRating rating={rating} setRating={setRating} />
+                <StarRating onChange={setRating} />
 
                 <label className="block text-sm font-bold text-gray-700">
                   Ulasan:
@@ -132,15 +128,12 @@ const Done = () => {
 
                 <button
                   className="px-4 py-2 text-white bg-blue-600 rounded hover:bg-blue-700"
-                  onClick={() => {
-                    alert(
-                      `Rating: ${rating}\nReview: ${review}\nTerima kasih atas ulasan Anda!`
-                    );
-                  }}
+                  type="submit"
                 >
                   Kirim
                 </button>
               </div>
+              </form>
             </div>
           </div>
         </div>
