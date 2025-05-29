@@ -8,13 +8,12 @@ export default function Hero() {
         alt="Hero background"
         className="absolute inset-0 w-full h-full object-cover h-[700px]"
       />
-      <div className="relative z-20 flex items-center justify-end h-full px-12 mx-auto max-w-7xl">
+      <div className="relative z-999 flex items-center justify-end h-full px-12 mx-auto max-w-7xl">
         <div
           className="max-w-lg text-white"
           data-aos="fade-down"
           data-aos-duration="1000"
           data-aos-delay="300"
-          
         >
           <h1 className="text-2xl font-extrabold sm:text-3xl">
             Pencarian{" "}

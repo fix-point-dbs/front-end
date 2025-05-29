@@ -1,12 +1,25 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import background from "../../../../../assets/images/bg-white.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBullhorn, faComments } from "@fortawesome/free-solid-svg-icons";
+import { faBullhorn } from "@fortawesome/free-solid-svg-icons";
+import StarRating from "../../../components/StarRating";
 
-const Done = () => {
+const Done = ({ data, isLoading, onSubmit}) => {
+  const [rating, setRating] = useState(0);
+  const [review, setReview] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const reviewData = {
+      rating: rating,
+      review: review,
+    };
+    onSubmit(reviewData);
+  };
+
   return (
     <section className="w-[90%] max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 mt-[60px] overflow-hidden bg-cover bg-center bg-no-repeat mb-10">
       <img
@@ -14,7 +27,7 @@ const Done = () => {
         alt="Hero background"
         className="absolute inset-0 z-0 object-cover w-full h-[300px] sm:h-[300px] lg:h-[300px]"
       />
-      <div className="relative z-10 ">
+      <div className="relative z-10">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -35,44 +48,32 @@ const Done = () => {
                 Konfirmasi Pesanan
               </h2>
               <div className="relative ml-6 border-l-2 border-gray-200">
-                <div className="relative flex items-center mb-10 space-x-4">
-                  <div className="absolute flex items-center justify-center w-8 h-8 text-sm font-semibold text-white bg-blue-700 rounded-full -left-6">
-                    1
-                  </div>
-                  <span className="text-sm font-semibold text-blue-700">
-                    Menunggu
-                  </span>
-                </div>
-
-                <div className="relative flex items-center mb-10 space-x-4">
-                  <div className="absolute flex items-center justify-center w-8 h-8 text-sm font-semibold text-white bg-blue-700 rounded-full -left-6">
-                    2
-                  </div>
-                  <span className="text-sm font-semibold text-blue-700">
-                    Diterima
-                  </span>
-                </div>
-
-                <div className="relative flex items-center mb-10 space-x-4">
-                  <div className="absolute flex items-center justify-center w-8 h-8 text-sm font-semibold text-white bg-blue-700 rounded-full -left-6">
-                    2
-                  </div>
-                  <span className="text-sm font-semibold text-blue-700">
-                    Dalam Perjalanan
-                  </span>
-                </div>
-
-                <div className="relative flex items-center mb-10 space-x-4">
-                  <div className="absolute -left-6">
-                    <span className="absolute inline-flex w-8 h-8 bg-blue-400 rounded-full opacity-75 animate-ping"></span>
-                    <span className="relative flex items-center justify-center w-8 h-8 text-sm font-semibold text-white bg-blue-700 rounded-full">
-                      4
-                    </span>
-                  </div>
-                  <span className="text-sm font-semibold text-blue-700">
-                    Selesai
-                  </span>
-                </div>
+                {["Menunggu", "Diterima", "Dalam Perjalanan", "Selesai"].map(
+                  (step, i) => (
+                    <div
+                      key={i}
+                      className="relative flex items-center mb-10 space-x-4"
+                    >
+                      <div className="absolute -left-6">
+                        {i === 3 ? (
+                          <>
+                            <span className="absolute inline-flex w-8 h-8 bg-blue-400 rounded-full opacity-75 animate-ping"></span>
+                            <span className="relative flex items-center justify-center w-8 h-8 text-sm font-semibold text-white bg-blue-700 rounded-full">
+                              {i + 1}
+                            </span>
+                          </>
+                        ) : (
+                          <span className="flex items-center justify-center w-8 h-8 text-sm font-semibold text-white bg-blue-700 rounded-full">
+                            {i + 1}
+                          </span>
+                        )}
+                      </div>
+                      <span className="text-sm font-semibold text-blue-700">
+                        {step}
+                      </span>
+                    </div>
+                  )
+                )}
               </div>
             </div>
           </div>
@@ -86,13 +87,24 @@ const Done = () => {
                 />
                 <strong>Terimakasih!</strong> Pesanan anda dengan nomor {""}
                 <span className="font-semibold text-black">
-                  PS2321313131833
+                  {data.id}
                 </span>{" "}
-                telah <strong>Selesai</strong> Harap beri ulasan anda yah!.
+                telah <strong>Selesai</strong>. Harap beri ulasan anda yah!
+              </p>
+            </div>
+
+            <div className="p-4 bg-white border rounded-md shadow-sm">
+              <div className="flex items-center justify-between mb-2">
+                <h3 className="text-lg font-semibold">{data.service?.bussiness_name}</h3>
+                <span className="text-sm text-green-600">Buka 24 jam</span>
+              </div>
+              <p className="text-sm text-gray-700">
+                Terima kasih telah menggunakan layanan kami. Silahkan beri ulasan anda untuk perbaikan pelayanan kami.
               </p>
             </div>
 
             <div className="p-4 space-y-4 border rounded-md shadow-sm bg-gray-50">
+              <form onSubmit={handleSubmit}>
               <h4 className="pb-2 font-semibold border-b text-md">
                 Bagaimana pelayanan yang dilakukan?
               </h4>
@@ -101,14 +113,7 @@ const Done = () => {
                 <label className="block text-sm font-bold text-gray-700">
                   Penilaian:
                 </label>
-                <select className="w-full p-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300">
-                  <option value="">Pilih rating</option>
-                  <option value="5">⭐️⭐️⭐️⭐️⭐️ (Sangat Baik)</option>
-                  <option value="4">⭐️⭐️⭐️⭐️ (Baik)</option>
-                  <option value="3">⭐️⭐️⭐️ (Cukup)</option>
-                  <option value="2">⭐️⭐️ (Kurang)</option>
-                  <option value="1">⭐️ (Buruk)</option>
-                </select>
+                <StarRating onChange={setRating} />
 
                 <label className="block text-sm font-bold text-gray-700">
                   Ulasan:
@@ -117,15 +122,22 @@ const Done = () => {
                   rows="4"
                   placeholder="Tulis pengalaman anda..."
                   className="w-full p-2 border rounded-md resize-none focus:outline-none focus:ring focus:border-blue-300"
+                  value={review}
+                  onChange={(e) => setReview(e.target.value)}
                 ></textarea>
 
-                <button className="px-4 py-2 text-white bg-blue-600 rounded hover:bg-blue-700">
+                <button
+                  className="px-4 py-2 text-white bg-blue-600 rounded hover:bg-blue-700"
+                  type="submit"
+                >
                   Kirim
                 </button>
               </div>
+              </form>
             </div>
           </div>
         </div>
+
         <div className="pt-4 text-right">
           <button className="px-4 py-2 font-bold text-white bg-red-500 rounded hover:bg-red-600">
             Selesai

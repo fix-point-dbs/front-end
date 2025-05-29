@@ -5,8 +5,10 @@ import L from "leaflet";
 import background from "../../../../../assets/images/bg-white.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBullhorn } from "@fortawesome/free-solid-svg-icons";
-
-const Waiting = () => {
+import { formatTanggalDanWaktu } from "../../../../../utils/FormatDateTime";
+const Waiting = ({ data, isLoading }) => {
+  console.log(data);
+  
   useEffect(() => {
     const map = L.map("map").setView([-7.8259926, 113.8286264], 13);
 
@@ -115,15 +117,15 @@ const Waiting = () => {
 
             <div className="p-4 bg-white border rounded-md shadow-sm">
               <div className="flex items-center justify-between mb-2">
-                <h3 className="text-lg font-semibold">Jali Go</h3>
+                <h3 className="text-lg font-semibold">{data.service?.bussiness_name}</h3>
                 <span className="text-sm text-green-600">Buka 24 jam</span>
               </div>
               <p className="text-sm text-gray-700">
                 Pesanan dengan nomor{" "}
                 <span className="font-semibold text-red-600">
-                  PS2321313131833
+                  {data.id}
                 </span>{" "}
-                sudah dikirim kepada pihak bengkel <strong>Jali Go</strong>.
+                sudah dikirim kepada pihak bengkel <strong>{data.service?.bussiness_name}</strong>.
                 Silahkan tunggu beberapa menit.
               </p>
             </div>
@@ -134,38 +136,57 @@ const Waiting = () => {
               <div className="grid grid-cols-1 gap-4 text-sm md:grid-cols-2">
                 <div>
                   <label className="block text-gray-500">Nama Pemesan</label>
-                  <p className="text-gray-800">Greta</p>
+                  <p className="text-gray-800">{data.user?.name}</p>
                 </div>
                 <div>
-                  <label className="block text-gray-500">Nomor Pemesan</label>
-                  <p className="text-gray-800">08199929292922</p>
-                </div>
-                <div className="md:col-span-2">
-                  <label className="block text-gray-500">Alamat</label>
-                  <p className="text-gray-800">
-                    Tegalsari Selatan, Bladen, Kec. Bondowoso, Kabupaten
-                    Bondowoso, Jawa Timur 68214
-                  </p>
+                  <label className="block text-gray-500">Nomor Hp</label>
+                  <p className="text-gray-800">{data.user?.phone}</p>
                 </div>
                 <div>
                   <label className="block text-gray-500">
                     Layanan Kendaraan
                   </label>
-                  <p className="text-gray-800">Sepeda Motor</p>
+                  <p className="text-gray-800">{data.vehicle}</p>
                 </div>
                 <div>
                   <label className="block text-gray-500">Metode Layanan</label>
-                  <p className="text-gray-800">Bengkel datang ke tempat</p>
+                  <p className="text-gray-800">{data.detail_service_name}</p>
+                </div>
+                <div>
+                  <label className="block text-gray-500">
+                    Merk Kendaraan
+                  </label>
+                  <p className="text-gray-800">{data.vehicle_brand}</p>
+                </div>
+                <div>
+                  <label className="block text-gray-500">
+                    Nomor Polisi
+                  </label>
+                  <p className="text-gray-800">{data.police_number}</p>
                 </div>
                 <div>
                   <label className="block text-gray-500">Waktu Pemesanan</label>
-                  <p className="text-gray-800">14 Mei 2024, 14:53</p>
+                  <p className="text-gray-800">{formatTanggalDanWaktu(data.createdAt)}</p>
                 </div>
               </div>
               <div className="mt-4">
                 <label className="block mb-2 text-gray-500">
                   Titik Lokasi Perjumpaan
                 </label>
+                <div className="grid grid-cols-1 gap-4 text-sm mb-3 md:grid-cols-2">
+                <div>
+                  <label className="block text-gray-500">
+                    Alamat
+                  </label>
+                  <p className="text-gray-800">{data.address}</p>
+                </div>
+                <div>
+                  <label className="block text-gray-500">
+                    Kode Pos
+                  </label>
+                  <p className="text-gray-800">{data.postal_code}</p>
+                </div>
+                </div>
                 <div id="map" className="w-full h-64 rounded-md" />
               </div>
             </div>
