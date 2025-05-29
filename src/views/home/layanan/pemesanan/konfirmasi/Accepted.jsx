@@ -1,12 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import background from "../../../../../assets/images/bg-white.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBullhorn, faComments } from "@fortawesome/free-solid-svg-icons";
-
-const Accepted = () => {
+import ChatPage from "../../../../../pages/ChatPage";
+import { formatTanggalDanWaktu } from "../../../../../utils/FormatDateTime";
+const Accepted = ({ data, isLoading }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const handleToggle = () => setIsOpen(prev => !prev);
   useEffect(() => {
     const map = L.map("map").setView([-7.8259926, 113.8286264], 13);
 
@@ -35,6 +38,8 @@ const Accepted = () => {
   }, []);
 
   return (
+    <>
+     <ChatPage isOpen={isOpen} onClose={handleToggle} mitra_id={4} />
     <section className="w-[90%] max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 mt-[60px] overflow-hidden bg-cover bg-center bg-no-repeat mb-10">
       <img
         src={background}
@@ -109,7 +114,7 @@ const Accepted = () => {
               <p className="mb-2 text-sm text-gray-600">
                 Ingin menanyakan estimasi waktu atau konfirmasi ulang?
               </p>
-              <button className="w-full px-4 py-2 text-white transition bg-blue-700 rounded hover:bg-blue-800">
+              <button onClick={handleToggle} className="w-full px-4 py-2 text-white transition bg-blue-700 rounded hover:bg-blue-800">
                 <FontAwesomeIcon icon={faComments} className="mr-2" />
                 Buka Chat
               </button>
@@ -132,66 +137,86 @@ const Accepted = () => {
 
             <div className="p-4 bg-white border rounded-md shadow-sm">
               <div className="flex items-center justify-between mb-2">
-                <h3 className="text-lg font-semibold">Jali Go</h3>
+                <h3 className="text-lg font-semibold">{data.service?.bussiness_name}</h3>
                 <span className="text-sm text-green-600">Buka 24 jam</span>
               </div>
               <p className="text-sm text-gray-700">
                 Pesanan dengan nomor{" "}
                 <span className="font-semibold text-red-600">
-                  PS2321313131833
+                  {data.id}
                 </span>{" "}
-                telah diterima oleh bengkel <strong>Jali Go</strong>. Montir
+                telah diterima oleh bengkel <strong>{data.service?.bussiness_name}</strong>. Montir
                 akan segera datang ke tempat anda. Jika ada masalah, silahkan
                 chat bengkel terkait.
               </p>
             </div>
 
-            <div className="p-4 space-y-3 border rounded-md shadow-sm bg-gray-50">
-              <h4 className="pb-2 font-semibold border-b text-md">
-                Detail Pesanan Anda
-              </h4>
-              <div className="grid grid-cols-1 gap-4 text-sm md:grid-cols-2">
-                <div>
-                  <label className="block text-gray-500">Nama Pemesan</label>
-                  <p className="text-gray-800">Greta</p>
-                </div>
-                <div>
-                  <label className="block text-gray-500">Nomor Pemesan</label>
-                  <p className="text-gray-800">08199929292922</p>
-                </div>
-                <div className="md:col-span-2">
-                  <label className="block text-gray-500">Alamat</label>
-                  <p className="text-gray-800">
-                    Tegalsari Selatan, Bladen, Kec. Bondowoso, Kabupaten
-                    Bondowoso, Jawa Timur 68214
-                  </p>
-                </div>
-                <div>
-                  <label className="block text-gray-500">
-                    Layanan Kendaraan
-                  </label>
-                  <p className="text-gray-800">Sepeda Motor</p>
-                </div>
-                <div>
-                  <label className="block text-gray-500">Metode Layanan</label>
-                  <p className="text-gray-800">Bengkel datang ke tempat</p>
-                </div>
-                <div>
-                  <label className="block text-gray-500">Waktu Pemesanan</label>
-                  <p className="text-gray-800">14 Mei 2024, 14:53</p>
-                </div>
-              </div>
-              <div className="mt-4">
-                <label className="block mb-2 text-gray-500">
-                  Titik Lokasi Perjumpaan
-                </label>
-                <div id="map" className="w-full h-64 rounded-md" />
-              </div>
-            </div>
+             <div className="p-4 space-y-3 border rounded-md shadow-sm bg-gray-50">
+                          <h4 className="pb-2 font-semibold border-b text-md">
+                            Detail Pesanan Anda
+                          </h4>
+                          <div className="grid grid-cols-1 gap-4 text-sm md:grid-cols-2">
+                            <div>
+                              <label className="block text-gray-500">Nama Pemesan</label>
+                              <p className="text-gray-800">{data.user?.name}</p>
+                            </div>
+                            <div>
+                              <label className="block text-gray-500">Nomor Hp</label>
+                              <p className="text-gray-800">{data.user?.phone}</p>
+                            </div>
+                            <div>
+                              <label className="block text-gray-500">
+                                Layanan Kendaraan
+                              </label>
+                              <p className="text-gray-800">{data.vehicle}</p>
+                            </div>
+                            <div>
+                              <label className="block text-gray-500">Metode Layanan</label>
+                              <p className="text-gray-800">{data.detail_service_name}</p>
+                            </div>
+                            <div>
+                              <label className="block text-gray-500">
+                                Merk Kendaraan
+                              </label>
+                              <p className="text-gray-800">{data.vehicle_brand}</p>
+                            </div>
+                            <div>
+                              <label className="block text-gray-500">
+                                Nomor Polisi
+                              </label>
+                              <p className="text-gray-800">{data.police_number}</p>
+                            </div>
+                            <div>
+                              <label className="block text-gray-500">Waktu Pemesanan</label>
+                              <p className="text-gray-800">{formatTanggalDanWaktu(data.createdAt)}</p>
+                            </div>
+                          </div>
+                          <div className="mt-4">
+                            <label className="block mb-2 text-gray-500">
+                              Titik Lokasi Perjumpaan
+                            </label>
+                            <div className="grid grid-cols-1 gap-4 text-sm mb-3 md:grid-cols-2">
+                            <div>
+                              <label className="block text-gray-500">
+                                Alamat
+                              </label>
+                              <p className="text-gray-800">{data.address}</p>
+                            </div>
+                            <div>
+                              <label className="block text-gray-500">
+                                Kode Pos
+                              </label>
+                              <p className="text-gray-800">{data.postal_code}</p>
+                            </div>
+                            </div>
+                            <div id="map" className="w-full h-64 rounded-md" />
+                          </div>
+                        </div>
           </div>
         </div>
       </div>
     </section>
+    </>
   );
 };
 
