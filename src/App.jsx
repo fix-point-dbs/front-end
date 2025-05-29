@@ -10,7 +10,6 @@ import { TowingPage } from "./pages/home/TowingPage";
 import { DetailServicePage } from "./pages/home/DetailServicePage";
 import { BookingPage } from "./pages/home/BookingPage";
 import { Dashboard } from "./pages/admin/Dashboard";
-import { KonfirmasiPemesananPage } from "./pages/home/KonfirmasiPemesananPage";
 import { PengajuanMitra } from "./pages/admin/PengajuanMitra";
 import TambahMitra from "./pages/admin/TambahMitra";
 import { ConfirmationBookingPage } from "./pages/home/ConfirmationBookingPage";
@@ -36,7 +35,6 @@ function App() {
         <Route path="/admin/dashboard" element={<Dashboard />} />
         <Route path="/admin/pengajuan-mitra" element={<PengajuanMitra />} />
         <Route path="/admin/pengajuan-mitra/tambah" element={<TambahMitra />} />
-        <Route path="/pemesanan" element={<PemesananPage />} />
         <Route path="/booking/:id" element={<BookingPage />} />
         <Route path="/artikel" element={<ArtikelPage />} />
         <Route path="/mitra" element={<MitraPage />} />
