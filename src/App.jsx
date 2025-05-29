@@ -20,6 +20,7 @@ import { InformasiUmumPage } from "./pages/home/InformasiUmumPage";
 import { DetailLayananPage } from "./pages/home/DetailLayananPage";
 import { FotoLayananPage } from "./pages/home/FotoLayananPage";
 import { ReviewRegistrasiPage } from "./pages/home/ReviewRegistrasiPage";
+import { DashboardUserPage } from "./pages/home/DashboardUserPage";
 
 function App() {
   return (
@@ -52,11 +53,11 @@ function App() {
           path="/registrasi/review/:status"
           element={<ReviewRegistrasiPage />}
         />
-
         <Route
           path="/booking/confirmation/:id"
           element={<ConfirmationBookingPage />}
         />
+        <Route path="/dashboard/*" element={<DashboardUserPage />} />
       </Routes>
     </>
   );
