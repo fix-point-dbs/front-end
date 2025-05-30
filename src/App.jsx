@@ -3,7 +3,6 @@ import { Routes, Route, Navigate } from "react-router-dom";
 // import ScrollToTop from "./views/home/components/ScrollToTop";
 
 import { LoginPage } from "./pages/home/LoginPage";
-import { UserPage } from "./pages/home/UserPage";
 import { LandingPage } from "./pages/home/LandingPage";
 import { BengkelPage } from "./pages/home/BengkelPage";
 import { TowingPage } from "./pages/home/TowingPage";
@@ -27,7 +26,6 @@ function App() {
     <>
       {/* <ScrollToTop/> */}
       <Routes>
-        <Route path="/users" element={<UserPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/" element={<LandingPage />} />
         <Route path="/bengkel" element={<BengkelPage />} />
