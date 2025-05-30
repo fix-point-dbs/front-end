@@ -20,11 +20,10 @@ import { DetailLayananPage } from "./pages/home/DetailLayananPage";
 import { FotoLayananPage } from "./pages/home/FotoLayananPage";
 import { ReviewRegistrasiPage } from "./pages/home/ReviewRegistrasiPage";
 import { DashboardUserPage } from "./pages/home/DashboardUserPage";
-
+import { DashboardMitraPage } from "./pages/home/DashboardMitraPage";
 function App() {
   return (
     <>
-      {/* <ScrollToTop/> */}
       <Routes>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/" element={<LandingPage />} />
@@ -56,6 +55,7 @@ function App() {
           element={<ConfirmationBookingPage />}
         />
         <Route path="/dashboard/*" element={<DashboardUserPage />} />
+        <Route path="/dashboard_mitra/*" element={<DashboardMitraPage />} />
       </Routes>
     </>
   );
