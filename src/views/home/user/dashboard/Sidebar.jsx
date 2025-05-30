@@ -44,7 +44,7 @@ export default function Sidebar({ isOpen, onClose }) {
     }).then((result) => {
       if (result.isConfirmed) {
         localStorage.removeItem("token");
-        navigate("/login");
+        navigate("/");
       }
     });
   };
@@ -102,10 +102,10 @@ export default function Sidebar({ isOpen, onClose }) {
               </div>
             </div>
 
-            <div className="flex flex-col w-full gap-2">
+            <div className="flex flex-col w-full gap-2 text-sm">
               <button
                 onClick={() => navigate("/dashboard/transaksi")}
-                className={`flex text-base items-center gap-2 px-4 py-2 font-semibold rounded
+                className={`flex items-center gap-2 px-4 py-2 font-semibold rounded
                   ${
                     activePage === "transaksi"
                       ? "bg-gray-100 text-biru"

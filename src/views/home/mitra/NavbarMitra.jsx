@@ -58,7 +58,7 @@ export default function NavbarMitra() {
         <div className="flex items-center gap-10">
           <img src={logo} alt="Fixpoint Logo" className="h-10" />
 
-          <ul className="hidden space-x-8 font-medium md:flex">
+          <ul className="hidden gap-8 font-medium md:flex">
             {sections.map((section) => (
               <li key={section}>
                 <a
