@@ -53,8 +53,8 @@ export default function Sidebar({ isOpen, onClose }) {
   const [jumlahPesananBaru, setJumlahPesananBaru] = useState(3); 
 
   useEffect(() => {
-    if (isOpen) onClose();
-  }, [location.pathname]);
+    // if (isOpen) onClose();
+  }, []);
 
   return (
     <>
@@ -103,7 +103,7 @@ export default function Sidebar({ isOpen, onClose }) {
 
             <div className="flex flex-col w-full gap-2 text-sm">
               <button
-                onClick={() => navigate("/dashboard_mitra/utama")}
+                onClick={() => navigate("/dashboard-mitra/utama")}
                 className={`flex items-center gap-2 px-4 py-2 font-semibold rounded ${
                   activePage === "utama"
                     ? "bg-gray-100 text-biru"
@@ -129,7 +129,7 @@ export default function Sidebar({ isOpen, onClose }) {
                 <div className="pl-8 space-y-1 text-sm text-gray-600">
                   <div
                     onClick={() =>
-                      navigate("/dashboard_mitra/pemesanan/menunggu")
+                      navigate("/dashboard-mitra/pemesanan/menunggu")
                     }
                     className={`flex items-center justify-between cursor-pointer py-1 rounded px-2 ${
                       activeSubPage === "menunggu"
@@ -145,7 +145,7 @@ export default function Sidebar({ isOpen, onClose }) {
 
                   <div
                     onClick={() =>
-                      navigate("/dashboard_mitra/pemesanan/diterima")
+                      navigate("/dashboard-mitra/pemesanan/diterima")
                     }
                     className={`cursor-pointer py-1 rounded px-2 ${
                       activeSubPage === "diterima"
@@ -157,7 +157,7 @@ export default function Sidebar({ isOpen, onClose }) {
                   </div>
                   <div
                     onClick={() =>
-                      navigate("/dashboard_mitra/pemesanan/perjalanan")
+                      navigate("/dashboard-mitra/pemesanan/perjalanan")
                     }
                     className={`cursor-pointer py-1 rounded px-2 ${
                       activeSubPage === "perjalanan"
@@ -169,7 +169,7 @@ export default function Sidebar({ isOpen, onClose }) {
                   </div>
                   <div
                     onClick={() =>
-                      navigate("/dashboard_mitra/pemesanan/selesai")
+                      navigate("/dashboard-mitra/pemesanan/selesai")
                     }
                     className={`cursor-pointer py-1 rounded px-2 ${
                       activeSubPage === "selesai"
@@ -183,7 +183,7 @@ export default function Sidebar({ isOpen, onClose }) {
               )}
 
               <button
-                onClick={() => navigate("/dashboard_mitra/riwayat")}
+                onClick={() => navigate("/dashboard-mitra/riwayat")}
                 className={`flex items-center gap-2 px-4 py-2 font-semibold rounded ${
                   activePage === "riwayat"
                     ? "bg-gray-100 text-biru"
@@ -195,7 +195,7 @@ export default function Sidebar({ isOpen, onClose }) {
               </button>
 
               <button
-                onClick={() => navigate("/dashboard_mitra/pengaturan")}
+                onClick={() => navigate("/dashboard-mitra/pengaturan")}
                 className={`flex items-center gap-2 px-4 py-2 font-semibold rounded ${
                   activePage === "pengaturan"
                     ? "bg-gray-100 text-biru"

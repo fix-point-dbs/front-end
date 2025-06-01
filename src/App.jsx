@@ -13,15 +13,17 @@ import { PengajuanMitra } from "./pages/admin/PengajuanMitra";
 import TambahMitra from "./pages/admin/TambahMitra";
 import { ConfirmationBookingPage } from "./pages/home/ConfirmationBookingPage";
 import { ArtikelPage } from "./pages/home/ArtikelPage";
-import { MitraPage } from "./pages/home/MitraPage";
+import { MitraPage } from "./pages/mitra/MitraPage";
 import { DetailKontakPage } from "./pages/home/DetailKontakPage";
 import { InformasiUmumPage } from "./pages/home/InformasiUmumPage";
 import { DetailLayananPage } from "./pages/home/DetailLayananPage";
 import { FotoLayananPage } from "./pages/home/FotoLayananPage";
 import { ReviewRegistrasiPage } from "./pages/home/ReviewRegistrasiPage";
 import { DashboardUserPage } from "./pages/home/DashboardUserPage";
-import { DashboardMitraPage } from "./pages/home/DashboardMitraPage";
+// import { DashboardMitraPage } from "./pages/mitra/DashboardMitraPage";
+import { OrderPage } from "./pages/mitra/OrderPage";
 function App() {
+
   return (
     <>
       <Routes>
@@ -55,7 +57,8 @@ function App() {
           element={<ConfirmationBookingPage />}
         />
         <Route path="/dashboard/*" element={<DashboardUserPage />} />
-        <Route path="/dashboard_mitra/*" element={<DashboardMitraPage />} />
+        {/* <Route path="/dashboard-mitra/*" element={<DashboardMitraPage />} /> */}
+        <Route path="/dashboard-mitra/order" element={<OrderPage />} />
       </Routes>
     </>
   );
