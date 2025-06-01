@@ -9,7 +9,7 @@ export class ChatModel {
     async getChat(mitra_id) {
         const res = await api.post(`/chats`, { mitra_id }, {
             headers: {
-                'Authorization': `Bearer efe1ae67-f000-4258-a01c-79749da2d65a`,
+                'Authorization': `Bearer`,
             }
         });
         return res.data;
