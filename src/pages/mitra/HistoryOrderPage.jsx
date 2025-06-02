@@ -2,18 +2,19 @@ import React, { useState, useEffect } from "react";
 import Sidebar from "../../views/home/mitra/dashboard/Sidebar";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
-import Dashboard from "../../views/home/mitra/dashboard/Dashboard";
-import { OrderPresenter } from "../../presenters/mitra/OrderPresenter";
+import HistoryOrder from "../../views/home/mitra/dashboard/HistoryOrder";
+import { HistoryOrderPresenter } from "../../presenters/mitra/HistoryOrderPresenter";
 import Navbar from "../../views/home/mitra/dashboard/Navbar";
 import MotionDiv from "../../utils/TransitionSmoth";
-export function DashboardMitraPage() {
+
+export function HistoryOrderPage() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const location = useLocation();
   const [isLoading, setIsLoading] = useState(false);
   const [orders, setOrders] = useState([]);
   const id = 1;
 
-  const presenter = new OrderPresenter({setOrders, setIsLoading, id});
+  const presenter = new HistoryOrderPresenter({setOrders, setIsLoading, id});
 
   console.log(orders);
   
@@ -30,7 +31,7 @@ export function DashboardMitraPage() {
         <div className="px-10 py-6">
           <AnimatePresence mode="wait">
             <MotionDiv>
-            <Dashboard/>
+            <HistoryOrder orders={orders.data}/>
             </MotionDiv>
         </AnimatePresence>
         </div>

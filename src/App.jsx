@@ -1,7 +1,6 @@
 import "./App.css";
 import { Routes, Route, Navigate } from "react-router-dom";
 // import ScrollToTop from "./views/home/components/ScrollToTop";
-
 import { LoginPage } from "./pages/home/LoginPage";
 import { LandingPage } from "./pages/home/LandingPage";
 import { BengkelPage } from "./pages/home/BengkelPage";
@@ -20,7 +19,9 @@ import { DetailLayananPage } from "./pages/home/DetailLayananPage";
 import { FotoLayananPage } from "./pages/home/FotoLayananPage";
 import { ReviewRegistrasiPage } from "./pages/home/ReviewRegistrasiPage";
 import { DashboardUserPage } from "./pages/home/DashboardUserPage";
-// import { DashboardMitraPage } from "./pages/mitra/DashboardMitraPage";
+import { DashboardMitraPage } from "./pages/mitra/DashboardMitraPage";
+import { SettingPage } from "./pages/mitra/SettingPage";
+import { HistoryOrderPage } from "./pages/mitra/HistoryOrderPage";
 import { OrderPage } from "./pages/mitra/OrderPage";
 function App() {
 
@@ -57,8 +58,10 @@ function App() {
           element={<ConfirmationBookingPage />}
         />
         <Route path="/dashboard/*" element={<DashboardUserPage />} />
-        {/* <Route path="/dashboard-mitra/*" element={<DashboardMitraPage />} /> */}
+        <Route path="/dashboard-mitra/statistic" element={<DashboardMitraPage />} />
         <Route path="/dashboard-mitra/order" element={<OrderPage />} />
+        <Route path="/dashboard-mitra/history-order" element={<HistoryOrderPage />} />
+        <Route path="/dashboard-mitra/settings" element={<SettingPage />} />
       </Routes>
     </>
   );

@@ -103,7 +103,7 @@ export default function Sidebar({ isOpen, onClose }) {
 
             <div className="flex flex-col w-full gap-2 text-sm">
               <button
-                onClick={() => navigate("/dashboard-mitra/utama")}
+                onClick={() => navigate("/dashboard-mitra/statistic")}
                 className={`flex items-center gap-2 px-4 py-2 font-semibold rounded ${
                   activePage === "utama"
                     ? "bg-gray-100 text-biru"
@@ -115,6 +115,18 @@ export default function Sidebar({ isOpen, onClose }) {
               </button>
 
               <button
+                onClick={() => navigate("/dashboard-mitra/order")}
+                className={`flex items-center gap-2 px-4 py-2 font-semibold rounded ${
+                  activePage === "utama"
+                    ? "bg-gray-100 text-biru"
+                    : "hover:bg-gray-100 text-gray-700"
+                }`}
+              >
+                <FaClipboardList />
+                Pesanan
+              </button>
+
+              {/* <button
                 onClick={() => setPemesananOpen(!pemesananOpen)}
                 className="flex items-center justify-between px-4 py-2 font-semibold text-gray-700 rounded hover:bg-gray-100"
               >
@@ -180,10 +192,10 @@ export default function Sidebar({ isOpen, onClose }) {
                     Selesai
                   </div>
                 </div>
-              )}
+              )} */}
 
               <button
-                onClick={() => navigate("/dashboard-mitra/riwayat")}
+                onClick={() => navigate("/dashboard-mitra/history-order")}
                 className={`flex items-center gap-2 px-4 py-2 font-semibold rounded ${
                   activePage === "riwayat"
                     ? "bg-gray-100 text-biru"
@@ -195,7 +207,7 @@ export default function Sidebar({ isOpen, onClose }) {
               </button>
 
               <button
-                onClick={() => navigate("/dashboard-mitra/pengaturan")}
+                onClick={() => navigate("/dashboard-mitra/settings")}
                 className={`flex items-center gap-2 px-4 py-2 font-semibold rounded ${
                   activePage === "pengaturan"
                     ? "bg-gray-100 text-biru"
