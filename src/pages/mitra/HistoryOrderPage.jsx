@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import Sidebar from "../../views/home/mitra/dashboard/Sidebar";
+import Sidebar from "../../views/mitra/dashboard/Sidebar";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
-import HistoryOrder from "../../views/home/mitra/dashboard/HistoryOrder";
+import HistoryOrder from "../../views/mitra/dashboard/HistoryOrder";
 import { HistoryOrderPresenter } from "../../presenters/mitra/HistoryOrderPresenter";
-import Navbar from "../../views/home/mitra/dashboard/Navbar";
+import Navbar from "../../views/mitra/dashboard/Navbar";
 import MotionDiv from "../../utils/TransitionSmoth";
 
 export function HistoryOrderPage() {

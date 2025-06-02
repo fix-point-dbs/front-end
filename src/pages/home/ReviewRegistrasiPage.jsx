@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import StepCard from "../../views/home/mitra/registrasi-layanan/StepCard";
-import FormReviewRegistrasi from "../../views/home/mitra/registrasi-layanan/FormReviewRegistrasi";
+import StepCard from "../../views/mitra/registrasi-layanan/StepCard";
+import FormReviewRegistrasi from "../../views/mitra/registrasi-layanan/FormReviewRegistrasi";
 import Navbar from "../../views/home/navbar/Navbar";
 import Footer from "../../views/home/footer/Footer";
 import background from "../../assets/images/bg-white.png";

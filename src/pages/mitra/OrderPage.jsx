@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import Sidebar from "../../views/home/mitra/dashboard/Sidebar";
+import Sidebar from "../../views/mitra/dashboard/Sidebar";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
-import Pemesanan from "../../views/home/mitra/dashboard/Pemesanan";
+import Pemesanan from "../../views/mitra/dashboard/Pemesanan";
 import { OrderPresenter } from "../../presenters/mitra/OrderPresenter";
-import Navbar from "../../views/home/mitra/dashboard/Navbar";
+import Navbar from "../../views/mitra/dashboard/Navbar";
 import { io } from "socket.io-client";
 const socket = io("http://localhost:3000");
 import MotionDiv from "../../utils/TransitionSmoth";

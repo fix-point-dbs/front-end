@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import Sidebar from "../../views/home/mitra/dashboard/Sidebar";
+import Sidebar from "../../views/mitra/dashboard/Sidebar";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
-import Dashboard from "../../views/home/mitra/dashboard/Dashboard";
+import Dashboard from "../../views/mitra/dashboard/Dashboard";
 import { OrderPresenter } from "../../presenters/mitra/OrderPresenter";
-import Navbar from "../../views/home/mitra/dashboard/Navbar";
+import Navbar from "../../views/mitra/dashboard/Navbar";
 import MotionDiv from "../../utils/TransitionSmoth";
 export function DashboardMitraPage() {
   const [sidebarOpen, setSidebarOpen] = useState(false);

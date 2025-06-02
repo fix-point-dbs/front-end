@@ -1,7 +1,7 @@
 import NavbarMitra from "./NavbarMitra";
-import background from "../../../assets/images/bg-mitra.png";
-import about from "../../../assets/images/bg-about.png";
-import logo from "../../../assets/images/bg-regis.png";
+import background from "../../assets/images/bg-mitra.png";
+import about from "../../assets/images/bg-about.png";
+import logo from "../../assets/images/bg-regis.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faWrench,
@@ -9,7 +9,7 @@ import {
   faHandshake,
   faUserShield,
 } from "@fortawesome/free-solid-svg-icons";
-import Footer from "../footer/Footer";
+import Footer from "../home/footer/Footer";
 import { motion } from "framer-motion";
 import AOS from "aos";
 import "aos/dist/aos.css";

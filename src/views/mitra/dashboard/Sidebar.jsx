@@ -12,7 +12,7 @@ import {
   FaClipboardList,
   FaHistory,
 } from "react-icons/fa";
-import logo from "../../../../assets/images/logo.png";
+import logo from "../../../assets/images/logo.png";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
