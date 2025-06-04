@@ -1,6 +1,7 @@
 import {ListServiceModel} from "../../models/ListServiceModel";
 import { MapModel } from "../../models/MapModel";
 import { ServiceModel } from "../../models/ServiceModel";
+import { showErrorToast } from "../../utils/Toast";
 export class RegistrationMitraPresenter {
     constructor(view) {
         this.view = view;
@@ -24,6 +25,7 @@ export class RegistrationMitraPresenter {
             this.view.setFormData((prev) => ({ ...prev, address: map.data.display_name, postal_code: map.data.address?.postcode }));;
         } catch (error) {
             console.log(error);
+            showErrorToast("Gagal mengambil alamat");
         }
     }
 
@@ -34,6 +36,7 @@ export class RegistrationMitraPresenter {
             this.view.onSuccess(res.data.id);
         } catch (error) {
             console.log(error);
+            showErrorToast("Gagal menambahkan mitra");
         }
     }
 

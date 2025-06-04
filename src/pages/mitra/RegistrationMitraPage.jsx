@@ -11,8 +11,7 @@ import { get, set, del } from "idb-keyval";
 import { RegistrationMitraPresenter } from "../../presenters/mitra/RegistrationMitraPresenter";
 import { getCurrentPosition } from "../../utils/GeoLocation";
 import { useNavigate } from "react-router-dom";
-
-// Simpan ke IndexedDB setiap kali formData berubah
+import { showSuccessToast } from "../../utils/Toast";
 
 export function RegistrationMitraPage() {
   const navigate = useNavigate();
@@ -43,7 +42,7 @@ export function RegistrationMitraPage() {
   });
 
   const onSuccess = (id) => {
-    alert("Pendaftaran Berhasil");
+    showSuccessToast('Registrasi Layanan Berhasil');
     del('mitra-form-data');
     navigate(`/registrasi/review/${id}`);
   };
