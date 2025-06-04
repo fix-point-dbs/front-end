@@ -20,7 +20,7 @@ import { InformasiUmumPage } from "./pages/home/InformasiUmumPage";
 import { DetailLayananPage } from "./pages/home/DetailLayananPage";
 import { FotoLayananPage } from "./pages/home/FotoLayananPage";
 import { ReviewRegistrasiPage } from "./pages/mitra/ReviewRegistrasiPage";
-import { DashboardUserPage } from "./pages/home/DashboardUserPage";
+import { BookingUserPage } from "./pages/user/BookingUserPage";
 import { DashboardMitraPage } from "./pages/mitra/DashboardMitraPage";
 import { SettingPage } from "./pages/mitra/SettingPage";
 import { HistoryOrderPage } from "./pages/mitra/HistoryOrderPage";
@@ -62,7 +62,7 @@ function App() {
           path="/booking/confirmation/:id"
           element={<ConfirmationBookingPage />}
         />
-        <Route path="/dashboard/*" element={<DashboardUserPage />} />
+        <Route path="/dashboard-user/booking" element={<BookingUserPage />} />
         <Route path="/dashboard-mitra/statistic" element={<DashboardMitraPage />} />
         <Route path="/dashboard-mitra/order" element={<OrderPage />} />
         <Route path="/dashboard-mitra/history-order" element={<HistoryOrderPage />} />

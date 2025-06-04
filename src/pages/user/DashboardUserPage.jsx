@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import Sidebar from "../../views/home/user/dashboard/Sidebar";
+import Sidebar from "../../views/user/dashboard/Sidebar";
 import { FaBars } from "react-icons/fa";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
-import RiwayatTransaksi from "../../views/home/user/dashboard/RiwayatTransaksi";
-import Pengaturan from "../../views/home/user/dashboard/Pengaturan";
+import RiwayatTransaksi from "../../views/user/dashboard/RiwayatTransaksi";
+import Pengaturan from "../../views/user/dashboard/Pengaturan";
 
 export function DashboardUserPage() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
