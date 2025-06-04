@@ -8,7 +8,7 @@ import {
   FaSignOutAlt,
   FaTimes,
 } from "react-icons/fa";
-import logo from "../../../../assets/images/logo.png";
+import logo from "../../../assets/images/logo.png";
 import { useEffect } from "react";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
@@ -104,7 +104,7 @@ export default function Sidebar({ isOpen, onClose }) {
 
             <div className="flex flex-col w-full gap-2 text-sm">
               <button
-                onClick={() => navigate("/dashboard/transaksi")}
+                onClick={() => navigate("/dashboard-user/booking")}
                 className={`flex items-center gap-2 px-4 py-2 font-semibold rounded
                   ${
                     activePage === "transaksi"
@@ -116,7 +116,7 @@ export default function Sidebar({ isOpen, onClose }) {
                 Transaksi
               </button>
               <button
-                onClick={() => navigate("/dashboard/pengaturan")}
+                onClick={() => navigate("/dashboard-user/settings")}
                 className={`flex items-center gap-2 px-4 py-2 font-semibold rounded
                   ${
                     activePage === "pengaturan"
