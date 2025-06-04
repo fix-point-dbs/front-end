@@ -3,7 +3,7 @@ import { io } from "socket.io-client";
 // import { getMessages } from '../models/ChatModel';
 import { ArrowDownCircle, MessageSquare } from "lucide-react";
 import { ChatPresenter } from "../presenters/ChatPresenter";
-const socket = io("http://localhost:3001");
+const socket = io("http://localhost:3000");
 import { getUserId, saveUserId } from "../lib/auth";
 import { faTools, faClose } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -80,7 +80,7 @@ useEffect(() => {
   };
 
   return (
-    <div className="fixed bottom-5 border bg-slate-50 rounded-lg right-5 z-50">
+    <div className="fixed bottom-5 border bg-slate-50 rounded-lg right-5 z-[9999]">
       <div className="max-w-xl mx-auto p-4 space-y-4">
         {/* Dropdown Login */}
         {/* <div className="mb-2">

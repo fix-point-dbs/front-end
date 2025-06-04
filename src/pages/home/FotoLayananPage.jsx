@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import StepCard from "../../views/home/mitra/registrasi-layanan/StepCard";
-import FormFotoLayanan from "../../views/home/mitra/registrasi-layanan/FormFotoLayanan";
+import StepCard from "../../views/mitra/registrasi-layanan/StepCard";
+import FormFotoLayanan from "../../views/mitra/registrasi-layanan/FormFotoLayanan";
 import Navbar from "../../views/home/navbar/Navbar";
 import Footer from "../../views/home/footer/Footer";
 import background from "../../assets/images/bg-white.png";

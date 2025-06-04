@@ -2,11 +2,11 @@ import React from "react";
 import { Home, Megaphone, CheckCircle2, XCircle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
-const FormReviewRegsitrasi = ({ status = "review" }) => {
+const FormReviewRegsitrasi = ({ status = "pending" }) => {
   const navigate = useNavigate();
 
   const statusConfig = {
-    review: {
+    pending : {
       icon: <Megaphone className="w-12 h-12 mb-4 text-blue-600" />,
       title: "Layanan Anda Sedang Dalam Peninjauan",
       message:
@@ -44,13 +44,32 @@ const FormReviewRegsitrasi = ({ status = "review" }) => {
         </h3>
         <p className="mb-6 text-sm text-gray-600">{current.message}</p>
 
-        <button
-          onClick={() => navigate("/dashboard")}
-          className="flex items-center gap-2 px-6 py-2 text-sm font-semibold text-white bg-blue-700 rounded-md shadow hover:bg-blue-800"
-        >
-          <Home className="w-5 h-5 " />
-          Kembali ke Dashboard
-        </button>
+    {status === "pending" ? (
+      <button
+        onClick={() => navigate("/")}
+        className="flex items-center gap-2 px-6 py-2 text-sm font-semibold text-white bg-blue-700 rounded-md shadow hover:bg-blue-800"
+      >
+        <Home className="w-5 h-5 " />
+        Kembali ke Halaman Utama
+      </button>
+    ) : status === "approved" ? (
+      <button
+        onClick={() => navigate("/dashboard-mitra/statistic")}
+        className="flex items-center gap-2 px-6 py-2 text-sm font-semibold text-white bg-blue-700 rounded-md shadow hover:bg-blue-800"
+      >
+        <Home className="w-5 h-5 " />
+        Masuk ke Halaman Dashboard
+      </button>
+    ): (
+      <button
+        onClick={() => navigate("/")}
+        className="flex items-center gap-2 px-6 py-2 text-sm font-semibold text-white bg-blue-700 rounded-md shadow hover:bg-blue-800"
+      >
+        <Home className="w-5 h-5 " />
+        Kembali ke Halaman Utama
+      </button>
+    )}
+
       </div>
     </div>
   );

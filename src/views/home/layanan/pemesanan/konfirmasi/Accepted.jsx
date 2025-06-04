@@ -7,10 +7,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBullhorn, faComments } from "@fortawesome/free-solid-svg-icons";
 import ChatPage from "../../../../../pages/ChatPage";
 import { formatTanggalDanWaktu } from "../../../../../utils/FormatDateTime";
+import { saveUserId } from "../../../../../lib/auth";
 const Accepted = ({ data, isLoading }) => {
   const [isOpen, setIsOpen] = useState(false);
   const handleToggle = () => setIsOpen(prev => !prev);
   useEffect(() => {
+    
     const map = L.map("map").setView([-7.8259926, 113.8286264], 13);
 
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {

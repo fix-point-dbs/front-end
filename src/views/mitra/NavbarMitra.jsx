@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
-import logo from "../../../assets/images/logo.png";
+import logo from "../../assets/images/logo.png";
 
 export default function NavbarMitra() {
   const [menuOpen, setMenuOpen] = useState(false);

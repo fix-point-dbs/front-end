@@ -10,6 +10,8 @@ import InProgres from "../../views/home/layanan/pemesanan/konfirmasi/InProgres";
 import Waiting from "../../views/home/layanan/pemesanan/konfirmasi/Waiting";
 import Rejected from "../../views/home/layanan/pemesanan/konfirmasi/Rejected";
 import { getUserId } from "../../lib/auth";
+import { io } from "socket.io-client";
+const socket = io("http://localhost:3000");
 export function ConfirmationBookingPage() {
   const navigate = useNavigate();
   const { id } = useParams();
@@ -17,9 +19,11 @@ export function ConfirmationBookingPage() {
   const [isLoading, setIsLoading] = useState(false);
   // console.log(id);
   const presenter = new ConfirmationBookingPresenter({ setBooking, id, setIsLoading, onSuccess });
-  const data = booking.data ?? {};
-  const status = data.status ?? 'pending';
+  let data = booking.data ?? {};
+  const status = data?.status;
   const user_id = Number(getUserId());
+
+  console.log(booking);
   
   function onSuccess() {
     alert("Pemesanan Berhasil");
@@ -34,23 +38,38 @@ export function ConfirmationBookingPage() {
   
   useEffect(() => {
     presenter.loadBooking();
-  }, []);
+
+    socket.emit("join_booking", id);
+    socket.on("receive_status", (updatedBooking) => {
+      setBooking((prev) => ({
+        data: {
+          ...prev.data,
+          ...updatedBooking
+        }
+      }));
+    });    
+
+    return () => {
+      socket.off("receive_status");
+    };
+
+  }, [id]);
   return (
     <>
       {
-        status === "approved" && <Accepted data={data} isLoading={isLoading} />
+        data.status === "approved" && <Accepted data={data} isLoading={isLoading} />
       }
       {
-        status === "done" && <Done data={data} isLoading={isLoading} onSubmit={handleAddReview} />
+        data.status === "done" && <Done data={data} isLoading={isLoading} onSubmit={handleAddReview} />
       }
       {
-        status === "in progress" && <InProgres data={data} isLoading={isLoading} />
+        data.status === "in progress" && <InProgres data={data} isLoading={isLoading} />
       }
       {
-        status === "pending" && <Waiting data={data} isLoading={isLoading} />
+        data.status === "pending" && <Waiting data={data} isLoading={isLoading} />
       }
       {
-        status === "rejected" && <Rejected data={data} isLoading={isLoading} />
+        data.status === "rejected" && <Rejected data={data} isLoading={isLoading} />
       }
     </>
   );
