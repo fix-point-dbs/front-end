@@ -17,12 +17,13 @@ import { DetailKontakPage } from "./pages/home/DetailKontakPage";
 import { InformasiUmumPage } from "./pages/home/InformasiUmumPage";
 import { DetailLayananPage } from "./pages/home/DetailLayananPage";
 import { FotoLayananPage } from "./pages/home/FotoLayananPage";
-import { ReviewRegistrasiPage } from "./pages/home/ReviewRegistrasiPage";
+import { ReviewRegistrasiPage } from "./pages/mitra/ReviewRegistrasiPage";
 import { DashboardUserPage } from "./pages/home/DashboardUserPage";
 import { DashboardMitraPage } from "./pages/mitra/DashboardMitraPage";
 import { SettingPage } from "./pages/mitra/SettingPage";
 import { HistoryOrderPage } from "./pages/mitra/HistoryOrderPage";
 import { OrderPage } from "./pages/mitra/OrderPage";
+import { RegistrationMitraPage } from "./pages/mitra/RegistrationMitraPage";
 function App() {
 
   return (
@@ -50,9 +51,10 @@ function App() {
         />
         <Route path="/registrasi/foto-layanan" element={<FotoLayananPage />} />
         <Route
-          path="/registrasi/review/:status"
+          path="/registrasi/review/:id"
           element={<ReviewRegistrasiPage />}
         />
+        <Route path="/registration/mitra" element={<RegistrationMitraPage />} />
         <Route
           path="/booking/confirmation/:id"
           element={<ConfirmationBookingPage />}

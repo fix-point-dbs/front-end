@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import StepCard from "../../views/mitra/registrasi-layanan/StepCard";
 import FormReviewRegistrasi from "../../views/mitra/registrasi-layanan/FormReviewRegistrasi";
@@ -8,14 +8,20 @@ import background from "../../assets/images/bg-white.png";
 import { motion } from "framer-motion";
 import { faBullhorn } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { RegistrationMitraPresenter } from "../../presenters/mitra/RegistrationMitraPresenter";
 
 export function ReviewRegistrasiPage() {
-  const { status } = useParams();
+  const [status, setStatus] = useState("pending");
   const [activeStep, setActiveStep] = useState(5);
 
-  const validStatus = ["review", "approved", "rejected"];
-  const statusToUse = validStatus.includes(status) ? status : "review";
+  const { id } = useParams();
+  console.log(status);
+    
+  const presenter = new RegistrationMitraPresenter({ id, setStatus });
 
+  useEffect(() => {
+    presenter.reviewMitra();
+  })
   return (
     <>
       <Navbar />
@@ -54,7 +60,7 @@ export function ReviewRegistrasiPage() {
               exit={{ opacity: 0, x: -50 }}
               transition={{ duration: 0.5, ease: "easeInOut" }}
             >
-              <FormReviewRegistrasi status={statusToUse} />
+              <FormReviewRegistrasi status={status} />
             </motion.div>
           </div>
         </div>
