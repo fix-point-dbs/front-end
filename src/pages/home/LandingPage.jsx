@@ -1,5 +1,4 @@
 import React from "react";
-import { motion } from "framer-motion";
 import Navbar from "../../views/home/navbar/Navbar";
 import Hero from "../../views/home/landing-page/Hero";
 import Service from "../../views/home/landing-page/Service";
@@ -13,10 +12,15 @@ import { useState } from "react";
 import { LandingPagePresenter } from "../../presenters/home/LandingPagePresenter";
 import { useEffect } from "react";
 import AOS from "aos";
+import ChatBoth from "../ChatBotPage";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faComments } from '@fortawesome/free-solid-svg-icons'
+import MotionDiv from "../../utils/TransitionSmoth";
 
 export function LandingPage() {
   const [services, setServices] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [showChat, setShowChat] = useState(false); // 👈 tambahkan state ini
 
   const presenter = new LandingPagePresenter({ setServices, setIsLoading });
 
@@ -28,25 +32,27 @@ export function LandingPage() {
     });
   }, []);
 
-  // console.log(services.data);
-
   return (
     <>
+      <div
+        className="fixed bottom-5 right-5 bg-blue-700 text-white px-4 py-2 rounded-full cursor-pointer z-50 hover:bg-blue-800"
+        onClick={() => setShowChat(true)}
+      >
+        <FontAwesomeIcon icon={faComments} className="w-7 h-7" />
+      </div>
+
+      <ChatBoth visible={showChat} onClose={() => setShowChat(false)} />
+
       <Navbar />
       <Hero />
-      <Service data={services.data} isLoading={isLoading}/>
-      <Lokasi data={services.data}/>
+      <Service data={services.data} isLoading={isLoading} />
+      <Lokasi data={services.data} />
       <About />
       <Artikel />
       <Question />
       <Member />
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.5, duration: 0.8 }}
-      >
         <Footer />
-      </motion.div>
+      
     </>
   );
 }
