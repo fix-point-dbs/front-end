@@ -26,6 +26,7 @@ import { SettingPage } from "./pages/mitra/SettingPage";
 import { HistoryOrderPage } from "./pages/mitra/HistoryOrderPage";
 import { OrderPage } from "./pages/mitra/OrderPage";
 import { RegistrationMitraPage } from "./pages/mitra/RegistrationMitraPage";
+import { SettingUserPage } from "./pages/user/SettingUserPage";
 function App() {
 
   return (
@@ -63,6 +64,7 @@ function App() {
           element={<ConfirmationBookingPage />}
         />
         <Route path="/dashboard-user/booking" element={<BookingUserPage />} />
+        <Route path="/dashboard-user/settings" element={<SettingUserPage />} />
         <Route path="/dashboard-mitra/statistic" element={<DashboardMitraPage />} />
         <Route path="/dashboard-mitra/order" element={<OrderPage />} />
         <Route path="/dashboard-mitra/history-order" element={<HistoryOrderPage />} />

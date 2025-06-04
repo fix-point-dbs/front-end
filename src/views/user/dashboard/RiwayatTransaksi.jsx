@@ -81,7 +81,20 @@ export default function RiwayatTransaksi({ bookings }) {
             </div>
 
             <div className="space-y-2">
+              
+            <div>
+                <span className="block text-sm font-semibold text-black">
+                  Jenis Kendaraan
+                </span>
+                <p className="text-sm">{item.vehicle}</p>
+              </div>
               <div>
+                <span className="block text-sm font-semibold text-black">
+                  Merk Kendaraan
+                </span>
+                <p className="text-sm">{item.vehicle_brand}</p>
+              </div>
+            <div>
                 <span className="block text-sm font-semibold text-black">
                   Deskripsi
                 </span>
