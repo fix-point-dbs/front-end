@@ -1,5 +1,5 @@
 import React from "react";
-import LandingPage from "../../views/home/mitra/LandingPage";
+import LandingPage from "../../views/mitra/LandingPage";
 
 export function MitraPage() {
   return (

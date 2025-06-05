@@ -4,7 +4,7 @@ export class BookingModel {
     async createBooking(data){
         const res = await api.post('/bookings',data,{
             headers: {
-                'Authorization': `Bearer e17e001a-0b21-41ef-8349-b29f83a5d6f2`,
+                'Authorization': `Bearer f80ca753-eb98-4d6b-b365-e7f3a2895805`,
                 'Content-Type': 'multipart/form-data'
             }
         });
@@ -14,9 +14,27 @@ export class BookingModel {
     async getBookingById(id){
         const res = await api.get(`/bookings/${id}`,{
             headers: {
-                'Authorization': `Bearer e17e001a-0b21-41ef-8349-b29f83a5d6f2`,
+                'Authorization': `Bearer f80ca753-eb98-4d6b-b365-e7f3a2895805`,
             }
         });
         return res.data;
+    }
+
+    async getBookings(query){
+        const res = await api.get('/bookings' + query,{
+            headers: {
+                'Authorization': `Bearer f80ca753-eb98-4d6b-b365-e7f3a2895805`,
+            }
+        });
+        return res.data;
+    }
+
+    async updateStatusBooking(id, data){
+        const res = await api.put(`/bookings/${id}/update-status`,data,{
+            headers: {
+                'Authorization': `Bearer f80ca753-eb98-4d6b-b365-e7f3a2895805`
+            }
+        });
+        return res;
     }
 }

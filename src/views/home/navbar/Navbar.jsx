@@ -56,8 +56,7 @@ export default function Navbar() {
       <div className="flex items-center justify-between px-6 py-4 mx-auto max-w-7xl">
         <div className="flex items-center gap-10">
           <img src={logo} alt="Fixpoint Logo" className="h-10" />
-
-          <ul className="items-center hidden space-x-8 font-medium md:flex">
+          <ul className="items-center hidden gap-8 font-medium md:flex">
             <li>
               <NavLink
                 to="/"
@@ -73,7 +72,7 @@ export default function Navbar() {
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
             >
-              <button className="flex items-center gap-1 text-gray-500 hover:text-oranye focus:outline-none">
+              <button className="flex items-center text-gray-500 hover:text-oranye focus:outline-none">
                 Layanan
                 <svg
                   className="inline-block w-4 h-4"
@@ -99,7 +98,7 @@ export default function Navbar() {
                     variants={dropdownVariants}
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}
-                    className="absolute left-0 z-50 w-40 mt-1 border border-gray-300 rounded shadow-lg top-full bg-putih"
+                    className="absolute left-0 z-50 mt-1 border border-gray-300 rounded shadow-lg w-35 top-full bg-putih"
                   >
                     <li>
                       <NavLink
@@ -152,7 +151,6 @@ export default function Navbar() {
             </li>
           </ul>
         </div>
-
         <div className="items-center hidden gap-3 md:flex">
           <Link
             to="/login"

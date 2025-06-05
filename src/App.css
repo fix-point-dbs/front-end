@@ -13,3 +13,9 @@ body {
 :root {
     --color-biru: #0033A1;
 }
+
+.swal2-question {
+    color: var(--color-biru) !important;
+    font-weight: 800;
+    border-color: var(--color-biru) !important;
+}
