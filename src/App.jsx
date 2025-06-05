@@ -19,6 +19,8 @@ import { DetailKontakPage } from "./pages/home/DetailKontakPage";
 import { InformasiUmumPage } from "./pages/home/InformasiUmumPage";
 import { DetailLayananPage } from "./pages/home/DetailLayananPage";
 import { FotoLayananPage } from "./pages/home/FotoLayananPage";
+import { RegisterPage } from "./pages/home/RegisterPage";
+
 import { ReviewRegistrasiPage } from "./pages/mitra/ReviewRegistrasiPage";
 import { BookingUserPage } from "./pages/user/BookingUserPage";
 import { DashboardMitraPage } from "./pages/mitra/DashboardMitraPage";
@@ -34,6 +36,7 @@ function App() {
     <ToastContainer />
       <Routes>
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
         <Route path="/" element={<LandingPage />} />
         <Route path="/bengkel" element={<BengkelPage />} />
         <Route path="/towing" element={<TowingPage />} />

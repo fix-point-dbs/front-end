@@ -34,7 +34,7 @@ export default function Breadcrumbs( { className = "" } ) {
             Pages / {activePage}
           </nav>
 
-          <nav aria-label="Breadcrumb" className={`mb-4 font-semibold dark:text-white ${className}`}>
+          <nav aria-label="Breadcrumb" className={`mb-4 font-semibold text-black dark:text-white ${className}`}>
             {activePage}
           </nav>
         </div>
