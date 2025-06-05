@@ -11,7 +11,7 @@ export default function Hero() {
       <div className="relative z-999 flex items-center justify-end h-full px-12 mx-auto max-w-7xl">
         <div
           className="max-w-lg text-white"
-          data-aos="fade-down"
+          data-aos="zoom-in"
           data-aos-duration="1000"
           data-aos-delay="300"
         >

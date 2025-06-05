@@ -1,6 +1,4 @@
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { useInView } from "react-intersection-observer";
 import { ChevronDown, ChevronUp } from "lucide-react";
 
 const faqData = [
@@ -23,20 +21,13 @@ const faqData = [
 
 export default function Question() {
   const [openIndex, setOpenIndex] = useState(null);
-  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
 
   const toggleQuestion = (index) => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
   return (
-    <motion.section
-      ref={ref}
-      initial={{ opacity: 0, y: 50 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.7, ease: "easeOut" }}
-      className="w-[90%] max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 mt-[60px] mb-20"
-    >
+    <section className="w-[90%] max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 mt-[60px] mb-20">
       <div className="flex items-center justify-center">
         <div className="w-24 border-t border-biru"></div>
         <p className="mx-4 mb-1 text-sm font-black text-biru sm:text-sm">
@@ -69,24 +60,16 @@ export default function Question() {
               )}
             </button>
 
-            <AnimatePresence initial={false}>
-              {openIndex === index && (
-                <motion.div
-                  key="content"
-                  layout
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.3, ease: "easeInOut" }}
-                  className="px-6 pb-4 text-sm text-gray-600 md:text-base"
-                >
-                  <p>{item.answer}</p>
-                </motion.div>
-              )}
-            </AnimatePresence>
+            <div
+              className={`overflow-hidden transition-all duration-300 ease-in-out px-6 ${
+                openIndex === index ? "max-h-40 pb-4" : "max-h-0"
+              }`}
+            >
+              <p className="text-sm text-gray-600 md:text-base mt-4">{item.answer}</p>
+            </div>
           </div>
         ))}
       </div>
-    </motion.section>
+    </section>
   );
 }

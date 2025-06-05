@@ -1,5 +1,4 @@
 import React from "react";
-import { motion } from "framer-motion";
 import Navbar from "../../views/home/navbar/Navbar";
 import Hero from "../../views/home/landing-page/Hero";
 import Service from "../../views/home/landing-page/Service";
@@ -24,29 +23,21 @@ export function LandingPage() {
     presenter.loadServices();
     AOS.init({
       duration: 1000,
-      once: false,
+      once: true,
     });
   }, []);
-
-  // console.log(services.data);
 
   return (
     <>
       <Navbar />
       <Hero />
-      <Service data={services.data} isLoading={isLoading}/>
-      <Lokasi data={services.data}/>
+      <Service data={services.data} isLoading={isLoading} />
+      <Lokasi data={services.data} />
       <About />
       <Artikel />
       <Question />
       <Member />
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.5, duration: 0.8 }}
-      >
-        <Footer />
-      </motion.div>
+      <Footer />
     </>
   );
 }

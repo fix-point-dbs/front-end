@@ -1,46 +1,103 @@
-import { motion } from "framer-motion";
-
+import { FaFacebookF, FaTwitter, FaInstagram } from "react-icons/fa";
+import fotoZarif from "../../../assets/images/member/zarif.png";
+import fotoGreta from "../../../assets/images/member/greta.jpeg";
+import fotoAhkam from "../../../assets/images/member/ahkam.png";
+import fotoAsyam from "../../../assets/images/member/asyam.png";
+import fotoAngga from "../../../assets/images/member/angga.jpeg";
+import fotoAbim from "../../../assets/images/member/abim.jpg";
 export default function Member() {
   const team = [
-    { name: "Zarif", role: "Backend Developer", category: "FE & BE" },
-    { name: "Greta", role: "Frontend Developer", category: "FE & BE" },
-    { name: "Ahkam", role: "Frontend Developer", category: "FE & BE" },
-    { name: "Asyam", role: "ML Engineer", category: "ML" },
-    { name: "Angga", role: "ML Engineer", category: "ML" },
-    { name: "Abim", role: "ML Engineer", category: "ML" },
-  ]; 
+    {
+      name: "Zarif",
+      role: "Backend Developer",
+      image: fotoZarif,
+      category: "FE & BE",
+    },
+    {
+      name: "Greta",
+      role: "Frontend Developer",
+      image: fotoGreta,
+      category: "FE & BE",
+    },
+    {
+      name: "Ahkam",
+      role: "Frontend Developer",
+      image: fotoAhkam,
+      category: "FE & BE",
+    },
+    {
+      name: "Asyam",
+      role: "ML Engineer",
+      image: fotoAsyam,
+      category: "ML",
+    },
+    {
+      name: "Angga",
+      role: "ML Engineer",
+      image: fotoAngga,
+      category: "ML",
+    },
+    {
+      name: "Abim",
+      role: "ML Engineer",
+      image: fotoAbim,
+      category: "ML",
+    },
+  ];
 
   return (
     <section className="w-[90%] max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 mt-[60px] mb-20">
-      <div className="flex items-center justify-center">
+      <div data-aos="fade-up" className="flex items-center justify-center">
         <div className="w-24 border-t border-biru"></div>
         <p className="mx-4 mb-1 text-sm font-black text-biru sm:text-sm">
           MEMBER
         </p>
         <div className="w-24 border-t border-biru"></div>
       </div>
-      <h2 className="mb-4 text-lg font-bold text-center text-gray-800">Team Pengembang</h2>
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:gap-8">
+      <h2 className="mb-10 text-lg font-bold text-center text-gray-800">
+        Team Pengembang
+      </h2>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
         {team.map((member, idx) => (
-          <motion.div
+          <div
             key={idx}
-            className="flex flex-col items-center p-6 bg-gray-100 rounded-lg"
-            initial={{ opacity: 0, y: -30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: idx * 0.15 }}
-            viewport={{ once: false, amount: 0.4 }}
+            className="flex flex-col items-center bg-white rounded-md px-6 py-8 text-center hover:shadow-md hover:shadow-gray-300"
           >
-            <div className="flex items-center justify-center w-24 h-24 mb-4 overflow-hidden bg-gray-400 rounded-full">
+            {/* Profile image with blue border */}
+            <div className="w-32 h-32 rounded-full border-4 border-blue-500 overflow-hidden mb-4">
               <img
-                src="https://tse4.mm.bing.net/th?id=OIP.u6yI_QLH7-RzpWirGJViHgHaEK&pid=Api&P=0&h=180"
-                alt="profile"
-                className="object-cover w-full h-full"
+                src={member.image}
+                alt={member.name}
+                className="w-full h-full object-cover"
               />
             </div>
 
-            <p className="font-semibold text-gray-800">{member.name}</p>
-            <p className="text-sm text-gray-600">{member.role}</p>
-          </motion.div>
+            {/* Name & Role */}
+            <h3 className="text-lg font-bold text-black">{member.name}</h3>
+            <p className="text-sm text-blue-600 font-semibold mb-2">
+              {member.role}
+            </p>
+
+            {/* Description */}
+            <p className="text-xs text-gray-500 mb-4">
+              Glavi amet ritnisi libero molestie ante ut fringilla purus eros
+              quis glavrid from dolor amet iquam lorem bibendum
+            </p>
+
+            {/* Social Media */}
+            <div className="flex gap-4 bg-blue-500 px-4 py-2 rounded-md text-white text-sm">
+              <a href="#">
+                <FaFacebookF />
+              </a>
+              <a href="#">
+                <FaTwitter />
+              </a>
+              <a href="#">
+                <FaInstagram />
+              </a>
+            </div>
+          </div>
         ))}
       </div>
     </section>

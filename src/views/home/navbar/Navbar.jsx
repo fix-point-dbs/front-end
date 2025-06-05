@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../../assets/images/logo.png";
 
@@ -16,26 +15,6 @@ export default function Navbar() {
       setDropdownOpen(false);
     }
   }, [menuOpen]);
-
-  const menuVariants = {
-    hidden: { opacity: 0, y: "100%" },
-    visible: { opacity: 1, y: 0 },
-  };
-
-  const dropdownVariants = {
-    hidden: {
-      opacity: 0,
-      y: -10,
-      pointerEvents: "none",
-      transition: { duration: 0.2 },
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      pointerEvents: "auto",
-      transition: { duration: 0.2 },
-    },
-  };
 
   function handleMouseEnter() {
     if (timeoutRef.current) {
@@ -89,44 +68,34 @@ export default function Navbar() {
                 </svg>
               </button>
 
-              <AnimatePresence>
-                {dropdownOpen && (
-                  <motion.ul
-                    initial="hidden"
-                    animate="visible"
-                    exit="hidden"
-                    variants={dropdownVariants}
-                    onMouseEnter={handleMouseEnter}
-                    onMouseLeave={handleMouseLeave}
-                    className="absolute left-0 z-50 mt-1 border border-gray-300 rounded shadow-lg w-35 top-full bg-putih"
-                  >
-                    <li>
-                      <NavLink
-                        to="/bengkel"
-                        className={({ isActive }) =>
-                          `block px-4 py-2 transition hover:bg-oranye hover:text-putih ${
-                            isActive ? "text-black" : "text-gray-500"
-                          }`
-                        }
-                      >
-                        Bengkel
-                      </NavLink>
-                    </li>
-                    <li>
-                      <NavLink
-                        to="/towing"
-                        className={({ isActive }) =>
-                          `block px-4 py-2 transition hover:bg-oranye hover:text-putih ${
-                            isActive ? "text-black" : "text-gray-500"
-                          }`
-                        }
-                      >
-                        Towing
-                      </NavLink>
-                    </li>
-                  </motion.ul>
-                )}
-              </AnimatePresence>
+              {dropdownOpen && (
+                <ul className="absolute left-0 z-50 mt-1 border border-gray-300 rounded shadow-lg w-35 top-full bg-putih">
+                  <li>
+                    <NavLink
+                      to="/bengkel"
+                      className={({ isActive }) =>
+                        `block px-4 py-2 transition hover:bg-oranye hover:text-putih ${
+                          isActive ? "text-black" : "text-gray-500"
+                        }`
+                      }
+                    >
+                      Bengkel
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/towing"
+                      className={({ isActive }) =>
+                        `block px-4 py-2 transition hover:bg-oranye hover:text-putih ${
+                          isActive ? "text-black" : "text-gray-500"
+                        }`
+                      }
+                    >
+                      Towing
+                    </NavLink>
+                  </li>
+                </ul>
+              )}
             </li>
             <li>
               <NavLink
@@ -187,152 +156,129 @@ export default function Navbar() {
         </button>
       </div>
 
-      <AnimatePresence>
-        {menuOpen && (
-          <>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 0.5 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 z-40 bg-black"
+      {menuOpen && (
+        <>
+          <div
+            className="fixed inset-0 z-40 bg-black opacity-50"
+            onClick={() => setMenuOpen(false)}
+          />
+
+          <div className="fixed bottom-0 left-0 right-0 bg-putih rounded-t-xl shadow-lg z-50 px-6 pt-6 pb-8 max-h-[80vh] overflow-auto font-montserrat font-medium">
+            <button
               onClick={() => setMenuOpen(false)}
-            />
-
-            <motion.div
-              initial="hidden"
-              animate="visible"
-              exit="hidden"
-              variants={menuVariants}
-              transition={{ duration: 0.3 }}
-              className="fixed bottom-0 left-0 right-0 bg-putih rounded-t-xl shadow-lg z-50 px-6 pt-6 pb-8 max-h-[80vh] overflow-auto font-montserrat font-medium"
+              aria-label="Close menu"
+              className="absolute top-4 right-4 mb-[10px] text-biru focus:outline-none"
             >
-              <button
-                onClick={() => setMenuOpen(false)}
-                aria-label="Close menu"
-                className="absolute top-4 right-4 mb-[10px] text-biru focus:outline-none"
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={2}
+                viewBox="0 0 24 24"
               >
-                <svg
-                  className="w-6 h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth={2}
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
+                <path d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
 
-              <ul className="space-y-3 mt-[10px]">
-                <li>
-                  <NavLink
-                    to="/"
-                    className={({ isActive }) =>
-                      isActive ? "text-black block" : "text-gray-500 block"
-                    }
+            <ul className="space-y-3 mt-[10px]">
+              <li>
+                <NavLink
+                  to="/"
+                  className={({ isActive }) =>
+                    isActive ? "text-black block" : "text-gray-500 block"
+                  }
+                >
+                  Beranda
+                </NavLink>
+              </li>
+              <li>
+                <button
+                  onClick={() => setDropdownOpen(!dropdownOpen)}
+                  className="flex items-center justify-between w-full text-left text-gray-500 hover:text-oranye"
+                >
+                  Layanan
+                  <svg
+                    className={`w-4 h-4 transition-transform duration-300 ${
+                      dropdownOpen ? "rotate-180" : ""
+                    }`}
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                    viewBox="0 0 24 24"
                   >
-                    Beranda
-                  </NavLink>
-                </li>
-                <li>
-                  <button
-                    onClick={() => setDropdownOpen(!dropdownOpen)}
-                    className="flex items-center justify-between w-full text-left text-gray-500 hover:text-oranye"
-                  >
-                    Layanan
-                    <svg
-                      className={`w-4 h-4 transition-transform duration-300 ${
-                        dropdownOpen ? "rotate-180" : ""
-                      }`}
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth={2}
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M19 9l-7 7-7-7"
-                      />
-                    </svg>
-                  </button>
-                  <AnimatePresence>
-                    {dropdownOpen && (
-                      <motion.ul
-                        initial="hidden"
-                        animate="visible"
-                        exit="hidden"
-                        variants={menuVariants}
-                        className="pl-4 mt-2 space-y-2"
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </button>
+
+                {dropdownOpen && (
+                  <ul className="pl-4 mt-2 space-y-2">
+                    <li>
+                      <NavLink
+                        to="/bengkel"
+                        className={({ isActive }) =>
+                          isActive ? "text-black block" : "text-gray-500 block"
+                        }
                       >
-                        <li>
-                          <NavLink
-                            to="/bengkel"
-                            className={({ isActive }) =>
-                              isActive
-                                ? "text-black block"
-                                : "text-gray-500 block"
-                            }
-                          >
-                            Bengkel
-                          </NavLink>
-                        </li>
-                        <li>
-                          <NavLink
-                            to="/towing"
-                            className={({ isActive }) =>
-                              isActive
-                                ? "text-black block"
-                                : "text-gray-500 block"
-                            }
-                          >
-                            Towing
-                          </NavLink>
-                        </li>
-                      </motion.ul>
-                    )}
-                  </AnimatePresence>
-                </li>
-                <li>
-                  <NavLink
-                    to="/artikel"
-                    className={({ isActive }) =>
-                      isActive ? "text-black block" : "text-gray-500 block"
-                    }
-                  >
-                    Artikel
-                  </NavLink>
-                </li>
-
-                <li>
-                  <NavLink
-                    to="/mitra"
-                    className={({ isActive }) =>
-                      isActive ? "text-black block" : "text-gray-500 block"
-                    }
-                  >
-                    Mitra
-                  </NavLink>
-                </li>
-              </ul>
-
-              <div className="flex gap-3 pt-4">
-                <Link
-                  to="/login"
-                  className="w-full px-4 py-2 text-sm font-semibold text-center border rounded-md border-biru text-biru hover:bg-biru/10"
+                        Bengkel
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        to="/towing"
+                        className={({ isActive }) =>
+                          isActive ? "text-black block" : "text-gray-500 block"
+                        }
+                      >
+                        Towing
+                      </NavLink>
+                    </li>
+                  </ul>
+                )}
+              </li>
+              <li>
+                <NavLink
+                  to="/artikel"
+                  className={({ isActive }) =>
+                    isActive ? "text-black block" : "text-gray-500 block"
+                  }
                 >
-                  Login
-                </Link>
-                <Link
-                  to="/register"
-                  className="w-full px-4 py-2 text-sm font-semibold text-center rounded-md bg-biru text-putih hover:bg-biru/90"
+                  Artikel
+                </NavLink>
+              </li>
+
+              <li>
+                <NavLink
+                  to="/mitra"
+                  className={({ isActive }) =>
+                    isActive ? "text-black block" : "text-gray-500 block"
+                  }
                 >
-                  Register
-                </Link>
-              </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
+                  Mitra
+                </NavLink>
+              </li>
+            </ul>
+
+            <div className="flex gap-3 pt-4">
+              <Link
+                to="/login"
+                className="w-full px-4 py-2 text-sm font-semibold text-center border rounded-md border-biru text-biru hover:bg-biru/10"
+              >
+                Login
+              </Link>
+              <Link
+                to="/register"
+                className="w-full px-4 py-2 text-sm font-semibold text-center rounded-md bg-biru text-putih hover:bg-biru/90"
+              >
+                Register
+              </Link>
+            </div>
+          </div>
+        </>
+      )}
     </nav>
   );
 }

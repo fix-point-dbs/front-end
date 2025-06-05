@@ -101,7 +101,7 @@ export default function Lokasi({ data }) {
         Peta Persebaran Bengkel & Towing
       </h2>
 
-      <div className="relative w-full h-[300px] sm:h-[400px] rounded-xl overflow-hidden mb-20">
+      <div data-aos="zoom-in" className="relative w-full h-[300px] sm:h-[400px] rounded-xl overflow-hidden mb-20">
         {position ? (
           <MapContainer
             center={position}
