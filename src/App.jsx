@@ -20,6 +20,7 @@ import { InformasiUmumPage } from "./pages/home/InformasiUmumPage";
 import { DetailLayananPage } from "./pages/home/DetailLayananPage";
 import { FotoLayananPage } from "./pages/home/FotoLayananPage";
 import { ReviewRegistrasiPage } from "./pages/home/ReviewRegistrasiPage";
+import { RegisterPage } from "./pages/home/RegisterPage";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
       <Routes>
         <Route path="/users" element={<UserPage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
         <Route path="/" element={<LandingPage />} />
         <Route path="/bengkel" element={<BengkelPage />} />
         <Route path="/towing" element={<TowingPage />} />

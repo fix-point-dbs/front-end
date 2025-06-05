@@ -12,10 +12,15 @@ import {
   faRightFromBracket,
   faBars,
   faTimes,
+  faSun,
+  faMoon,
 } from "@fortawesome/free-solid-svg-icons";
 
 export default function Sidebar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    return localStorage.getItem('theme') === 'dark';
+  });
   const location = useLocation();
   const [activeItem, setActiveItem] = useState("dashboard");
 
@@ -29,6 +34,32 @@ export default function Sidebar() {
     { id: "Logout", name: "Logout", icon: faRightFromBracket, path: "/logout" },
   ];
 
+  const toggleSidebar = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const toggleTheme = () => {
+    const newDarkMode = !isDarkMode;
+    setIsDarkMode(newDarkMode);
+    
+    if (newDarkMode) {
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+    }
+  };
+
+  // Set initial theme
+  useEffect(() => {
+    if (isDarkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, []);
+
   useEffect(() => {
     const currentPath = location.pathname;
     const activeMenu = menuItems.find((item) => item.path === currentPath);
@@ -36,10 +67,6 @@ export default function Sidebar() {
       setActiveItem(activeMenu.id);
     }
   }, [location.pathname]);
-
-  const toggleSidebar = () => {
-    setIsOpen(!isOpen);
-  };
 
   return (
     <>
@@ -60,8 +87,8 @@ export default function Sidebar() {
             <img src={logo} alt="Fixpoint Logo" className="h-full w-full object-contain" />
           </div>
         </div>
-        <div className="py-4">
-          <ul className="space-y-2">
+        <div className="py-4 flex flex-col h-[calc(100%-7rem)]">
+          <ul className="space-y-2 flex-1">
             {menuItems.map((item) => (
               <li key={item.id} className="px-3">
                 <Link
@@ -89,6 +116,16 @@ export default function Sidebar() {
               </li>
             ))}
           </ul>
+          <div className="px-3 mt-auto">
+            <button
+              onClick={toggleTheme}
+              className="flex items-center w-full mx-1 px-6 py-3 rounded-lg bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600 focus:outline-none"
+              aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
+            >
+              <FontAwesomeIcon icon={isDarkMode ? faSun : faMoon} className="w-5 h-5 mr-3" />
+              <span>{isDarkMode ? "Light Mode" : "Dark Mode"}</span>
+            </button>
+          </div>
         </div>
       </aside>
 
