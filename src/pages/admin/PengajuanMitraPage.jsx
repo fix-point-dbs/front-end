@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { PengajuanMitraPresenter } from "../../presenters/admin/PengajuanMitraPresenter";
+import MotionDiv from "../../utils/TransitionSmoth";
 export function PengajuanMitraPage() {
   const [services, setServices] = useState([]);
   const [isLoading, setIsLoading ] = useState(true);
@@ -31,6 +32,7 @@ export function PengajuanMitraPage() {
   return (
     <section className="flex flex-col md:flex-row min-h-screen bg-gray-50 dark:bg-gray-900">
         <Sidebar />
+        <MotionDiv>
         <div className="flex flex-1 flex-col p-3 sm:p-4 md:p-6 w-full overflow-y-auto mt-12 lg:mt-0">
             <Breadcrumbs />
             <PengajuanMitra services={services.data} isLoading={isLoading} handleAccept={handleAccept} handleReject={handleReject} />
@@ -43,6 +45,7 @@ export function PengajuanMitraPage() {
             <span className="sr-only">Add new item</span>
             </button>
         </div>
+        </MotionDiv>
     </section>
   );
 }
