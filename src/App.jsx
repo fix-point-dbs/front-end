@@ -10,7 +10,7 @@ import { TowingPage } from "./pages/home/TowingPage";
 import { DetailServicePage } from "./pages/home/DetailServicePage";
 import { BookingPage } from "./pages/home/BookingPage";
 import { Dashboard } from "./pages/admin/Dashboard";
-import { PengajuanMitra } from "./pages/admin/PengajuanMitra";
+import { PengajuanMitraPage } from "./pages/admin/PengajuanMitraPage";
 import TambahMitra from "./pages/admin/TambahMitra";
 import { ConfirmationBookingPage } from "./pages/home/ConfirmationBookingPage";
 import { ArtikelPage } from "./pages/home/ArtikelPage";
@@ -29,6 +29,8 @@ import { HistoryOrderPage } from "./pages/mitra/HistoryOrderPage";
 import { OrderPage } from "./pages/mitra/OrderPage";
 import { RegistrationMitraPage } from "./pages/mitra/RegistrationMitraPage";
 import { SettingUserPage } from "./pages/user/SettingUserPage";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 function App() {
 
   return (
@@ -43,7 +45,7 @@ function App() {
         <Route path="/towing" element={<TowingPage />} />
         <Route path="/service/detail/:id" element={<DetailServicePage />} />
         <Route path="/admin/dashboard" element={<Dashboard />} />
-        <Route path="/admin/pengajuan-mitra" element={<PengajuanMitra />} />
+        <Route path="/admin/pengajuan-mitra" element={<PengajuanMitraPage />} />
         <Route path="/admin/pengajuan-mitra/tambah" element={<TambahMitra />} />
         <Route path="/booking/:id" element={<BookingPage />} />
         <Route path="/artikel" element={<ArtikelPage />} />

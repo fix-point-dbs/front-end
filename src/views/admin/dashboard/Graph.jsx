@@ -1,59 +1,29 @@
 import React from "react";
-import ReactApexChart from "react-apexcharts";
+import {
+    LineChart,
+    Line,
+    XAxis,
+    YAxis,
+    CartesianGrid,
+    Tooltip,
+    ResponsiveContainer,
+  } from "recharts";
 
 export default function Graph() {
-    const options = {
-        chart: {
-            type: 'area',
-            height: 350,
-            toolbar: {
-                show: false
-            },
-            zoom: {
-                enabled: false
-            }
-        },
-        dataLabels: {
-            enabled: false
-        },
-        stroke: {
-            curve: 'smooth',
-            width: 2
-        },
-        xaxis: {
-            categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-            labels: {
-                style: {
-                    fontSize: '12px'
-                }
-            }
-        },
-        yaxis: {
-            labels: {
-                style: {
-                    fontSize: '12px'
-                }
-            }
-        },
-        tooltip: {
-            x: {
-                format: 'dd/MM/yy HH:mm'
-            }
-        },
-        responsive: [{
-            breakpoint: 640,
-            options: {
-                chart: {
-                    height: 250
-                }
-            }
-        }]
-    };
-
-    const series = [{
-        name: 'Users',
-        data: [31, 40, 28, 51, 42, 109, 100]
-    }];
+    const monthlyData = [
+        { month: "Jan", total: 1200 },
+        { month: "Feb", total: 2100 },
+        { month: "Mar", total: 800 },
+        { month: "Apr", total: 1600 },
+        { month: "May", total: 2200 },
+        { month: "Jun", total: 1400 },
+        { month: "Jul", total: 1800 },
+        { month: "Aug", total: 1000 },
+        { month: "Sep", total: 1500 },
+        { month: "Oct", total: 1300 },
+        { month: "Nov", total: 1700 },
+        { month: "Dec", total: 2400 },
+      ];
 
     return (        
         <div className="w-full bg-white rounded-lg shadow-sm dark:bg-gray-800 p-3 sm:p-4 md:p-6">
@@ -69,58 +39,24 @@ export default function Graph() {
                     </svg>
                 </div>
             </div>
-            <div id="area-chart" className="mt-4">
-                <ReactApexChart 
-                    options={options}
-                    series={series}
-                    type="area"
-                    height={350}
-                />
+            <div className="mt-4">
+            <ResponsiveContainer width="100%" height={250}>
+                   <LineChart data={monthlyData}>
+                     <CartesianGrid strokeDasharray="3 3" />
+                     <XAxis dataKey="month" tick={{ fontSize: 10 }} />
+                     <YAxis tick={{ fontSize: 10 }} />
+                     <Tooltip contentStyle={{ fontSize: 10 }} />
+                     <Line
+                       type="monotone"
+                       dataKey="total"
+                       stroke="#3B82F6"
+                       strokeWidth={2}
+                       isAnimationActive={true}
+                     />
+                   </LineChart>
+                 </ResponsiveContainer>
             </div>
-            <div className="grid grid-cols-1 items-center border-gray-200 border-t dark:border-gray-700 justify-between mt-4">
-                <div className="flex flex-col sm:flex-row justify-between items-center gap-4 pt-5">
-                    {/* Button */}
-                    <button
-                        id="dropdownDefaultButton"
-                        data-dropdown-toggle="lastDaysdropdown"
-                        data-dropdown-placement="bottom"
-                        className="text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-900 text-center inline-flex items-center dark:hover:text-white"
-                        type="button">
-                        Last 7 days
-                        <svg className="w-2.5 m-2.5 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                            <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4"/>
-                        </svg>
-                    </button>
-                    {/* Dropdown menu */}
-                    <div id="lastDaysdropdown" className="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700">
-                        <ul className="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
-                            <li>
-                                <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Yesterday</a>
-                            </li>
-                            <li>
-                                <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Today</a>
-                            </li>
-                            <li>
-                                <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Last 7 days</a>
-                            </li>
-                            <li>
-                                <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Last 30 days</a>
-                            </li>
-                            <li>
-                                <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Last 90 days</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <a
-                        href="#"
-                        className="uppercase text-sm font-semibold inline-flex items-center rounded-lg text-blue-600 hover:text-blue-700 dark:hover:text-blue-500 hover:bg-gray-100 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 px-3 py-2">
-                        Users Report
-                        <svg className="w-2.5 h-2.5 ms-1.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                            <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 9 4-4-4-4"/>
-                        </svg>
-                    </a>
-                </div>
-            </div>
+
         </div>
     )
 }
