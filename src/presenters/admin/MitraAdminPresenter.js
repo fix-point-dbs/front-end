@@ -1,5 +1,5 @@
 import { ServiceModel } from "../../models/ServiceModel";
-export class PengajuanMitraPresenter {
+export class MitraAdminPresenter {
     constructor(view) {
         this.view = view;
         this.model = new ServiceModel;
@@ -8,7 +8,7 @@ export class PengajuanMitraPresenter {
     async loadServices() {
         try {
             this.view.setIsLoading(true);
-            const services = await this.model.getServices('?status=pending');
+            const services = await this.model.getServices('');
             this.view.setServices(services);
         } catch (error) {
             console.log(error);
@@ -17,10 +17,10 @@ export class PengajuanMitraPresenter {
         }
     }
 
-    async updateStatus(id, status) {
+    async deleteService(id) {
         try {
             this.view.setIsLoading(true);
-            const res = await this.model.updateService(id, status);
+            const res = await this.model.deleteService(id);
             console.log(res);
             this.loadServices();
         } catch (error) {
@@ -29,7 +29,5 @@ export class PengajuanMitraPresenter {
             this.view.setIsLoading(false);
         }
     }
-
-   
     
 }

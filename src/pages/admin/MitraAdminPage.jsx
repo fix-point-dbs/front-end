@@ -4,13 +4,13 @@ import Breadcrumbs from "../../views/admin/header/Breadcrumbs";
 import SemuaMitra from "../../views/admin/mitra/SemuaMitra";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { PengajuanMitraPresenter } from "../../presenters/admin/PengajuanMitraPresenter";
 import MotionDiv from "../../utils/TransitionSmoth";
+import { MitraAdminPresenter } from "../../presenters/admin/MitraAdminPresenter";
 export function MitraAdminPage() {
   const [services, setServices] = useState([]);
   const [isLoading, setIsLoading ] = useState(true);
 
-  const presenter = new PengajuanMitraPresenter({ setServices, setIsLoading });
+  const presenter = new MitraAdminPresenter({ setServices, setIsLoading });
   console.log(services);
   
   useEffect(() => {
