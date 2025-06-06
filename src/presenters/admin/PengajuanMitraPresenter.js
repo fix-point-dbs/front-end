@@ -29,4 +29,18 @@ export class PengajuanMitraPresenter {
             this.view.setIsLoading(false);
         }
     }
+
+    async deleteService(id) {
+        try {
+            this.view.setIsLoading(true);
+            const res = await this.model.deleteService(id);
+            console.log(res);
+            this.loadServices();
+        } catch (error) {
+            console.log(error);
+        }finally{
+            this.view.setIsLoading(false);
+        }
+    }
+    
 }
