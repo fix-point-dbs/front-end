@@ -1,8 +1,8 @@
 import api from "../lib/api";
 
 export class ServiceModel {
-    async getServices() {
-        const res = await api.get('/services');
+    async getServices(query) {
+        const res = await api.get('services' + query);
         return res.data;
     }
 
@@ -15,6 +15,15 @@ export class ServiceModel {
         const res = await api.post('/services',data,{
             headers: {
                 'Content-Type': 'multipart/form-data',
+                'Authorization': `Bearer f80ca753-eb98-4d6b-b365-e7f3a2895805`
+            }
+        });
+        return res.data;
+    }
+
+    async updateService(id, data){
+        const res = await api.put(`/services/status/${id}`,data,{
+            headers: {
                 'Authorization': `Bearer f80ca753-eb98-4d6b-b365-e7f3a2895805`
             }
         });

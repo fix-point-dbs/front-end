@@ -19,8 +19,6 @@ import { Link } from "react-router-dom";
 import MotionDiv from "../../../../utils/TransitionSmoth";
 import "leaflet/dist/leaflet.css";
 import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import { getCurrentPosition } from "../../../../utils/GeoLocation";
 import { MapContainer, TileLayer, Marker, useMap, Popup } from "react-leaflet";
 import "leaflet-routing-machine/dist/leaflet-routing-machine.css";
