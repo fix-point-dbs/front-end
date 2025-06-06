@@ -12,7 +12,7 @@ import {
   faClock,
   faPhone,
 } from "@fortawesome/free-solid-svg-icons";
-import { motion } from "framer-motion";
+import MotionDiv from "../../../../utils/TransitionSmoth";
 
 export default function Pemesanan({
   data = [],
@@ -122,10 +122,7 @@ export default function Pemesanan({
         className="absolute inset-0 z-0 object-cover w-full h-[300px] sm:h-[300px] lg:h-[300px]"
       />
       <div className="relative z-10 ">
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+        <MotionDiv
         >
           <h2 className="pt-20 mb-2 text-2xl font-bold text-center text-black sm:pt-20">
             Form Pemesanan
@@ -133,14 +130,10 @@ export default function Pemesanan({
           <p className="mb-8 text-center text-black-600">
             Isi data yang dibutuhkan sesuai dengan keperluan anda!
           </p>
-        </motion.div>
+        </MotionDiv>
 
-        <motion.div
-          className="grid grid-cols-1 gap-6 mb-10 md:grid-cols-3"
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-        >
+      <MotionDiv>
+        <div className="grid grid-cols-1 gap-6 mb-10 md:grid-cols-3">
           <div className="w-full p-4 bg-white rounded-lg shadow-md h-fit">
             <img src={orang} alt="Bengkel" className="mb-3 rounded" />
             <h3 className="text-lg font-bold">Bengkel Andalan Motor</h3>
@@ -220,15 +213,15 @@ export default function Pemesanan({
                       <label>
                         <input
                           type="radio"
-                          value={item.type}
+                          value={item.list_service_id}
                           onChange={handleChange}
                           name="detail_service_name"
                           className="mr-2 border"
                         />
-                        {item.type}
+                        {item.list_service.type}
                       </label>
                       <p className="text-sm text-gray-600 mt-2">
-                        {item.description}
+                        {item.list_service.description}
                       </p>
                     </div>
                   ))}
@@ -302,7 +295,8 @@ export default function Pemesanan({
               </button>
             )}
           </form>
-        </motion.div>
+        </div>
+        </MotionDiv>
       </div>
     </section>
   );

@@ -6,7 +6,6 @@ import { formatTanggal, formatJam } from "../../../../utils/FormatDateTime";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import {
-  faMapMarkerAlt,
   faStar,
   faPhone,
   faTools,
@@ -17,7 +16,7 @@ import {
   faLocation,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
+import MotionDiv from "../../../../utils/TransitionSmoth";
 import "leaflet/dist/leaflet.css";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -178,16 +177,14 @@ const Detail = ({ data = [], isLoading }) => {
   }
 
   return (
+    <MotionDiv>
     <section className="relative pb-10 overflow-hidden">
       <img
         src={background}
         alt="Hero background"
         className="absolute inset-0 object-cover w-full h-[270px] sm:h-[270px] lg:h-[270px] z-0"
       />
-      <motion.div
-        initial={{ opacity: 0, y: -30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7 }}
+      <div
         className="relative z-10 flex flex-col items-center justify-center h-[270px] text-center px-4"
       >
         <h2 className="pt-20 mb-2 text-2xl font-bold text-center text-black sm:pt-20">
@@ -196,23 +193,17 @@ const Detail = ({ data = [], isLoading }) => {
         <p className="mb-8 text-center text-black-600">
           Berikut merupakan informasi dari layanan terkait!
         </p>
-      </motion.div>
+      </div>
 
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.4, duration: 0.6 }}
+      <div
         className="bg-biru drop-shadow-lg"
       >
         <div className="w-[90%] max-w-7xl mx-auto p-5 text-base text-white">
           Home / <span className="text-base text-white">Detail Layanan</span>
         </div>
-      </motion.div>
+      </div>
 
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
+      <div
         className="w-[90%] max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 mt-[20px] overflow-hidden bg-cover bg-center bg-no-repeat mb-10"
       >
         <div className="mb-6">
@@ -547,8 +538,9 @@ const Detail = ({ data = [], isLoading }) => {
             </div>
           )}
         </div>
-      </motion.div>
+      </div>
     </section>
+    </MotionDiv>
   );
 };
 

@@ -1,13 +1,14 @@
 import React, { useState } from "react";
-import { motion } from "framer-motion";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import background from "../../../../../assets/images/bg-white.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBullhorn } from "@fortawesome/free-solid-svg-icons";
 import StarRating from "../../../components/StarRating";
-
+import { showSuccessToast } from "../../../../../utils/Toast";
+import { useNavigate } from "react-router-dom";
 const Done = ({ data, isLoading, onSubmit}) => {
+  const navigate = useNavigate();
   const [rating, setRating] = useState(0);
   const [review, setReview] = useState("");
 
@@ -20,6 +21,11 @@ const Done = ({ data, isLoading, onSubmit}) => {
     onSubmit(reviewData);
   };
 
+  const handleDone = () => {
+    showSuccessToast("Terimakasih telah menggunakan layanan kami");
+    navigate("/");
+  };
+
   return (
     <section className="w-[90%] max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 mt-[60px] overflow-hidden bg-cover bg-center bg-no-repeat mb-10">
       <img
@@ -28,18 +34,14 @@ const Done = ({ data, isLoading, onSubmit}) => {
         className="absolute inset-0 z-0 object-cover w-full h-[300px] sm:h-[300px] lg:h-[300px]"
       />
       <div className="relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
+        <div>
           <h2 className="pt-20 mb-2 text-2xl font-bold text-center text-black sm:pt-20">
             Konfirmasi Pemesanan
           </h2>
           <p className="mb-8 text-center text-black-600">
             Silahkan pantau dashboard untuk melihat pesanan anda!
           </p>
-        </motion.div>
+          </div>
 
         <div className="grid max-w-6xl grid-cols-1 gap-6 mx-auto mb-10 md:grid-cols-4">
           <div className="col-span-1 space-y-4">
@@ -126,12 +128,23 @@ const Done = ({ data, isLoading, onSubmit}) => {
                   onChange={(e) => setReview(e.target.value)}
                 ></textarea>
 
-                <button
-                  className="px-4 py-2 text-white bg-blue-600 rounded hover:bg-blue-700"
-                  type="submit"
-                >
-                  Kirim
-                </button>
+                {isLoading ? (
+                  <button
+                    disabled
+                    className="px-4 py-2 text-white bg-blue-600 rounded hover:bg-blue-700"
+                    type="submit"
+                  >
+                    <span className="inline-block w-4 h-4 mr-2 border-2 border-t-2 border-gray-300 border-t-gray-800 rounded-full animate-spin align-middle" />
+                    Sedang Mengirim
+                  </button>
+                ) : (
+                  <button
+                    className="px-4 py-2 text-white bg-blue-600 rounded hover:bg-blue-700"
+                    type="submit"
+                  >
+                    Kirim
+                  </button>
+                )}
               </div>
               </form>
             </div>
@@ -139,7 +152,7 @@ const Done = ({ data, isLoading, onSubmit}) => {
         </div>
 
         <div className="pt-4 text-right">
-          <button className="px-4 py-2 font-bold text-white bg-red-500 rounded hover:bg-red-600">
+          <button onClick={handleDone} className="px-4 py-2 font-bold text-white bg-red-500 rounded hover:bg-red-600">
             Selesai
           </button>
         </div>

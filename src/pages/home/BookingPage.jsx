@@ -5,6 +5,7 @@ import Pemesanan from "../../views/home/layanan/pemesanan/Pemesanan";
 import { BookingPresenter } from "../../presenters/home/BookingPresenter";
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { showSuccessToast } from "../../utils/Toast";
 export function BookingPage() {
   const navigate = useNavigate();
   const { id } = useParams();
@@ -12,6 +13,8 @@ export function BookingPage() {
   const [isLoading, setIsLoading] = useState(false);
   const presenter = new BookingPresenter({ setServices, id, setIsLoading, onSuccess});
 
+  console.log(service);
+  
   useEffect(() => {
     presenter.loadServices();
   }, []);
@@ -24,7 +27,7 @@ export function BookingPage() {
   }
 
   function onSuccess(booking_id) {
-    alert("Pemesanan Berhasil");
+    showSuccessToast("Pemesanan Berhasil dibuat");
     navigate(`/booking/confirmation/${booking_id}`);
   }
   return (
