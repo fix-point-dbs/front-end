@@ -23,7 +23,7 @@ export class BookingModel {
     async getBookings(query){
         const res = await api.get('/bookings' + query,{
             headers: {
-                'Authorization': `Bearer f80ca753-eb98-4d6b-b365-e7f3a2895805`,
+                'Authorization': `Bearer efe1ae67-f000-4258-a01c-79749da2d65a`,
             }
         });
         return res.data;

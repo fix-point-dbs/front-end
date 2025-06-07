@@ -29,4 +29,13 @@ export class ServiceModel {
         });
         return res.data;
     }
+
+    async deleteService(id) {
+        const res = await api.delete(`/services/${id}`,{
+            headers: {
+                'Authorization': `Bearer f80ca753-eb98-4d6b-b365-e7f3a2895805`
+            }
+        });
+        return res.data;
+    }
 }
