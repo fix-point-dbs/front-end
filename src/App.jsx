@@ -33,6 +33,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { MitraAdminPage } from "./pages/admin/MitraAdminPage";
 import { BookingAdminPage } from "./pages/admin/BookingAdminPage";
+import { UserAdminPage } from "./pages/admin/UserAdminPage";
 function App() {
 
   return (
@@ -51,6 +52,7 @@ function App() {
         <Route path="/admin/mitra" element={<MitraAdminPage />} />
         <Route path="/admin/booking" element={<BookingAdminPage />} />
         <Route path="/admin/pengajuan-mitra/tambah" element={<TambahMitra />} />
+        <Route path="/admin/users" element={<UserAdminPage />} />
         <Route path="/booking/:id" element={<BookingPage />} />
         <Route path="/artikel" element={<ArtikelPage />} />
         <Route path="/mitra" element={<MitraPage />} />

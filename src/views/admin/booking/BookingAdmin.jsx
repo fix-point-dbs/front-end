@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import moment from "moment";
-import { faCheck, faClose, faInfo } from "@fortawesome/free-solid-svg-icons";
+import { faClose, faInfo } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import L from "leaflet";
