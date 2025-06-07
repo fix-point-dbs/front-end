@@ -1,20 +1,16 @@
 import { ServiceModel } from "../../models/ServiceModel";
-export class LandingPagePresenter {
+export class ServicePresenter {
     constructor(view) {
         this.view = view;
         this.model = new ServiceModel;
     }
 
-    async loadServices(){
+    async loadServices() {
         try {
-            this.view.setIsLoading(true);
             const services = await this.model.getServices('?status=approved');
             this.view.setServices(services);
         } catch (error) {
             console.log(error);
-        } finally {
-            this.view.setIsLoading(false);
         }
-        
     }
 }

@@ -5,8 +5,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import ScrollToTop from "./views/home/components/ScrollToTop";
 import { LoginPage } from "./pages/home/LoginPage";
 import { LandingPage } from "./pages/home/LandingPage";
-import { BengkelPage } from "./pages/home/BengkelPage";
-import { TowingPage } from "./pages/home/TowingPage";
+import { ServicePage } from "./pages/home/ServicePage";
+// import { BengkelPage } from "./pages/home/BengkelPage";
+// import { TowingPage } from "./pages/home/TowingPage";
 import { DetailServicePage } from "./pages/home/DetailServicePage";
 import { BookingPage } from "./pages/home/BookingPage";
 import { DashboardPage } from "./pages/admin/DashboardPage";
@@ -44,8 +45,9 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/" element={<LandingPage />} />
-        <Route path="/bengkel" element={<BengkelPage />} />
-        <Route path="/towing" element={<TowingPage />} />
+        <Route path="/services" element={<ServicePage />} />
+        {/* <Route path="/bengkel" element={<BengkelPage />} />
+        <Route path="/towing" element={<TowingPage />} /> */}
         <Route path="/service/detail/:id" element={<DetailServicePage />} />
         <Route path="/admin/dashboard" element={<DashboardPage />} />
         <Route path="/admin/pengajuan-mitra" element={<PengajuanMitraPage />} />

@@ -27,10 +27,10 @@ export default function Footer() {
               <FiPhone /> 0851–5616–2840
             </li>
             <li className="flex items-center gap-2">
-              <FiMail /> syaokay@gmail.com
+              <FiMail /> admin@gmail.com
             </li>
             <li className="flex items-center gap-2">
-              <FiMapPin /> Ciamis, Jawa Barat. Indonesia
+              <FiMapPin /> Sumbersari, Jember Indonesia
             </li>
             <li className="flex items-center gap-2">
               <FiPrinter /> +1–212–9876543
