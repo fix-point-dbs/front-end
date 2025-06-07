@@ -28,7 +28,7 @@ export default function Sidebar() {
     { id: "dashboard", name: "Dashboard", icon: faHome, path: "/admin/dashboard" },
     { id: "pengajuan-mitra", name: "Pengajuan Mitra", icon: faFileAlt, path: "/admin/pengajuan-mitra" },
     { id: "mitra", name: "Mitra", icon: faHandshake, path: "/admin/mitra" },
-    { id: "pemesanan", name: "Pemesanan", icon: faShoppingCart, path: "/admin/pemesanan" },
+    { id: "pemesanan", name: "Pemesanan", icon: faShoppingCart, path: "/admin/booking" },
     { id: "user", name: "User", icon: faUser, path: "/admin/user" },
     { id: "laporan", name: "Laporan", icon: faChartBar, path: "/admin/laporan" },
     { id: "Logout", name: "Logout", icon: faRightFromBracket, path: "/logout" },
