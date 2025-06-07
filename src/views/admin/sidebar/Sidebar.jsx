@@ -146,7 +146,7 @@ export default function Sidebar() {
                 User
               </Link>
             </li>
-            <li>
+            {/* <li>
               <Link
                 to="/admin/laporan"
                 className={`${baseClass} ${getLinkClass("laporan")}`}
@@ -158,7 +158,7 @@ export default function Sidebar() {
                 <FontAwesomeIcon icon={faChartBar} className={`${iconBase} ${getIconClass("laporan")}`} />
                 Laporan
               </Link>
-            </li>
+            </li> */}
             <li>
               <Link
                 to="/logout"

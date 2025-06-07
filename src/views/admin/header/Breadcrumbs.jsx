@@ -10,8 +10,8 @@ export default function Breadcrumbs( { className = "" } ) {
     { name: "Dashboard", path: "/admin/dashboard" },
     { name: "Pengajuan Mitra", path: "/admin/pengajuan-mitra" },
     { name: "Mitra", path: "/admin/mitra" },
-    { name: "Pemesanan", path: "/admin/pemesanan" },
-    { name: "User", path: "/admin/user" },
+    { name: "Pemesanan", path: "/admin/booking" },
+    { name: "User", path: "/admin/users" },
     { name: "Laporan", path: "/admin/laporan" },
     { name: "Tambah Mitra", path: "/admin/pengajuan-mitra/tambah" },
   ];
