@@ -11,7 +11,6 @@ import {
 import { currentLocationIcon, serviceIcon } from "../../../utils/CustomIconMarker";
 import "leaflet/dist/leaflet.css";
 import RoutingMachine from "../components/RoutingMachine";
-import { getCurrentPosition } from "../../../utils/GeoLocation";
 import L from "leaflet"; 
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
@@ -23,8 +22,8 @@ L.Icon.Default.mergeOptions({
     "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png",
 });
 
-export default function Lokasi({ data }) {
-  const [position, setPosition] = useState(null);
+export default function Lokasi({ data, position }) {
+
   const [target, setTarget] = useState(null);
   const mapRef = useRef();
   const [infoJarak, setInfoJarak] = useState(null);
@@ -33,15 +32,7 @@ export default function Lokasi({ data }) {
   const [id, setId] = useState(null);
 
   useEffect(() => {
-    getCurrentPosition(
-      (pos) => {
-        setPosition([pos.coords.latitude, pos.coords.longitude]);
-      },
-      (err) => {
-        console.error("Gagal ambil lokasi", err);
-        alert("Tidak bisa mengambil lokasi. Periksa pengaturan browser.");
-      }
-    );
+    
   }, []);
 
   function LocateButton({ position }) {
@@ -101,7 +92,7 @@ export default function Lokasi({ data }) {
         Peta Persebaran Bengkel & Towing
       </h2>
 
-      <div data-aos="zoom-in" className="relative w-full h-[300px] sm:h-[400px] rounded-xl overflow-hidden mb-20">
+      <div data-aos="zoom-in" className="relative w-full h-[300px] sm:h-[500px] rounded-xl overflow-hidden mb-20">
         {position ? (
           <MapContainer
             center={position}
@@ -160,7 +151,7 @@ export default function Lokasi({ data }) {
                 </p>
                 <div className="flex justify-between text-gray-800 text-sm mb-3">
                   <span>
-                    <strong>Jarak:</strong> {infoJarak.distance} km
+                    <strong>Jarak Rute:</strong> {infoJarak.distance} km
                   </span>
                   <span>
                     <strong>Waktu:</strong> {infoJarak.duration} menit
