@@ -11,8 +11,8 @@ import MitraRoute from "./routes/MitraRoute";
 import { RegisterPage } from "./pages/authentication/RegisterPage";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
-import NotFoundPage from "./pages/NotFoundPage";
+import UnauthorizedPage from "./pages/authentication/UnauthorizedPage";
+import NotFoundPage from "./pages/authentication/NotFoundPage";
 
 function App() {
 
@@ -26,6 +26,7 @@ function App() {
       {AdminRoute()}
       {MitraRoute()}
         <Route path="*" element={<NotFoundPage />} />
+        <Route path="/unauthorized" element={<UnauthorizedPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
       </Routes>

@@ -1,5 +1,5 @@
 import { AuthModel } from '../../models/AuthModel';
-import { saveToken, saveUser } from '../../lib/auth';
+import { saveRole, saveToken, saveUser } from '../../lib/auth';
 import { showErrorToast } from '../../utils/Toast';
 export class LoginPresenter {
   constructor(view) {
@@ -14,10 +14,11 @@ export class LoginPresenter {
       
       if (result.status === "success") {
         saveToken(result.data?.token);
+        saveRole(result.data?.role);
         saveUser({
-          id: result.data?.user?.id,
-          name: result.data?.user?.name,
-          email: result.data?.user?.email,
+          id: result.data?.id,
+          name: result.data?.name,
+          email: result.data?.email,
         });
         this.view.onLoginSuccess(result.data);
       }

@@ -1,5 +1,5 @@
 import { Navigate } from "react-router-dom";
-import { isLoggedIn } from "../lib/auth";
+import { isLoggedIn, getRole } from "../lib/auth";
 export function PrivateRoute({ children }) {
   const isLogin = isLoggedIn();
 
@@ -7,7 +7,7 @@ export function PrivateRoute({ children }) {
 }
 
 export function RoleRoute({ children, allowedRoles }) {
-  const role = localStorage.getItem("role");
+  const role = getRole();
 
   if (!allowedRoles.includes(role)) {
     return <Navigate to="/unauthorized" replace />;
