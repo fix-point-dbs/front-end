@@ -7,7 +7,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBullhorn, faComments } from "@fortawesome/free-solid-svg-icons";
 import ChatPage from "../../../../../pages/ChatPage";
 import { formatTanggalDanWaktu } from "../../../../../utils/FormatDateTime";
-import { saveUserId } from "../../../../../lib/auth";
 const Accepted = ({ data, isLoading }) => {
   const [isOpen, setIsOpen] = useState(false);
   const handleToggle = () => setIsOpen(prev => !prev);

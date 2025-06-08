@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import {
   FaPhone,
@@ -13,7 +13,9 @@ import { useEffect } from "react";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
+import { useHandleLogout } from "../../../utils/Logout";
 export default function Sidebar({ isOpen, onClose }) {
+  const logout = useHandleLogout();
   const navigate = useNavigate();
   const location = useLocation();
   const MySwal = withReactContent(Swal);
@@ -43,8 +45,7 @@ export default function Sidebar({ isOpen, onClose }) {
       },
     }).then((result) => {
       if (result.isConfirmed) {
-        localStorage.removeItem("token");
-        navigate("/");
+        logout();
       }
     });
   };

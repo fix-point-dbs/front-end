@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import {
   FaPhone,
@@ -15,12 +15,13 @@ import {
 import logo from "../../../assets/images/logo.png";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
+import { useHandleLogout } from "../../../utils/Logout";
 
 export default function Sidebar({ isOpen, onClose }) {
+  const logout = useHandleLogout();
   const navigate = useNavigate();
   const location = useLocation();
   const MySwal = withReactContent(Swal);
-  const [pemesananOpen, setPemesananOpen] = useState(false);
 
   const handleLogout = () => {
     MySwal.fire({
@@ -42,15 +43,12 @@ export default function Sidebar({ isOpen, onClose }) {
       reverseButtons: true,
     }).then((result) => {
       if (result.isConfirmed) {
-        localStorage.removeItem("token");
-        navigate("/mitra");
+        logout();
       }
     });
   };
 
   const activePage = location.pathname.split("/")[2];
-  const activeSubPage = location.pathname.split("/")[3];
-  const [jumlahPesananBaru, setJumlahPesananBaru] = useState(3); 
 
   useEffect(() => {
     // if (isOpen) onClose();

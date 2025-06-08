@@ -8,15 +8,15 @@ import {
   faHandshake,
   faShoppingCart,
   faUser,
-  faChartBar,
   faRightFromBracket,
   faBars,
   faTimes,
   faSun,
   faMoon,
 } from "@fortawesome/free-solid-svg-icons";
-
+import { useHandleLogout } from "../../../utils/Logout";
 export default function Sidebar() {
+  const handleLogout = useHandleLogout();
   const [isOpen, setIsOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(() => localStorage.getItem('theme') === 'dark');
   const location = useLocation();
@@ -160,17 +160,13 @@ export default function Sidebar() {
               </Link>
             </li> */}
             <li>
-              <Link
-                to="/logout"
+              <button
                 className={`${baseClass} ${getLinkClass("Logout")}`}
-                onClick={() => {
-                  setActiveItem("Logout");
-                  setIsOpen(false);
-                }}
+                onClick={handleLogout}
               >
                 <FontAwesomeIcon icon={faRightFromBracket} className={`${iconBase} ${getIconClass("Logout")}`} />
                 Logout
-              </Link>
+              </button>
             </li>
           </ul>
 

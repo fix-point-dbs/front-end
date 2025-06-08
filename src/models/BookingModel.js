@@ -1,10 +1,10 @@
 import api from "../lib/api";
-
+import { getToken } from '../utils/LocalStorage';
 export class BookingModel {
     async createBooking(data){
         const res = await api.post('/bookings',data,{
             headers: {
-                'Authorization': `Bearer f80ca753-eb98-4d6b-b365-e7f3a2895805`,
+                'Authorization': `Bearer ${getToken()}`,
                 'Content-Type': 'multipart/form-data'
             }
         });
@@ -14,7 +14,7 @@ export class BookingModel {
     async getBookingById(id){
         const res = await api.get(`/bookings/${id}`,{
             headers: {
-                'Authorization': `Bearer f80ca753-eb98-4d6b-b365-e7f3a2895805`,
+                'Authorization': `Bearer ${getToken()}`,
             }
         });
         return res.data;
@@ -23,7 +23,7 @@ export class BookingModel {
     async getBookings(query){
         const res = await api.get('/bookings' + query,{
             headers: {
-                'Authorization': `Bearer efe1ae67-f000-4258-a01c-79749da2d65a`,
+                'Authorization': `Bearer ${getToken()}`,
             }
         });
         return res.data;
@@ -32,7 +32,7 @@ export class BookingModel {
     async updateStatusBooking(id, data){
         const res = await api.put(`/bookings/${id}/update-status`,data,{
             headers: {
-                'Authorization': `Bearer f80ca753-eb98-4d6b-b365-e7f3a2895805`
+                'Authorization': `Bearer ${getToken()}`,
             }
         });
         return res;

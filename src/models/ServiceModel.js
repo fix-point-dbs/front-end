@@ -1,5 +1,5 @@
 import api from "../lib/api";
-
+import { getToken } from '../utils/LocalStorage';
 export class ServiceModel {
     async getServices(query) {
         const res = await api.get('services' + query);
@@ -15,7 +15,7 @@ export class ServiceModel {
         const res = await api.post('/services',data,{
             headers: {
                 'Content-Type': 'multipart/form-data',
-                'Authorization': `Bearer f80ca753-eb98-4d6b-b365-e7f3a2895805`
+                'Authorization': `Bearer ${getToken()}`,
             }
         });
         return res.data;

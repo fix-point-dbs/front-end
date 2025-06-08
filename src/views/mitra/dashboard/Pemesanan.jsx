@@ -11,7 +11,6 @@ import {
 } from "../../../utils/CustomIconMarker";
 import { getCurrentPosition } from "../../../utils/GeoLocation";
 import ChatPage from "../../../pages/ChatPage";
-import { saveUserId } from "../../../lib/auth";
 import moment from "moment";
 import "moment/locale/id";
 export default function Pemesanan({ orders = [], onAccept, onReject, onInProgress, onDone }) {

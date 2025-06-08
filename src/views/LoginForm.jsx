@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { Link } from "react-router-dom";
 export function LoginForm({ onSubmit }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -18,7 +18,7 @@ export function LoginForm({ onSubmit }) {
       </p>
       <form onSubmit={handleSubmit} className="max-w-sm mx-auto space-y-4">
         <div>
-          <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-300">
+          <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-800">
             Your email
           </label>
           <input
@@ -27,12 +27,12 @@ export function LoginForm({ onSubmit }) {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="name@flowbite.com"
-            className="bg-white border border-gray-600 text-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+            className="bg-white border border-gray-600 text-gray-800 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
             required
           />
         </div>
         <div>
-          <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-300">
+          <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-800">
             Your password
           </label>
           <input
@@ -41,7 +41,7 @@ export function LoginForm({ onSubmit }) {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="At least 8 characters"
-            className="bg-white border border-gray-600 text-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+            className="bg-white border border-gray-600 text-gray-800 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
             required
           />
         </div>
@@ -56,7 +56,7 @@ export function LoginForm({ onSubmit }) {
         >
           Sign in
         </button>
-        <div className="flex items-center my-4">
+        {/* <div className="flex items-center my-4">
           <hr className="flex-grow border-gray-600" />
           <span className="px-3 text-gray-400">or</span>
           <hr className="flex-grow border-gray-600" />
@@ -81,8 +81,8 @@ export function LoginForm({ onSubmit }) {
             />
           </svg>
           Sign in with Google
-        </button>
-        <p className="text-center mt-1">Don't have an account? <a href="/register" className="text-blue-400 hover:underline">Sign up</a></p>
+        </button> */}
+        <p className="text-center mt-1">Don't have an account? <Link to="/register" className="text-blue-400 hover:underline"> Sign up</Link></p>
       </form>
     </div>
   );
