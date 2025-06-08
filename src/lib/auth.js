@@ -1,9 +1,11 @@
+import { useNavigate } from 'react-router-dom';
+
 export function getToken() {
-    return localStorage.getItem('token');
+    return sessionStorage.getItem('token');
   }
   
   export function saveToken(token) {
-    localStorage.setItem('token', token);
+    sessionStorage.setItem('token', token);
   }
 
   export function saveUser(user) {
@@ -28,5 +30,7 @@ export function getToken() {
   
   export function logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    sessionStorage.removeItem('userId');
   }
   

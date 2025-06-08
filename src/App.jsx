@@ -3,7 +3,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ScrollToTop from "./views/home/components/ScrollToTop";
-import { LoginPage } from "./pages/home/LoginPage";
+import { LoginPage } from "./pages/authentication/LoginPage";
 import { LandingPage } from "./pages/home/LandingPage";
 import { ServicePage } from "./pages/home/ServicePage";
 // import { BengkelPage } from "./pages/home/BengkelPage";
@@ -20,7 +20,7 @@ import { DetailKontakPage } from "./pages/home/DetailKontakPage";
 import { InformasiUmumPage } from "./pages/home/InformasiUmumPage";
 import { DetailLayananPage } from "./pages/home/DetailLayananPage";
 import { FotoLayananPage } from "./pages/home/FotoLayananPage";
-import { RegisterPage } from "./pages/home/RegisterPage";
+import { RegisterPage } from "./pages/authentication/RegisterPage";
 
 import { ReviewRegistrasiPage } from "./pages/mitra/ReviewRegistrasiPage";
 import { BookingUserPage } from "./pages/user/BookingUserPage";
