@@ -7,7 +7,7 @@ export class ServicePresenter {
 
     async loadServices() {
         try {
-            const services = await this.model.getServices('?status=approved');
+            const services = await this.model.getServices(`?status=approved&lat=${this.view.lat}&lng=${this.view.lng}`);
             this.view.setServices(services);
         } catch (error) {
             console.log(error);

@@ -18,6 +18,7 @@ export class LoginPresenter {
           id: result.data?.id,
           name: result.data?.name,
           email: result.data?.email,
+          phone: result.data?.phone
         });
         this.view.onLoginSuccess();
       }

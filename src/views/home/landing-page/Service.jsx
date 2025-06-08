@@ -1,7 +1,6 @@
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import orang from "../../../assets/images/orang.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import SkeletonCard from "./SkeletonCard";
 import { Link } from "react-router-dom";
@@ -115,7 +114,7 @@ export default function Service({ data = [], isLoading }) {
                   >
                     <div className="overflow-hidden bg-white shadow rounded-xl">
                       <img
-                        src={orang}
+                        src={`http://localhost:3000/uploads/photo-services/` + item.photos[0].url_photo}
                         alt={item.bussiness_name}
                         className="block object-cover w-full h-40 max-w-full rounded-t-xl"
                       />

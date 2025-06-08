@@ -1,4 +1,4 @@
-import { FaFacebookF, FaTwitter, FaInstagram } from "react-icons/fa";
+import { FaLinkedin, FaGithub, FaInstagram } from "react-icons/fa";
 import fotoZarif from "../../../assets/images/member/zarif.png";
 import fotoGreta from "../../../assets/images/member/greta.jpeg";
 import fotoAhkam from "../../../assets/images/member/ahkam.png";
@@ -12,36 +12,54 @@ export default function Member() {
       role: "Backend Developer",
       image: fotoZarif,
       category: "FE & BE",
+      linkedin: "https://www.linkedin.com/in/adzazarif/",
+      github: "https://github.com/adzazarif",
+      instagram: "https://www.instagram.com/adzazarifnur/",
     },
     {
       name: "Greta",
       role: "Frontend Developer",
       image: fotoGreta,
       category: "FE & BE",
+      linkedin: "https://www.linkedin.com/in/greta-wahyu-dhita-mehdaliya-54144a326/",
+      github: "https://github.com/",
+      instagram: "https://www.instagram.com/ady_grt",
     },
     {
       name: "Ahkam",
       role: "Frontend Developer",
       image: fotoAhkam,
       category: "FE & BE",
+      linkedin: "https://www.linkedin.com/in/",
+      github: "https://github.com/",
+      instagram: "https://www.instagram.com/",
     },
     {
       name: "Asyam",
       role: "ML Engineer",
       image: fotoAsyam,
       category: "ML",
+      linkedin: "https://www.linkedin.com/in/",
+      github: "https://github.com/",
+      instagram: "https://www.instagram.com/",
     },
     {
       name: "Angga",
       role: "ML Engineer",
       image: fotoAngga,
       category: "ML",
+      linkedin: "https://www.linkedin.com/in/",
+      github: "https://github.com/",
+      instagram: "https://www.instagram.com/",
     },
     {
       name: "Abim",
       role: "ML Engineer",
       image: fotoAbim,
       category: "ML",
+      linkedin: "https://www.linkedin.com/in/",
+      github: "https://github.com/",
+      instagram: "https://www.instagram.com/",
     },
   ];
 
@@ -87,13 +105,13 @@ export default function Member() {
 
             {/* Social Media */}
             <div className="flex gap-4 bg-blue-500 px-4 py-2 rounded-md text-white text-sm">
-              <a href="#">
-                <FaFacebookF />
+              <a target="_blank" href={member.github}>
+                <FaGithub />
               </a>
-              <a href="#">
-                <FaTwitter />
+              <a target="_blank" href={member.linkedin}>
+                <FaLinkedin />
               </a>
-              <a href="#">
+              <a target="_blank" href={member.instagram}>
                 <FaInstagram />
               </a>
             </div>

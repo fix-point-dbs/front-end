@@ -12,7 +12,7 @@ import logo from "../../../assets/images/logo.png";
 import { useEffect } from "react";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-
+import { getUser } from "../../../utils/LocalStorage";
 import { useHandleLogout } from "../../../utils/Logout";
 export default function Sidebar({ isOpen, onClose }) {
   const logout = useHandleLogout();
@@ -88,15 +88,15 @@ export default function Sidebar({ isOpen, onClose }) {
                   <div className="flex items-center justify-center w-20 h-20 mb-2 bg-orange-300 rounded-full">
                     <div className="w-10 h-10 bg-blue-600 rounded-full" />
                   </div>
-                  <h2 className="font-semibold">Etak</h2>
+                  <h2 className="font-semibold">{getUser().name}</h2>
                   <div className="mt-1 text-sm text-gray-600">
                     <div className="flex items-center justify-center gap-2">
                       <FaPhone className="text-blue-700" />
-                      <span>071929193919</span>
+                      <span>{getUser().phone}</span>
                     </div>
                     <div className="flex items-center justify-center gap-2 mt-1">
                       <FaEnvelope className="text-blue-700" />
-                      <span>etaksaja@gmail.com</span>
+                      <span>{getUser().email}</span>
                     </div>
                   </div>
                 </div>
