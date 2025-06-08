@@ -72,7 +72,7 @@ export default function Navbar() {
                 <ul className="absolute left-0 z-50 mt-1 border border-gray-300 rounded shadow-lg w-35 top-full bg-putih">
                   <li>
                     <NavLink
-                      to="/bengkel"
+                      to="/services"
                       className={({ isActive }) =>
                         `block px-4 py-2 transition hover:bg-oranye hover:text-putih ${
                           isActive ? "text-black" : "text-gray-500"
@@ -84,7 +84,7 @@ export default function Navbar() {
                   </li>
                   <li>
                     <NavLink
-                      to="/towing"
+                      to="/services"
                       className={({ isActive }) =>
                         `block px-4 py-2 transition hover:bg-oranye hover:text-putih ${
                           isActive ? "text-black" : "text-gray-500"

@@ -1,19 +1,17 @@
-import { useNavigate } from 'react-router-dom';
-
 export function getToken() {
-    return sessionStorage.getItem('token');
+    return localStorage.getItem('token');
   }
   
   export function saveToken(token) {
-    sessionStorage.setItem('token', token);
+    localStorage.setItem('token', token);
   }
 
   export function saveUser(user) {
-    localStorage.setItem('user', JSON.stringify(user));
+    sessionStorage.setItem('user', JSON.stringify(user));
   }
   
   export function getUser() {
-    return JSON.parse(localStorage.getItem('user'));
+    return JSON.parse(sessionStorage.getItem('user'));
   }
 
   export function isLoggedIn() {
@@ -33,4 +31,5 @@ export function getToken() {
     localStorage.removeItem('user');
     sessionStorage.removeItem('userId');
   }
+
   
