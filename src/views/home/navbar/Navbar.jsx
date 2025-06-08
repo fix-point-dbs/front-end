@@ -1,12 +1,14 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../../assets/images/logo.png";
-
+import { isLoggedIn, getRole, getUser } from "../../../lib/auth";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const timeoutRef = useRef(null);
-
+  const [open, setOpen] = useState(false);
   useEffect(() => {
     if (menuOpen) {
       document.body.style.overflow = "hidden";
@@ -24,11 +26,23 @@ export default function Navbar() {
     setDropdownOpen(true);
   }
 
+  const checkRole = () => {
+    const role = getRole();
+    if (role === "admin") return "/admin/dashboard";
+    if (role === "mitra") return "/dashboard-mitra/statistic";
+    return "/dashboard-user/booking";
+  };
+
   function handleMouseLeave() {
     timeoutRef.current = setTimeout(() => {
       setDropdownOpen(false);
     }, 200);
   }
+
+  const getUserName = () => {
+    const user = getUser(); // Sesuaikan dengan key yg kamu pakai
+    return user?.name || "Pengguna";
+  };
 
   return (
     <nav className="fixed top-0 left-0 z-50 w-full bg-white shadow-md">
@@ -121,6 +135,20 @@ export default function Navbar() {
           </ul>
         </div>
         <div className="items-center hidden gap-3 md:flex">
+
+        <div className="relative">
+      {isLoggedIn() ? (
+        <div
+          className="flex items-center gap-2 cursor-pointer select-none"
+          onClick={() => setOpen(!open)}
+        >
+          <span className="font-semibold text-gray-700">
+            {getUserName()}
+          </span>
+          <FontAwesomeIcon icon={faUser} className="w-5 h-5 text-biru" />
+        </div>
+      ) : (
+        <div className="flex gap-2">
           <Link
             to="/login"
             className="border border-biru text-biru font-semibold px-4 py-1.5 rounded-md text-sm hover:bg-biru/10"
@@ -133,6 +161,12 @@ export default function Navbar() {
           >
             Register
           </Link>
+        </div>
+      )}
+
+     
+    </div>
+         
         </div>
 
         <button
@@ -155,6 +189,24 @@ export default function Navbar() {
           </svg>
         </button>
       </div>
+
+       {open && (
+        <div className="absolute right-20 top-14 border w-40 bg-white rounded-md shadow-lg z-50">
+          
+          <Link
+          to={checkRole()}
+            className="block px-4 py-2 text-sm text-gray-700 hover:bg-oranye hover:text-white"
+          >
+            Dashboard
+          </Link>
+          <button
+            // onClick={handleLogout}
+            className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-oranye hover:text-white"
+          >
+            Logout
+          </button>
+        </div>
+      )}
 
       {menuOpen && (
         <>
