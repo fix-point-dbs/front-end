@@ -4,7 +4,9 @@ import logo from "../../../assets/images/logo.png";
 import { isLoggedIn, getRole, getUser } from "../../../utils/LocalStorage";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { useHandleLogout } from "../../../utils/Logout";
 export default function Navbar() {
+  const handleLogout = useHandleLogout();
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const timeoutRef = useRef(null);
@@ -200,7 +202,8 @@ export default function Navbar() {
             Dashboard
           </Link>
           <button
-            // onClick={handleLogout}
+          type="button"
+            onClick={handleLogout}
             className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-oranye hover:text-white"
           >
             Logout

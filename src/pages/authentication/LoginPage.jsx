@@ -13,7 +13,7 @@ export function LoginPage() {
     if (userData.role === "mitra") {
       showSuccessToast("Login berhasil!");
       navigate("/dashboard-mitra/statistic");
-    } else {
+    } else if (userData.role === "user") {
       showSuccessToast("Login berhasil!");
       navigate("/dashboard-user/booking");
     }

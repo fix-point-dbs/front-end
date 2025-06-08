@@ -36,6 +36,6 @@ export function getUserId() {
 
 export function logout() {
   localStorage.removeItem("token");
-  localStorage.removeItem("user");
-  sessionStorage.removeItem("userId");
+  localStorage.removeItem("role");
+  sessionStorage.removeItem("user");
 }
