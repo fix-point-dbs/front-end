@@ -1,13 +1,20 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useState } from "react";
 import "leaflet/dist/leaflet.css";
 import background from "../../../../../assets/images/bg-white.png";
 import sepeda from "../../../../../assets/images/sepeda.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBullhorn, faComments } from "@fortawesome/free-solid-svg-icons";
-
+import { getUser } from "../../../../../utils/LocalStorage";
+import ChatPage from "../../../../../pages/ChatPage";
 const InProgres = ({ data }) => {
+  const [isOpen, setIsOpen] = useState(false);
+    const handleToggle = () => setIsOpen(prev => !prev);
+    const user_id = Number(getUser().id);
+  
   return (
+    <>
+     <ChatPage isOpen={isOpen} onClose={handleToggle} user_id={user_id} mitra_id={data?.service?.user_id} name={data?.service?.bussiness_name} />
+  
     <section className="w-[90%] max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 mt-[60px] overflow-hidden bg-cover bg-center bg-no-repeat mb-10">
       <img
         src={background}
@@ -15,18 +22,13 @@ const InProgres = ({ data }) => {
         className="absolute inset-0 z-0 object-cover w-full h-[300px] sm:h-[300px] lg:h-[300px]"
       />
       <div className="relative z-10 ">
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
+
           <h2 className="pt-20 mb-2 text-2xl font-bold text-center text-black sm:pt-20">
             Konfirmasi Pemesanan
           </h2>
           <p className="mb-8 text-center text-black-600">
             Silahkan pantau dashboard untuk melihat pesanan anda!
           </p>
-        </motion.div>
 
         <div className="grid max-w-6xl grid-cols-1 gap-6 mx-auto mb-10 md:grid-cols-4">
           <div className="col-span-1 space-y-4">
@@ -82,7 +84,7 @@ const InProgres = ({ data }) => {
                 Ingin menanyakan estimasi waktu atau konfirmasi ulang?
               </p>
               <button className="w-full px-4 py-2 text-white transition bg-blue-700 rounded hover:bg-blue-800">
-                <FontAwesomeIcon icon={faComments} className="mr-2" />
+                <FontAwesomeIcon icon={faComments} onClick={handleToggle} className="mr-2" />
                 Buka Chat
               </button>
             </div>
@@ -134,6 +136,7 @@ const InProgres = ({ data }) => {
         </div>
       </div>
     </section>
+    </>
   );
 };
 

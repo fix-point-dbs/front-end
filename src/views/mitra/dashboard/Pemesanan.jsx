@@ -190,7 +190,7 @@ export default function Pemesanan({ orders = [], onAccept, onReject, onInProgres
                     </button>
                     <button
                       className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
-                      onClick={handleToggle}
+                      onClick={() => handleToggle(order.user_id, order.user?.name)}
                     >
                       Chat
                     </button>

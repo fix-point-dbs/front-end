@@ -14,7 +14,7 @@ export class DashboardAdminPresenter {
             this.view.setStatistics(statistics);
             const services = await this.serviceModel.getServices('?status=pending');
             this.view.setServices(services);
-            const grap = await this.statisticsModel.getMonthlyStatistics();
+            const grap = await this.statisticsModel.getMonthlyStatistics('');
             this.view.setGrap(grap);
         } catch (error) {
             console.log(error);

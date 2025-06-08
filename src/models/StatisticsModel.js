@@ -10,8 +10,8 @@ export class StatisticsModel {
         return res.data;
     }
 
-    async getMonthlyStatistics() {
-        const res = await api.get('/statistics/monthly-bookings',{
+    async getMonthlyStatistics(query) {
+        const res = await api.get('/statistics/monthly-bookings'+query,{
             headers: {
                 'Authorization': `Bearer ${getToken()}`,
             }
