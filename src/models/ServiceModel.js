@@ -1,5 +1,5 @@
 import api from "../lib/api";
-import { getToken } from '../lib/auth';
+import { getToken } from '../utils/LocalStorage';
 export class ServiceModel {
     async getServices(query) {
         const res = await api.get('services' + query);

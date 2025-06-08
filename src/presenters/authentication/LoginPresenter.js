@@ -1,5 +1,5 @@
 import { AuthModel } from '../../models/AuthModel';
-import { saveRole, saveToken, saveUser } from '../../lib/auth';
+import { saveRole, saveToken, saveUser } from '../../utils/LocalStorage';
 import { showErrorToast } from '../../utils/Toast';
 export class LoginPresenter {
   constructor(view) {

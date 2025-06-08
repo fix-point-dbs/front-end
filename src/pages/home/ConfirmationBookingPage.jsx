@@ -7,7 +7,7 @@ import Done from "../../views/home/layanan/pemesanan/konfirmasi/Done";
 import InProgres from "../../views/home/layanan/pemesanan/konfirmasi/InProgres";
 import Waiting from "../../views/home/layanan/pemesanan/konfirmasi/Waiting";
 import Rejected from "../../views/home/layanan/pemesanan/konfirmasi/Rejected";
-import { getUserId } from "../../lib/auth";
+import { getUserId } from "../../utils/LocalStorage";
 import { io } from "socket.io-client";
 const socket = io("http://localhost:3000");
 import { showSuccessToast } from "../../utils/Toast";

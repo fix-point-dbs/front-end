@@ -1,5 +1,5 @@
 import { Navigate } from "react-router-dom";
-import { isLoggedIn, getRole } from "../lib/auth";
+import { isLoggedIn, getRole } from "./LocalStorage";
 export function PrivateRoute({ children }) {
   const isLogin = isLoggedIn();
 

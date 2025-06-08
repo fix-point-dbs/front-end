@@ -4,7 +4,7 @@ import { io } from "socket.io-client";
 import { ArrowDownCircle, MessageSquare } from "lucide-react";
 import { ChatPresenter } from "../presenters/ChatPresenter";
 const socket = io("http://localhost:3000");
-import { getUserId, saveUserId } from "../lib/auth";
+import { getUserId, saveUserId } from "../utils/LocalStorage";
 import { faTools, faClose } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import moment from "moment/moment";

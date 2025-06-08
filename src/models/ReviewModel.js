@@ -1,5 +1,5 @@
 import api from "../lib/api";
-import { getToken } from '../lib/auth';
+import { getToken } from '../utils/LocalStorage';
 export class ReviewModel {
     async createReview(data){
         const res = await api.post('/reviews',data,{

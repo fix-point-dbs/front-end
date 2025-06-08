@@ -1,5 +1,5 @@
 import api from "../lib/api";
-import { getToken } from '../lib/auth';
+import { getToken } from '../utils/LocalStorage';
 export class UserModel {
   async getUsers() {
     const res = await api.get("/users",{

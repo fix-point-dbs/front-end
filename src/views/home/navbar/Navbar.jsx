@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../../assets/images/logo.png";
-import { isLoggedIn, getRole, getUser } from "../../../lib/auth";
+import { isLoggedIn, getRole, getUser } from "../../../utils/LocalStorage";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 export default function Navbar() {
