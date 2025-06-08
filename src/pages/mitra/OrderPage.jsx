@@ -18,8 +18,6 @@ export function OrderPage() {
 
   const presenter = new OrderPresenter({setOrders, setIsLoading, id});
 
-  console.log(orders);
-  
   useEffect(() => {
     presenter.loadOrders();
     

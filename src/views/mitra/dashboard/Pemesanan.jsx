@@ -13,11 +13,22 @@ import { getCurrentPosition } from "../../../utils/GeoLocation";
 import ChatPage from "../../../pages/ChatPage";
 import moment from "moment";
 import "moment/locale/id";
+import { getUser } from "../../../utils/LocalStorage";
 export default function Pemesanan({ orders = [], onAccept, onReject, onInProgress, onDone }) {
   const [position, setPosition] = useState(null);
-  const [isOpen, setIsOpen] = useState(false);
-  const handleToggle = () => setIsOpen(prev => !prev);
+  const [chatOpenId, setChatOpenId] = useState(null);
+  const [name, setName] = useState("");
 
+  const handleToggle = (id, name) => {
+    if (chatOpenId === id) {
+      setChatOpenId(null); 
+      setName("");
+    } else {
+      setChatOpenId(id);
+      setName(name);
+    }
+  };
+  const user_id = Number(getUser().id);
   moment.locale("id"); 
   useEffect(() => {
     
@@ -34,7 +45,10 @@ export default function Pemesanan({ orders = [], onAccept, onReject, onInProgres
 
   return (
     <>
-    <ChatPage isOpen={isOpen} onClose={handleToggle} mitra_id={4} />
+    {chatOpenId !== null && (
+    <ChatPage isOpen={true}
+    onClose={() => setChatOpenId(null)} user_id={chatOpenId} mitra_id={user_id} name={name} />
+    )}
     <div className="p-4 overflow-x-auto bg-white shadow rounded-xl">
       <h2 className="mb-4 text-sm font-bold text-black md:text-base">
         Pesanan
@@ -160,7 +174,7 @@ export default function Pemesanan({ orders = [], onAccept, onReject, onInProgres
                     </button>
                     <button
                       className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
-                      onClick={handleToggle}
+                      onClick={() => handleToggle(order.user_id, order.user?.name)}
                     >
                       Chat
                     </button>

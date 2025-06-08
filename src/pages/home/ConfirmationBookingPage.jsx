@@ -7,7 +7,7 @@ import Done from "../../views/home/layanan/pemesanan/konfirmasi/Done";
 import InProgres from "../../views/home/layanan/pemesanan/konfirmasi/InProgres";
 import Waiting from "../../views/home/layanan/pemesanan/konfirmasi/Waiting";
 import Rejected from "../../views/home/layanan/pemesanan/konfirmasi/Rejected";
-import { getUserId } from "../../utils/LocalStorage";
+import { getUser } from "../../utils/LocalStorage";
 import { io } from "socket.io-client";
 const socket = io("http://localhost:3000");
 import { showSuccessToast } from "../../utils/Toast";
@@ -17,12 +17,9 @@ export function ConfirmationBookingPage() {
   const { id } = useParams();
   const [booking, setBooking] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  // console.log(id);
   const presenter = new ConfirmationBookingPresenter({ setBooking, id, setIsLoading, onSuccess });
   let data = booking.data ?? {};
-  const user_id = Number(getUserId());
-
-  console.log(booking);
+  const user_id = Number(getUser().id);
   
   function onSuccess() {
     showSuccessToast("Terimakasih telah memberikan feedback");

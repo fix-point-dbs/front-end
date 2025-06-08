@@ -10,7 +10,6 @@ export class LoginPresenter {
   async handleLogin(email, password) {
     try {
       const result = await this.model.login(email, password);
-      console.log(result);
       
       if (result.status === "success") {
         saveToken(result.data?.token);
@@ -20,7 +19,7 @@ export class LoginPresenter {
           name: result.data?.name,
           email: result.data?.email,
         });
-        this.view.onLoginSuccess(result.data);
+        this.view.onLoginSuccess();
       }
     } catch (error) {
       console.log(error);

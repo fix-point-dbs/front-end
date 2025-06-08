@@ -5,12 +5,12 @@ import { Routes, Route } from "react-router-dom";
 import RiwayatTransaksi from "../../views/user/dashboard/RiwayatTransaksi";
 import MotionDiv from "../../utils/TransitionSmoth";
 import { BookingUserPresenter } from "../../presenters/user/BookingUserPresenter";
-
+import { getUser } from "../../utils/LocalStorage";
 export function BookingUserPage() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const [bookings, setBookings] = useState([]);
-  const id = 1;
+  const id = getUser().id;
   const presenter = new BookingUserPresenter({ setBookings, id });
 
   console.log(bookings);

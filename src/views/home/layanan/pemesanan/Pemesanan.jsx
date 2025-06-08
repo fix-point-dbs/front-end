@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
@@ -19,6 +19,7 @@ export default function Pemesanan({
   onSubmit,
   isLoading,
 }) {
+  const markerRef = useRef(null);
   const detailService = data.detail_services ?? [];
   const [coords, setCoords] = useState({ lat: -6.2, lng: 106.8 });
   const [map, setMap] = useState(null);
@@ -41,27 +42,55 @@ export default function Pemesanan({
   };
 
   useEffect(() => {
-
     getCurrentPosition(
       async (pos) => {
-        setCoords({ lat: pos.coords.latitude, lng: pos.coords.longitude });
         const { latitude, longitude } = pos.coords;
+        setCoords({ lat: latitude, lng: longitude });
         await fetchAlamat(latitude, longitude);
         setForm((prev) => ({
           ...prev,
           latitude,
-          longitude
-        }))
+          longitude,
+        }));
+  
         const userMap = L.map("map").setView([latitude, longitude], 15);
         L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
           attribution: "&copy; OpenStreetMap contributors",
         }).addTo(userMap);
-
-        L.marker([latitude, longitude])
-          .addTo(userMap)
-          .bindPopup("Lokasi Anda")
-          .openPopup();
-
+  
+        // 🔴 Buat marker pertama kali
+        const initialMarker = L.marker([latitude, longitude], {
+          draggable: true,
+        }).addTo(userMap);
+        markerRef.current = initialMarker;
+  
+        // Jika marker digeser manual
+        initialMarker.on("dragend", async (e) => {
+          const { lat, lng } = e.target.getLatLng();
+          setCoords({ lat, lng });
+          setForm((prev) => ({
+            ...prev,
+            latitude: lat,
+            longitude: lng,
+          }));
+          await fetchAlamat(lat, lng);
+        });
+  
+        // Jika peta diklik, pindahkan marker
+        userMap.on("click", async (e) => {
+          const { lat, lng } = e.latlng;
+          if (markerRef.current) {
+            markerRef.current.setLatLng([lat, lng]);
+          }
+          setCoords({ lat, lng });
+          setForm((prev) => ({
+            ...prev,
+            latitude: lat,
+            longitude: lng,
+          }));
+          await fetchAlamat(lat, lng);
+        });
+  
         setMap(userMap);
       },
       (err) => {
@@ -69,10 +98,12 @@ export default function Pemesanan({
         alert("Tidak bisa mengambil lokasi. Periksa pengaturan browser.");
       }
     );
-        return () => {
+  
+    return () => {
       if (map) map.remove();
     };
   }, []);
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();

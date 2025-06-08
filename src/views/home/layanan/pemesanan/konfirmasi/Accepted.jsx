@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { motion } from "framer-motion";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import background from "../../../../../assets/images/bg-white.png";
@@ -7,9 +6,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBullhorn, faComments } from "@fortawesome/free-solid-svg-icons";
 import ChatPage from "../../../../../pages/ChatPage";
 import { formatTanggalDanWaktu } from "../../../../../utils/FormatDateTime";
+import { getUser } from "../../../../../utils/LocalStorage";
 const Accepted = ({ data, isLoading }) => {
   const [isOpen, setIsOpen] = useState(false);
   const handleToggle = () => setIsOpen(prev => !prev);
+  const user_id = Number(getUser().id);
+  
   useEffect(() => {
     
     const map = L.map("map").setView([-7.8259926, 113.8286264], 13);
@@ -40,7 +42,7 @@ const Accepted = ({ data, isLoading }) => {
 
   return (
     <>
-     <ChatPage isOpen={isOpen} onClose={handleToggle} mitra_id={4} />
+     <ChatPage isOpen={isOpen} onClose={handleToggle} user_id={user_id} mitra_id={data?.service?.user_id} name={data?.service?.bussiness_name} />
     <section className="w-[90%] max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 mt-[60px] overflow-hidden bg-cover bg-center bg-no-repeat mb-10">
       <img
         src={background}
@@ -48,18 +50,13 @@ const Accepted = ({ data, isLoading }) => {
         className="absolute inset-0 z-0 object-cover w-full h-[300px] sm:h-[300px] lg:h-[300px]"
       />
       <div className="relative z-10 ">
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
+     
           <h2 className="pt-20 mb-2 text-2xl font-bold text-center text-black sm:pt-20">
             Konfirmasi Pemesanan
           </h2>
           <p className="mb-8 text-center text-black-600">
             Silahkan pantau dashboard untuk melihat pesanan anda!
           </p>
-        </motion.div>
 
         <div className="grid max-w-6xl grid-cols-1 gap-6 mx-auto md:grid-cols-4">
           <div className="col-span-1 space-y-4">

@@ -6,8 +6,8 @@ export class ChatModel {
         return res.data;
     }
     
-    async getChat(mitra_id) {
-        const res = await api.post(`/chats`, { mitra_id }, {
+    async getChat(user_id, mitra_id) {
+        const res = await api.post(`/chats`, { user_id, mitra_id }, {
             headers: {
                 'Authorization': `Bearer ${getToken()}`,
             }

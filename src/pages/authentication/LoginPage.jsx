@@ -9,14 +9,9 @@ import MotionDiv from "../../utils/TransitionSmoth";
 
 export function LoginPage() {
   const navigate = useNavigate();
-  const onLoginSuccess = (userData) => {
-    if (userData.role === "mitra") {
-      showSuccessToast("Login berhasil!");
-      navigate("/dashboard-mitra/statistic");
-    } else if (userData.role === "user") {
-      showSuccessToast("Login berhasil!");
-      navigate("/dashboard-user/booking");
-    }
+  const onLoginSuccess = () => {
+    showSuccessToast("Login berhasil!");
+    navigate("/");
   };
 
   const presenter = new LoginPresenter({ onLoginSuccess });
