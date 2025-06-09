@@ -11,7 +11,7 @@ export class LoginPresenter {
     try {
       const result = await this.model.login(email, password);
       
-      if (result.status === "success") {
+      if (result.status === "success" && result.data?.role === "user") {
         saveToken(result.data?.token);
         saveRole(result.data?.role);
         saveUser({
@@ -21,6 +21,8 @@ export class LoginPresenter {
           phone: result.data?.phone
         });
         this.view.onLoginSuccess();
+      }else{
+        showErrorToast("Email atau password salahs");
       }
     } catch (error) {
       console.log(error);

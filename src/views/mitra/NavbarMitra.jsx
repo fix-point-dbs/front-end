@@ -75,13 +75,13 @@ export default function NavbarMitra() {
 
         <div className="items-center hidden gap-3 md:flex">
           <Link
-            to="/login"
+            to="/login/mitra"
             className="border border-biru text-biru font-semibold px-4 py-1.5 rounded-md text-sm hover:bg-biru/10"
           >
             Login
           </Link>
           <Link
-            to="/register"
+            to="/register/mitra"
             className="bg-biru text-putih font-semibold px-4 py-1.5 rounded-md text-sm hover:bg-biru/90"
           >
             Register

@@ -106,22 +106,6 @@ export default function LandingPage() {
             data-aos-duration="600"
           />
           <img
-            src="https://assets.cdn.dicoding.com/original/commons/homepage-partner-bangkit.png"
-            className="object-contain h-12 sm:h-20 w-28 sm:w-32"
-            alt="Partner 2"
-            data-aos="zoom-in"
-            data-aos-delay="300"
-            data-aos-duration="600"
-          />
-          <img
-            src="https://assets.cdn.dicoding.com/original/commons/homepage-partner-kampus-merdeka.png"
-            className="object-contain h-12 sm:h-20 w-28 sm:w-32"
-            alt="Partner 3"
-            data-aos="zoom-in"
-            data-aos-delay="500"
-            data-aos-duration="600"
-          />
-          <img
             src="https://assets.cdn.dicoding.com/original/commons/certificate_logo.png"
             className="object-contain w-20 h-10 sm:h-14 sm:w-24"
             alt="Partner 4"

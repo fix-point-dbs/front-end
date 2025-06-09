@@ -6,7 +6,7 @@ import { HistoryOrderPage } from "../pages/mitra/HistoryOrderPage";
 import { OrderPage } from "../pages/mitra/OrderPage";
 import { RegistrationMitraPage } from "../pages/mitra/RegistrationMitraPage";
 import { Route } from "react-router-dom";
-import { PrivateRoute, RoleRoute } from "../utils/Auth";
+import { PrivateRoute, RoleRoute, UnRegisteredServiceRoute, RegisteredServiceRoute } from "../utils/Auth";
 export default function MitraRoute() {
   return [
     <Route key="mitra" path="/mitra" element={<MitraPage />} />,
@@ -14,7 +14,9 @@ export default function MitraRoute() {
     element={
     <PrivateRoute>
       <RoleRoute allowedRoles={["mitra"]}>
+        <RegisteredServiceRoute>
         <ReviewRegistrasiPage />
+        </RegisteredServiceRoute>
       </RoleRoute>
     </PrivateRoute>
     } />,
@@ -22,7 +24,9 @@ export default function MitraRoute() {
     element={
     <PrivateRoute>
       <RoleRoute allowedRoles={["mitra"]}>
+        <RegisteredServiceRoute>
         <RegistrationMitraPage />
+        </RegisteredServiceRoute>
       </RoleRoute>
     </PrivateRoute>
     } />,
@@ -30,7 +34,9 @@ export default function MitraRoute() {
     element={
     <PrivateRoute>
       <RoleRoute allowedRoles={["mitra"]}>
+        <UnRegisteredServiceRoute>
         <DashboardMitraPage />
+        </UnRegisteredServiceRoute>
       </RoleRoute>
     </PrivateRoute>
     } />,
@@ -38,7 +44,9 @@ export default function MitraRoute() {
     element={
     <PrivateRoute>
       <RoleRoute allowedRoles={["mitra"]}>
+        <UnRegisteredServiceRoute>
         <OrderPage />
+        </UnRegisteredServiceRoute>
       </RoleRoute>
     </PrivateRoute>
     } />,
@@ -46,14 +54,18 @@ export default function MitraRoute() {
     element={
     <PrivateRoute>
       <RoleRoute allowedRoles={["mitra"]}>
+        <UnRegisteredServiceRoute>
         <HistoryOrderPage />
+        </UnRegisteredServiceRoute>
       </RoleRoute>
     </PrivateRoute>} />,
     <Route key="dashboard-mitra-settings" path="/dashboard-mitra/settings" 
     element={
     <PrivateRoute>
       <RoleRoute allowedRoles={["mitra"]}>
+        <UnRegisteredServiceRoute>
         <SettingPage />
+        </UnRegisteredServiceRoute>
       </RoleRoute>
     </PrivateRoute>
     } />,

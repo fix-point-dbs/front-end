@@ -21,10 +21,10 @@ export function RegisterPage() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-white text-black">
-      <Navbar />
-      <main className="flex-grow flex items-center justify-center pt-[100px] p-6">
-      <div className="flex flex-col p-10 shadow-lg rounded bg-slate-100 md:flex-row items-center justify-between w-full max-w-4xl gap-8">
+    <div className="flex flex-col min-h-screen bg-[url('/src/assets/images/bg-register.png')] bg-no-repeat bg-center bg-cover text-[#1e1e1e] text-black">
+      <main className="flex-grow flex items-center justify-center  p-6">
+      <div className="flex flex-col p-10 shadow-lg rounded-xl bg-white/70 backdrop-blur-md md:flex-row items-center justify-between w-full max-w-4xl gap-8">
+
           <MotionDiv>
           <RegisterForm  onSubmit={handleLogin} />
           </MotionDiv>

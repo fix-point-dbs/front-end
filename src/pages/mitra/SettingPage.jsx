@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Sidebar from "../../views/user/dashboard/Sidebar";
+import Sidebar from "../../views/mitra/dashboard/Sidebar";
 import { FaBars } from "react-icons/fa";
 import Pengaturan from "../../views/user/dashboard/Pengaturan";
 import { Routes, Route } from "react-router-dom";

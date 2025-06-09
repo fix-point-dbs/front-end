@@ -11,6 +11,11 @@ export class ServiceModel {
         return res.data;
     }
 
+    async getServicesByUserId(id) {
+        const res = await api.get(`/services/${id}/user`);
+        return res.data;
+    }
+
     async createService(data){
         const res = await api.post('/services',data,{
             headers: {

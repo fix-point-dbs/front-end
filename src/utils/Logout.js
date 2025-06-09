@@ -10,7 +10,7 @@ export function useHandleLogout() {
       const authModel = new AuthModel();
       await authModel.logout();
       logout();
-      navigate("/login"); // ✅ gunakan navigate, bukan Navigate
+      navigate("/"); 
     } catch (error) {
       console.log(error);
     }

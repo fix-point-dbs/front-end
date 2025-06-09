@@ -13,7 +13,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import UnauthorizedPage from "./pages/authentication/UnauthorizedPage";
 import NotFoundPage from "./pages/authentication/NotFoundPage";
-
+import LoginMitraPage from "./pages/authentication/LoginMitraPage";
+import RegisterMitraPage from "./pages/authentication/RegisterMitraPage";
 function App() {
 
   return (
@@ -28,6 +29,8 @@ function App() {
         <Route path="*" element={<NotFoundPage />} />
         <Route path="/unauthorized" element={<UnauthorizedPage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/login/mitra" element={<LoginMitraPage />} />
+        <Route path="/register/mitra" element={<RegisterMitraPage />} />
         <Route path="/register" element={<RegisterPage />} />
       </Routes>
     </>
