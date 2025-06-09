@@ -12,6 +12,7 @@ import { RegistrationMitraPresenter } from "../../presenters/mitra/RegistrationM
 import { getCurrentPosition } from "../../utils/GeoLocation";
 import { useNavigate } from "react-router-dom";
 import { showSuccessToast } from "../../utils/Toast";
+import { getUser } from "../../utils/LocalStorage";
 
 export function RegistrationMitraPage() {
   const navigate = useNavigate();
@@ -20,7 +21,7 @@ export function RegistrationMitraPage() {
   const [position, setPosition] = useState(null);
   const [photo, setPhoto] = useState([]);
   const [formData, setFormData] = useState({
-    user_id: 1,
+    user_id: getUser().id,
     bussiness_name: "",
     person_responsible: "",
     description: "",
@@ -52,8 +53,6 @@ export function RegistrationMitraPage() {
     setFormData,
     onSuccess,
   });
-
-  console.log(formData);
 
   const handleSubmit = (e) => {
     e.preventDefault();

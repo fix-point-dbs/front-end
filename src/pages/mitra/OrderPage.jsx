@@ -8,13 +8,14 @@ import Navbar from "../../views/mitra/dashboard/Navbar";
 import { io } from "socket.io-client";
 const socket = io("http://localhost:3000");
 import MotionDiv from "../../utils/TransitionSmoth";
+import { getUser } from "../../utils/LocalStorage";
 
 export function OrderPage() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const location = useLocation();
   const [isLoading, setIsLoading] = useState(false);
   const [orders, setOrders] = useState([]);
-  const id = 1;
+  const id = getUser().id;
 
   const presenter = new OrderPresenter({setOrders, setIsLoading, id});
 

@@ -11,11 +11,11 @@ export class DashboardMitraPresenter {
         try {
             const statistics = await this.statisticsModel.getMonthlyStatistics("?service_id=" + this.view.id);
             this.view.setStatistics(statistics);
-            const bookings = await this.model.getBookings('?status=pending&service_id=' + this.view.id);
+            const bookings = await this.model.getBookings('?status=pending&user_service_id=' + this.view.id);
             this.view.setBookings(bookings);
-            const rejected = await this.model.getBookings('?status=rejected&service_id=' + this.view.id);
-            const approved = await this.model.getBookings('?status=approved&service_id=' + this.view.id);
-            const done = await this.model.getBookings('?status=done&service_id=' + this.view.id);
+            const rejected = await this.model.getBookings('?status=rejected&user_service_id=' + this.view.id);
+            const approved = await this.model.getBookings('?status=approved&user_service_id=' + this.view.id);
+            const done = await this.model.getBookings('?status=done&user_service_id=' + this.view.id);
             const result = {
                 "approved": approved.data.length,
                 "rejected": rejected.data.length,
