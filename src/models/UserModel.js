@@ -18,4 +18,22 @@ export class UserModel {
     });
     return res.data;
   }
+
+  async updateUser(id, data){
+    const res = await api.put(`/users/${id}`,data,{
+        headers: {
+            'Authorization': `Bearer ${getToken()}`,
+        }
+    });
+    return res.data;
+  }
+
+  async changePassword(id, data){
+    const res = await api.put(`/users/${id}/change-password`,data,{
+        headers: {
+            'Authorization': `Bearer ${getToken()}`,
+        }
+    });
+    return res.data;
+  }
 }

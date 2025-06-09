@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import { FaCog } from "react-icons/fa";
-
+import { getUser } from "../../../utils/LocalStorage";
 export default function Pengaturan() {
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState({
-    nama: "Bengkel Go",
-    email: "etaksaja@gmail.com",
-    hp: "071929193919",
-    alamat: "lorem"
+    nama: getUser().name,
+    email: getUser().email,
+    hp: getUser().phone,
   });
 
   const handleChange = (e) => {

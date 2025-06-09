@@ -4,19 +4,28 @@ import { FaBars } from "react-icons/fa";
 import Pengaturan from "../../views/user/dashboard/Pengaturan";
 import { Routes, Route } from "react-router-dom";
 import MotionDiv from "../../utils/TransitionSmoth";
-import { BookingUserPresenter } from "../../presenters/user/BookingUserPresenter";
-
+import { ProfilePresenter } from "../../presenters/profilePresenter";
+import { getUser } from "../../utils/LocalStorage";
+import { showSuccessToast } from "../../utils/Toast";
 export function SettingUserPage() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  const [bookings, setBookings] = useState([]);
-  const id = 1;
-  const presenter = new BookingUserPresenter({ setBookings, id });
+  const onSuccess = (message) => {
+    showSuccessToast(message);
+  }
+  const id = getUser().id;
+  const presenter = new ProfilePresenter({ onSuccess });
+  const handleUpdate = (data) => {
+    console.log(data);
+    presenter.updateUser(id, data);
+  };
 
-  console.log(bookings);
+  const handleChangePassword = (data) => {
+    console.log(data);
+    presenter.changePassword(id, data);
+  };
   
   useEffect(() => {
-    presenter.loadBooking();
   }, []);
 
   return (
@@ -39,7 +48,7 @@ export function SettingUserPage() {
 
         <div className="px-10 py-6">
           <MotionDiv>
-            <Pengaturan />
+            <Pengaturan handleUpdate={handleUpdate} handleChangePassword={handleChangePassword} />
           </MotionDiv>
         </div>
       </div>
