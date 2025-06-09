@@ -2,7 +2,7 @@ import { LoginPresenter } from "../../presenters/authentication/LoginPresenter";
 import { LoginForm } from "../../views/LoginForm";
 import Navbar from "../../views/home/navbar/Navbar";
 import Footer from "../../views/home/footer/Footer";
-import mekanikImg from "../../assets/images/mekanik.png";
+import bgLogin from "../../assets/images/bg-login.png";
 import { showSuccessToast } from "../../utils/Toast";
 import { useNavigate } from "react-router-dom";
 import MotionDiv from "../../utils/TransitionSmoth";
@@ -23,14 +23,14 @@ export function LoginPage() {
     <div className="flex flex-col min-h-screen bg-white text-black">
       <Navbar />
       <main className="flex-grow flex items-center justify-center pt-[100px] p-6">
-        <div className="flex flex-col md:flex-row items-center justify-between w-full max-w-6xl gap-8">
+        <div className="flex flex-col p-10 shadow-lg rounded bg-slate-100 md:flex-row items-center justify-between w-full max-w-4xl gap-8">
           <MotionDiv>
             <LoginForm onSubmit={handleLogin} />
           </MotionDiv>
 
-          <div className="w-full p-4 md:w-1/2">
+          <div className="w-full p-4 md:w-[750px]">
             <img
-              src={mekanikImg}
+              src={bgLogin}
               alt="gambar mekanik"
               className="max-w-full h-auto rounded-lg shadow-lg"
             />

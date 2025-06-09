@@ -11,7 +11,7 @@ export function LoginForm({ onSubmit }) {
 
   return (
     <div className="max-w-md w-full p-6 rounded-lg text-black">
-      <h1 className="text-3xl font-bold text-black mb-2">Welcome Back 👋</h1>
+      <h1 className="text-3xl font-bold text-biru mb-2">Welcome Back 👋</h1>
       <p className="text-gray-400 mb-6">
         Teman setia saat kendaraanmu butuh pertolongan. Cari towing dan bengkel terdekat dari lokasi
         mogokmu dengan cepat dan mudah. FixPoint, solusi cepat di saat darurat.
