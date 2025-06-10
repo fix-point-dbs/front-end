@@ -2,7 +2,7 @@ import axios from 'axios';
 import { getToken, logout } from '../utils/LocalStorage';
 
 const api = axios.create({
-  baseURL: 'http://localhost:3000', // Ganti sesuai API-mu
+  baseURL: import.meta.env.VITE_BASE_URL, // Ganti sesuai API-mu
   headers: {
     'Content-Type': 'application/json',
   },

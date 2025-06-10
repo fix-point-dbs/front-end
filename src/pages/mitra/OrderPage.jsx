@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from "react";
 import Sidebar from "../../views/mitra/dashboard/Sidebar";
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import Pemesanan from "../../views/mitra/dashboard/Pemesanan";
 import { OrderPresenter } from "../../presenters/mitra/OrderPresenter";
 import Navbar from "../../views/mitra/dashboard/Navbar";
 import { io } from "socket.io-client";
-const socket = io("http://localhost:3000");
+const socket = io(import.meta.env.VITE_BASE_URL);
 import MotionDiv from "../../utils/TransitionSmoth";
 import { getUser } from "../../utils/LocalStorage";
 
 export function OrderPage() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const location = useLocation();
   const [isLoading, setIsLoading] = useState(false);
   const [orders, setOrders] = useState([]);
   const id = getUser().id;

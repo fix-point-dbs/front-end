@@ -114,7 +114,7 @@ export default function Service({ data = [], isLoading }) {
                   >
                     <div className="overflow-hidden bg-white shadow rounded-xl">
                       <img
-                        src={`http://localhost:3000/uploads/photo-services/` + item.photos[0].url_photo}
+                        src={`${import.meta.env.VITE_BASE_URL}/uploads/photo-services/` + item.photos[0].url_photo}
                         alt={item.bussiness_name}
                         className="block object-cover w-full h-40 max-w-full rounded-t-xl"
                       />

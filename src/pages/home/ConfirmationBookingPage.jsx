@@ -9,7 +9,7 @@ import Waiting from "../../views/home/layanan/pemesanan/konfirmasi/Waiting";
 import Rejected from "../../views/home/layanan/pemesanan/konfirmasi/Rejected";
 import { getUser } from "../../utils/LocalStorage";
 import { io } from "socket.io-client";
-const socket = io("http://localhost:3000");
+const socket = io(import.meta.env.VITE_BASE_URL);
 import { showSuccessToast } from "../../utils/Toast";
 import MotionDiv from "../../utils/TransitionSmoth";
 export function ConfirmationBookingPage() {

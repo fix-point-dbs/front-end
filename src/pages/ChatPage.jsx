@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { io } from "socket.io-client";
 import { ArrowDownCircle, MessageSquare } from "lucide-react";
 import { ChatPresenter } from "../presenters/ChatPresenter";
-const socket = io("http://localhost:3000");
+const socket = io(import.meta.env.VITE_BASE_URL);
 import { getUser } from "../utils/LocalStorage";
 import { faTools, faClose } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
