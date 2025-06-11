@@ -13,9 +13,10 @@ import { LandingPagePresenter } from "../../presenters/home/LandingPagePresenter
 import { useEffect } from "react";
 import AOS from "aos";
 import ChatBoth from "../ChatBotPage";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faComments } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faComments } from "@fortawesome/free-solid-svg-icons";
 import MotionDiv from "../../utils/TransitionSmoth";
+import { getCurrentPosition } from "../../utils/GeoLocation";
 
 export function LandingPage() {
   const [services, setServices] = useState([]);
@@ -25,27 +26,30 @@ export function LandingPage() {
   const [lat, setLat] = useState(null);
   const [lng, setLng] = useState(null);
 
-  const presenter = new LandingPagePresenter({ setServices, setIsLoading, lat, lng });
+  const presenter = new LandingPagePresenter({
+    setServices,
+    setIsLoading,
+    lat,
+    lng,
+  });
   console.log(services);
-  
 
   useEffect(() => {
     getCurrentPosition(
-          (pos) => {
-            setPosition([pos.coords.latitude, pos.coords.longitude]);
-            setLat(pos.coords.latitude);
-            setLng(pos.coords.longitude);
-          },
-          (err) => {
-            console.error("Gagal ambil lokasi", err);
-            alert("Tidak bisa mengambil lokasi. Periksa pengaturan browser.");
-          }
-        );
-        AOS.init({
-          duration: 1000,
-          once: true,
-        });
-        
+      (pos) => {
+        setPosition([pos.coords.latitude, pos.coords.longitude]);
+        setLat(pos.coords.latitude);
+        setLng(pos.coords.longitude);
+      },
+      (err) => {
+        console.error("Gagal ambil lokasi", err);
+        alert("Tidak bisa mengambil lokasi. Periksa pengaturan browser.");
+      }
+    );
+    AOS.init({
+      duration: 1000,
+      once: true,
+    });
   }, []);
 
   useEffect(() => {
