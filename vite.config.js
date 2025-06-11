@@ -40,6 +40,38 @@ export default defineConfig({
             type: 'image/png',
             purpose: 'any maskable'
           }
+        ],
+        screenshots: [
+          {
+            src: 'screenshots/ss4.png',
+            type: 'image/jpeg',
+            sizes: '540x960',
+            label: 'Halaman utama (portrait)'
+          },
+          {
+            src: 'screenshots/ss1.png',
+            type: 'image/jpeg',
+            sizes: '960x540',
+            label: 'Halaman utama (landscape)'
+          },
+          {
+            src: 'screenshots/ss5.png',
+            type: 'image/jpeg',
+            sizes: '540x960',
+            label: 'Daftar bengkel (portrait)'
+          },
+          {
+            src: 'screenshots/ss2.png',
+            type: 'image/jpeg',
+            sizes: '960x540',
+            label: 'Daftar bengkel (landscape)'
+          },
+          {
+            src: 'screenshots/ss3.png',
+            type: 'image/jpeg',
+            sizes: '960x540',
+            label: 'Form booking layanan (landscape)'
+          }
         ]
       },
       workbox: {

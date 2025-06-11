@@ -3,7 +3,7 @@ import Image from "../assets/icons/current-location.png";
 import { SendHorizonal, X } from "lucide-react";
 import { ChatBotPresenter } from "../presenters/ChatBotPresenter";
 import { getCurrentPosition } from "../utils/GeoLocation";
-import { saveMessages, loadMessages } from "../utils/chatStorage";
+import { saveMessages, loadMessages } from "../utils/ChatStorage";
 
 export default function ChatBoth({ visible, onClose }) {
   const [messages, setMessages] = useState([]);

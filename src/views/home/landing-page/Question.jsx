@@ -3,7 +3,7 @@ import { ChevronDown, ChevronUp } from "lucide-react";
 
 const faqData = [
   {
-    question: "Gimana cara pake websitenya bang?",
+    question: "Gimana cara pake websitenya",
     answer:
       "Kamu tinggal daftar, login, dan langsung bisa akses semua fitur tanpa ribet!",
   },

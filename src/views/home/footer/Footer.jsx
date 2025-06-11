@@ -1,5 +1,6 @@
-import { FiPhone, FiMail, FiMapPin, FiPrinter } from "react-icons/fi";
+import { FiPhone, FiMail, FiMapPin, } from "react-icons/fi";
 import logo from "../../../assets/images/logo.png";
+import { Link } from "react-router-dom";
 
 export default function Footer() {
   return (
@@ -32,9 +33,6 @@ export default function Footer() {
             <li className="flex items-center gap-2">
               <FiMapPin /> Sumbersari, Jember Indonesia
             </li>
-            <li className="flex items-center gap-2">
-              <FiPrinter /> +1–212–9876543
-            </li>
           </ul>
         </div>
 
@@ -42,24 +40,24 @@ export default function Footer() {
           <h3 className="mb-4 text-lg font-bold text-gray-800">Tentang</h3>
           <ul className="space-y-3 text-sm text-gray-700">
             <li>
-              <a href="#" className="transition-colors hover:text-blue-700">
+              <a href="/" className="transition-colors hover:text-blue-700">
                 Beranda
               </a>
             </li>
             <li>
-              <a href="#" className="transition-colors hover:text-blue-700">
+              <a href="#service" className="transition-colors hover:text-blue-700">
                 Layanan
               </a>
             </li>
             <li>
-              <a href="#" className="transition-colors hover:text-blue-700">
+              <Link to={"/artikel"} className="transition-colors hover:text-blue-700">
                 Artikel
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="transition-colors hover:text-blue-700">
+              <Link to={"/mitra"} className="transition-colors hover:text-blue-700">
                 Mitra
-              </a>
+              </Link>
             </li>
           </ul>
         </div>

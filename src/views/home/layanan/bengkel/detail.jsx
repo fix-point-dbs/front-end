@@ -330,9 +330,9 @@ const Detail = ({ data = [], isLoading }) => {
                         ))
                       : detailService.map((item, index) => (
                           <li key={index}>
-                            {item.type} <br />
+                            {item.list_service?.type} <br />
                             <span className="text-slate-600 text-[15px]">
-                              {item.description}
+                              {item.list_service?.description}
                             </span>
                           </li>
                         ))}

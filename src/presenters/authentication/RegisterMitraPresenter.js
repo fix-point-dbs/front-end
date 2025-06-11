@@ -11,7 +11,7 @@ export class RegisterMitraPresenter {
             await this.model.register(data);
             this.view.onRegisterSuccess();
         } catch (error) {
-            showErrorToast(error.response.data.message);
+            showErrorToast(error.message);
         }
     }
 }

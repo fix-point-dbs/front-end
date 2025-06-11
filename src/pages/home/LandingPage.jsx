@@ -54,11 +54,9 @@ export function LandingPage() {
 
   useEffect(() => {
     presenter.loadServices();
-    AOS.init({
-      duration: 1000,
-      once: false,
-    });
-  }, []);
+  }, [lat, lng]);
+
+
 
   return (
     <>

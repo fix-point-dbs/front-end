@@ -17,8 +17,6 @@ import { useState } from "react";
 export default function Service({ data = [], isLoading }) {
   const [kategori, setKategori] = useState("Semua");
 
-  console.log(kategori);
-  
   const settings = {
     dots: true,
     infinite: true,
