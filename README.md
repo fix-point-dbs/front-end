@@ -1,12 +1,97 @@
-# React + Vite
+# 🚀 Frontend Project - Fix Point DBS
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Selamat datang di repository frontend dari **Fix Point DBS**!  
+Project ini merupakan antarmuka pengguna dari sistem Fix Point DBS. Ikuti langkah-langkah di bawah untuk menjalankan project ini di lokal Anda.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ⚙️ Langkah Instalasi
 
-## Expanding the ESLint configuration
+### 1. Clone Repository
+Pertama, clone repository ini ke dalam komputer Anda:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+git clone https://github.com/fix-point-dbs/front-end.git
+```
+
+> Ganti URL jika berbeda sesuai dengan repository kamu.
+
+---
+
+### 2. Masuk ke Folder Project
+
+```bash
+cd front-end
+```
+
+---
+
+### 3. Install Dependencies
+
+Jalankan perintah berikut untuk menginstal semua dependency:
+
+```bash
+npm install
+```
+
+---
+
+### 4. Konfigurasi Environment
+
+Buat file `.env` di root folder project, lalu isi dengan konfigurasi berikut:
+
+```env
+VITE_BASE_URL='http://localhost:3000'
+```
+
+> Pastikan server backend sudah terinstall dan berjalan di port 3000.  
+Jika belum, silakan install backend-nya di repository berikut:  
+👉 [Back-End Repository](https://github.com/fix-point-dbs/back-end/)
+
+---
+
+### 5. Install Nodemon (Jika Belum Terpasang)
+
+Jika Anda belum menginstal nodemon secara global, jalankan perintah berikut:
+
+```bash
+npm install -g nodemon
+```
+
+---
+
+### 6. Jalankan Project
+
+Sekarang jalankan aplikasi dengan perintah:
+
+```bash
+npm run dev
+```
+
+---
+
+### 7. Akses di Browser
+
+Buka browser dan akses project Anda melalui URL:
+
+```
+http://localhost:5173/
+```
+
+---
+
+## 🎉 Selesai!
+
+Selamat! Aplikasi frontend Anda kini sudah berjalan di lokal.  
+Untuk masalah dan kontribusi, silakan kirim [email disini](adzazarf@gmail.com)
+
+---
+
+## 📌 Catatan
+
+- Pastikan backend berjalan di `http://localhost:3000`
+- Pastikan tidak ada port conflict di 5173
+
+---
+
+💡 **Selamat melihat project kami!**
