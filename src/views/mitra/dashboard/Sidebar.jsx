@@ -13,39 +13,14 @@ import {
   FaHistory,
 } from "react-icons/fa";
 import logo from "../../../assets/images/logo.png";
-import Swal from "sweetalert2";
-import withReactContent from "sweetalert2-react-content";
 import { useHandleLogout } from "../../../utils/Logout";
 import { getUser } from "../../../utils/LocalStorage";
 export default function Sidebar({ isOpen, onClose }) {
   const logout = useHandleLogout();
   const navigate = useNavigate();
   const location = useLocation();
-  const MySwal = withReactContent(Swal);
-
   const handleLogout = () => {
-    MySwal.fire({
-      title: <p>Apakah anda yakin ingin keluar?</p>,
-      icon: "question",
-      showCancelButton: true,
-      confirmButtonText: "Ya, keluar",
-      cancelButtonText: "Tidak",
-      buttonsStyling: false,
-      customClass: {
-        cancelButton:
-          "bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-2 px-4 rounded ml-2",
-        confirmButton:
-          "bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded",
-        popup: "max-w-sm p-6 rounded-lg shadow-lg justify-between",
-        title: "text-lg font-semibold",
-        actions: "flex justify-between w-full",
-      },
-      reverseButtons: true,
-    }).then((result) => {
-      if (result.isConfirmed) {
         logout();
-      }
-    });
   };
 
   const activePage = location.pathname.split("/")[2];

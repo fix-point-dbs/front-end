@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import moment from "moment";
+import dayjs from "dayjs";
 import { faCheck, faClose, faInfo } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
@@ -77,7 +77,7 @@ export default function PengajuanMitra({ services, isLoading , handleAccept, han
             <td className="px-6 py-4">{item.type}</td>
             <td className="px-6 py-4">{item.address}</td>
             <td className="px-6 py-4">{item.alternative_phone}</td>
-            <td className="px-6 py-4">{moment(item.created_at).format("D MMM YYYY")}</td>
+            <td className="px-6 py-4">{dayjs(item.created_at).format("D MMM YYYY")}</td>
             <td className="px-6 py-4">{item.status}</td>
             <td className="px-6 py-4 flex gap-2">
               <button onClick={() => handleAction(item.id, "accept")} className="text-green-500 w-10 h-10 rounded-lg border border-green-500">
@@ -127,7 +127,7 @@ export default function PengajuanMitra({ services, isLoading , handleAccept, han
               </div>
               <div>
                 <label className="block text-gray-500">Tanggal Pengajuan</label>
-                <p className="text-gray-800 dark:text-white">{moment(selectedService.created_at).format("D MMM YYYY")}</p>
+                <p className="text-gray-800 dark:text-white">{dayjs(selectedService.created_at).format("D MMM YYYY")}</p>
               </div>
               <div>
                 <label className="block text-gray-500">Status</label>

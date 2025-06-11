@@ -13,7 +13,7 @@ import {
   Legend,
 } from "recharts";
 import { FaReceipt } from "react-icons/fa";
-import moment from "moment";
+import dayjs from "dayjs";
 
 const renderCustomLabel = ({
   cx,
@@ -146,7 +146,7 @@ export default function Dashboard({ bookings, statistics, result }) {
                     {service.status}
                   </span>
                 </td>
-                <td className="px-4 py-2">{moment(service.created_at).format("D MMM YYYY")}</td>
+                <td className="px-4 py-2">{dayjs(service.created_at).format("D MMM YYYY")}</td>
               </tr>
             ))}
           </tbody>

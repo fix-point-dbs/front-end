@@ -1,19 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { FaCheck, FaTimes, FaInfoCircle } from "react-icons/fa";
-import Swal from "sweetalert2";
-import withReactContent from "sweetalert2-react-content";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-const MySwal = withReactContent(Swal);
 import {
   currentLocationIcon,
   serviceIcon,
 } from "../../../utils/CustomIconMarker";
 import { getCurrentPosition } from "../../../utils/GeoLocation";
 import ChatPage from "../../../pages/ChatPage";
-import moment from "moment";
-import "moment/locale/id";
 import { getUser } from "../../../utils/LocalStorage";
+import dayjs from "dayjs";
+import utc from 'dayjs/plugin/utc';
+import relativeTime from 'dayjs/plugin/relativeTime';
+dayjs.extend(utc);
+dayjs.extend(relativeTime);
 export default function Pemesanan({ orders = [], onAccept, onReject, onInProgress, onDone }) {
   const [position, setPosition] = useState(null);
   const [chatOpenId, setChatOpenId] = useState(null);
@@ -29,7 +28,6 @@ export default function Pemesanan({ orders = [], onAccept, onReject, onInProgres
     }
   };
   const user_id = Number(getUser().id);
-  moment.locale("id"); 
   useEffect(() => {
     
     getCurrentPosition(
@@ -67,7 +65,7 @@ export default function Pemesanan({ orders = [], onAccept, onReject, onInProgres
                 No Pesanan :{" "}
                 <span className="text-orange-500 font-bold">{order.id}</span>
               </h2>
-              <small>{moment.utc(order.createdAt).local().fromNow()}</small>
+              <small>{dayjs.utc(order.createdAt).local().fromNow()}</small>
               </div>
               <h1 className="text-sm font-bold text-black md:text-base"><span className="w-3 h-3 mr-2 rounded-full inline-block bg-red-500 animate-ping"></span>{order.status}</h1>
  

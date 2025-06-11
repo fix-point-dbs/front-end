@@ -1,15 +1,12 @@
-import moment from "moment";
+import dayjs from "dayjs";
 import React, { useState } from "react";
-import { FaCheck, FaTimes, FaInfoCircle } from "react-icons/fa";
-import Swal from "sweetalert2";
-import withReactContent from "sweetalert2-react-content";
+import { FaInfoCircle } from "react-icons/fa";
+
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import Slider from "react-slick";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
-
-const MySwal = withReactContent(Swal);
 
 export default function HistoryOrder({ orders = [] }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -61,7 +58,7 @@ export default function HistoryOrder({ orders = [] }) {
               <td className="px-6 py-4">{order.user.name}</td>
               <td className="px-6 py-4">{order.detail_service_name}</td>
               <td className="px-6 py-4">{order.status}</td>
-              <td className="px-6 py-4">{moment(order.date).format("LL")}</td>
+              <td className="px-6 py-4">{dayjs(order.date).format("LL")}</td>
               <td className="px-6 py-4 text-center">
                 <div className="flex items-center justify-center gap-3">
                   <button
@@ -122,7 +119,7 @@ export default function HistoryOrder({ orders = [] }) {
               </div>
               <div>
                 <label className="block text-gray-500">Tanggal Pengajuan</label>
-                <p className="text-gray-800 dark:text-white">{moment(selectedService.created_at).format("D MMM YYYY")}</p>
+                <p className="text-gray-800 dark:text-white">{dayjs(selectedService.created_at).format("D MMM YYYY")}</p>
               </div>
               <div>
                 <label className="block text-gray-500">Status</label>

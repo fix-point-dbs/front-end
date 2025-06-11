@@ -1,5 +1,5 @@
 import React from "react";
-import moment from "moment";
+import dayjs from "dayjs";
 export default function Table({ services }) {
   return (
     <div className="w-full bg-white rounded-lg shadow-sm dark:bg-gray-800 p-3 sm:p-4 md:p-6">
@@ -24,7 +24,7 @@ export default function Table({ services }) {
                     <td className="px-6 py-4">{item.type}</td>
                     <td className="px-6 py-4">{item.address}</td>
                     <td className="px-6 py-4">{item.alternative_phone}</td>
-                    <td className="px-6 py-4">{moment(item.created_at).format("D MMM YYYY")}</td>
+                    <td className="px-6 py-4">{dayjs(item.created_at).format("D MMM YYYY")}</td>
                     <td className="px-6 py-4">{item.status}</td>
                    
                   </tr>

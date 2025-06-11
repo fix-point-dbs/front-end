@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import moment from "moment";
+import dayjs from "dayjs";
 import { faClose, faInfo } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
@@ -72,7 +72,7 @@ export default function BookingAdmin({ bookings, isLoading  }) {
             <td className="px-6 py-4">{item.service?.bussiness_name}</td>
             <td className="px-6 py-4">{item.vehicle}</td>
             <td className="px-6 py-4">{item.address}</td>
-            <td className="px-6 py-4">{moment(item.createdAt).format("D MMM YYYY")}</td>
+            <td className="px-6 py-4">{dayjs(item.createdAt).format("D MMM YYYY")}</td>
             <td className="px-6 py-4 flex gap-2">
               <button onClick={() => openModal(item)} className="text-blue-500 w-10 h-10 rounded-lg border border-blue-500">
                 <FontAwesomeIcon icon={faInfo} />
@@ -115,7 +115,7 @@ export default function BookingAdmin({ bookings, isLoading  }) {
               </div>
               <div>
                 <label className="block text-gray-500">Tanggal </label>
-                <p className="text-gray-800 dark:text-white">{moment(selectedBooking.createdAt).format("D MMM YYYY")}</p>
+                <p className="text-gray-800 dark:text-white">{dayjs(selectedBooking.createdAt).format("D MMM YYYY")}</p>
               </div>
               <div>
                 <label className="block text-gray-500">Status</label>

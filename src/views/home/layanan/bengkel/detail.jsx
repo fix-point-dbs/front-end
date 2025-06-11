@@ -290,7 +290,7 @@ const Detail = ({ data = [], isLoading }) => {
                   <div className="relative overflow-hidden transition duration-300 shadow group rounded-xl hover:shadow-lg">
                     <img
                       src={`${
-                        import.meta.env.VITE_API_BASE_URL
+                        import.meta.env.VITE_BASE_URL
                       }/uploads/photo-services/${item.url_photo}`}
                       alt={item.title}
                       className="object-cover w-full h-48"

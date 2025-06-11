@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import moment from "moment";
+import React from "react";
+import dayjs from "dayjs";
 import {  faClose } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
@@ -58,7 +58,7 @@ export default function UserAdmin({ users, isLoading, handleDelete }) {
             <td className="px-6 py-4">{item.email}</td>
             <td className="px-6 py-4">{item.phone}</td>
             <td className="px-6 py-4">{item.role}</td>
-            <td className="px-6 py-4">{moment(item.createdAt).format("D MMM YYYY")}</td>
+            <td className="px-6 py-4">{dayjs(item.createdAt).format("D MMM YYYY")}</td>
             <td className="px-6 py-4 flex gap-2">
               <button onClick={() => handleDelete(item.id)} className="text-red-500 w-10 h-10 rounded-lg border border-red-500">
                 <FontAwesomeIcon icon={faClose} />

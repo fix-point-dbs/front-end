@@ -6,7 +6,7 @@ const socket = io(import.meta.env.VITE_BASE_URL);
 import { getUser } from "../utils/LocalStorage";
 import { faTools, faClose } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import moment from "moment/moment";
+import dayjs from "dayjs";
 const ChatPage = ({ isOpen, onClose, user_id, mitra_id, name }) => {
 
   const [messages, setMessages] = useState([]);
@@ -109,11 +109,11 @@ useEffect(() => {
                   <span>{msg.message}</span>
                   {isSender ? (     
                   <span className="text-xs text-white block mt-1">
-                    {moment(msg.createdAt).format("HH:mm")}{" "}
+                    {dayjs(msg.createdAt).format("HH:mm")}{" "}
                   </span>
                   ) : (
                     <span className="text-xs text-black block mt-1">
-                      {moment(msg.createdAt).format("HH:mm")}{" "}
+                      {dayjs(msg.createdAt).format("HH:mm")}{" "}
                     </span>
                   )}
                 </div>
