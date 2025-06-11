@@ -142,11 +142,6 @@ export function RegistrationMitraPage() {
       (pos) => {
         const coords = [pos.coords.latitude, pos.coords.longitude];
         setPosition(coords);
-        setFormData((prev) => ({
-          ...prev,
-          latitude: coords[0],
-          longitude: coords[1],
-        }));
         presenter.loadMap(coords[0], coords[1]);
       },
       (err) => {
