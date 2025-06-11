@@ -86,7 +86,9 @@ Untuk masalah dan kontribusi, silakan kirim [email disini](adzazarf@gmail.com)
 
 ## Production
 
-jika ingin melihat langsung back-end nya langsung bisa melihat link berikut
+jika ingin melihat hasilnya langsung bisa melihat link berikut
 👉 [Link Production](https://fixpoint.adza-zarif.my.id)
+
+---
 
 💡 **Selamat melihat project kami!**#
