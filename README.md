@@ -50,17 +50,7 @@ Jika belum, silakan install backend-nya di repository berikut:
 
 ---
 
-### 5. Install Nodemon (Jika Belum Terpasang)
-
-Jika Anda belum menginstal nodemon secara global, jalankan perintah berikut:
-
-```bash
-npm install -g nodemon
-```
-
----
-
-### 6. Jalankan Project
+### 5. Jalankan Project
 
 Sekarang jalankan aplikasi dengan perintah:
 
@@ -70,7 +60,7 @@ npm run dev
 
 ---
 
-### 7. Akses di Browser
+### 6. Akses di Browser
 
 Buka browser dan akses project Anda melalui URL:
 
@@ -94,4 +84,4 @@ Untuk masalah dan kontribusi, silakan kirim [email disini](adzazarf@gmail.com)
 
 ---
 
-💡 **Selamat melihat project kami!**
+💡 **Selamat melihat project kami!**#
