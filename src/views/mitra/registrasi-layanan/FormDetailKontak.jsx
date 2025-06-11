@@ -1,5 +1,6 @@
 import React from "react";
 import MotionDiv from "../../../utils/TransitionSmoth";
+import { getUser } from "../../../utils/LocalStorage";
 const FormDetailKontak = ({ formData, handleChange, handleNext }) => {
   return (
     <MotionDiv>
@@ -25,6 +26,7 @@ const FormDetailKontak = ({ formData, handleChange, handleNext }) => {
           </label>
           <input
             type="email"
+            value={getUser().email}
             className="w-full p-2 text-sm border rounded-md"
             placeholder="abc@gmail.com"
           />
@@ -34,7 +36,7 @@ const FormDetailKontak = ({ formData, handleChange, handleNext }) => {
           <label className="mb-2 text-sm font-bold text-black sm:text-base text-block">
             No Hp
           </label>
-          <input type="text" className="w-full p-2 text-sm border rounded-md" />
+          <input type="text" value={getUser().phone} className="w-full p-2 text-sm border rounded-md" />
         </div>
 
         <div className="mb-4 text-sm">

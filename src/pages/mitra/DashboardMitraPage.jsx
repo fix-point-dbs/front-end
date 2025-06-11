@@ -1,24 +1,27 @@
 import React, { useState, useEffect } from "react";
 import Sidebar from "../../views/mitra/dashboard/Sidebar";
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import Dashboard from "../../views/mitra/dashboard/Dashboard";
-import { OrderPresenter } from "../../presenters/mitra/OrderPresenter";
+import { DashboardMitraPresenter } from "../../presenters/mitra/DashboardMitraPresenter";
 import Navbar from "../../views/mitra/dashboard/Navbar";
 import MotionDiv from "../../utils/TransitionSmoth";
+import { getUser } from "../../utils/LocalStorage";
 export function DashboardMitraPage() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const location = useLocation();
-  const [isLoading, setIsLoading] = useState(false);
-  const [orders, setOrders] = useState([]);
-  const id = 1;
+  const [bookings, setBookings] = useState([]);
+  const [statistics, setStatistics] = useState([]);
+  const [result, setResult] = useState([]);
+  const id = getUser().id;
 
-  const presenter = new OrderPresenter({setOrders, setIsLoading, id});
-
-  console.log(orders);
+  const presenter = new DashboardMitraPresenter({setBookings, setStatistics, setResult, id});
+  
+  console.log(bookings);
+  console.log(statistics);
+  console.log(result);
   
   useEffect(() => {
-    presenter.loadOrders();
+    presenter.loadDashboard();
     
   }, []);
 
@@ -30,7 +33,7 @@ export function DashboardMitraPage() {
         <div className="px-10 py-6">
           <AnimatePresence mode="wait">
             <MotionDiv>
-            <Dashboard/>
+            <Dashboard bookings={bookings.data} statistics={statistics.data} result={result} />
             </MotionDiv>
         </AnimatePresence>
         </div>

@@ -8,7 +8,7 @@ export class OrderPresenter {
     async loadOrders(){
         try {
             this.view.setIsLoading(true);
-            const orders = await this.model.getBookings('?status=order&&service_id=' + this.view.id);
+            const orders = await this.model.getBookings('?status=order&&user_service_id=' + this.view.id);
             this.view.setOrders(orders);
         } catch (error) {
             console.log(error);

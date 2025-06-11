@@ -1,25 +1,33 @@
 import React, { useState, useEffect } from "react";
-import { FaCheck, FaTimes, FaInfoCircle } from "react-icons/fa";
-import Swal from "sweetalert2";
-import withReactContent from "sweetalert2-react-content";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-const MySwal = withReactContent(Swal);
 import {
   currentLocationIcon,
   serviceIcon,
 } from "../../../utils/CustomIconMarker";
 import { getCurrentPosition } from "../../../utils/GeoLocation";
 import ChatPage from "../../../pages/ChatPage";
-import { saveUserId } from "../../../lib/auth";
-import moment from "moment";
-import "moment/locale/id";
+import { getUser } from "../../../utils/LocalStorage";
+import dayjs from "dayjs";
+import utc from 'dayjs/plugin/utc';
+import relativeTime from 'dayjs/plugin/relativeTime';
+dayjs.extend(utc);
+dayjs.extend(relativeTime);
 export default function Pemesanan({ orders = [], onAccept, onReject, onInProgress, onDone }) {
   const [position, setPosition] = useState(null);
-  const [isOpen, setIsOpen] = useState(false);
-  const handleToggle = () => setIsOpen(prev => !prev);
+  const [chatOpenId, setChatOpenId] = useState(null);
+  const [name, setName] = useState("");
 
-  moment.locale("id"); 
+  const handleToggle = (id, name) => {
+    if (chatOpenId === id) {
+      setChatOpenId(null); 
+      setName("");
+    } else {
+      setChatOpenId(id);
+      setName(name);
+    }
+  };
+  const user_id = Number(getUser().id);
   useEffect(() => {
     
     getCurrentPosition(
@@ -35,7 +43,10 @@ export default function Pemesanan({ orders = [], onAccept, onReject, onInProgres
 
   return (
     <>
-    <ChatPage isOpen={isOpen} onClose={handleToggle} mitra_id={4} />
+    {chatOpenId !== null && (
+    <ChatPage isOpen={true}
+    onClose={() => setChatOpenId(null)} user_id={chatOpenId} mitra_id={user_id} name={name} />
+    )}
     <div className="p-4 overflow-x-auto bg-white shadow rounded-xl">
       <h2 className="mb-4 text-sm font-bold text-black md:text-base">
         Pesanan
@@ -54,7 +65,7 @@ export default function Pemesanan({ orders = [], onAccept, onReject, onInProgres
                 No Pesanan :{" "}
                 <span className="text-orange-500 font-bold">{order.id}</span>
               </h2>
-              <small>{moment.utc(order.createdAt).local().fromNow()}</small>
+              <small>{dayjs.utc(order.createdAt).local().fromNow()}</small>
               </div>
               <h1 className="text-sm font-bold text-black md:text-base"><span className="w-3 h-3 mr-2 rounded-full inline-block bg-red-500 animate-ping"></span>{order.status}</h1>
  
@@ -161,7 +172,7 @@ export default function Pemesanan({ orders = [], onAccept, onReject, onInProgres
                     </button>
                     <button
                       className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
-                      onClick={handleToggle}
+                      onClick={() => handleToggle(order.user_id, order.user?.name)}
                     >
                       Chat
                     </button>
@@ -177,7 +188,7 @@ export default function Pemesanan({ orders = [], onAccept, onReject, onInProgres
                     </button>
                     <button
                       className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
-                      onClick={handleToggle}
+                      onClick={() => handleToggle(order.user_id, order.user?.name)}
                     >
                       Chat
                     </button>

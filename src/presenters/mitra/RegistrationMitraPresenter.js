@@ -25,7 +25,7 @@ export class RegistrationMitraPresenter {
             this.view.setFormData((prev) => ({ ...prev, address: map.data.display_name, postal_code: map.data.address?.postcode }));;
         } catch (error) {
             console.log(error);
-            showErrorToast("Gagal mengambil alamat");
+            // showErrorToast("Gagal mengambil alamat");
         }
     }
 

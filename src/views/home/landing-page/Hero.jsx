@@ -6,12 +6,12 @@ export default function Hero() {
       <img
         src={background}
         alt="Hero background"
-        className="absolute inset-0 w-full h-full object-cover h-[700px]"
+        className="absolute inset-0 w-full object-cover h-full"
       />
       <div className="relative z-999 flex items-center justify-end h-full px-12 mx-auto max-w-7xl">
         <div
           className="max-w-lg text-white"
-          data-aos="fade-down"
+          data-aos="zoom-in"
           data-aos-duration="1000"
           data-aos-delay="300"
         >
@@ -27,9 +27,9 @@ export default function Hero() {
             bengkel terdekat dari lokasi mogokmu dengan cepat dan mudah.
             FixPoint, solusi cepat di saat darurat.
           </p>
-          <button className="px-5 py-2 mt-6 text-sm font-semibold text-white rounded shadow bg-merah hover:bg-red-700 sm:text-sm md:text-sm">
+          <a href="#service" className="px-5 inline-block py-2 mt-6 text-sm font-semibold text-white rounded shadow bg-merah hover:bg-red-700 sm:text-sm md:text-sm">
             Mulai sekarang →
-          </button>
+          </a>
         </div>
       </div>
     </section>

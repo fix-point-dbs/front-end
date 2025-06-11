@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
@@ -12,13 +12,14 @@ import {
   faClock,
   faPhone,
 } from "@fortawesome/free-solid-svg-icons";
-import { motion } from "framer-motion";
+import MotionDiv from "../../../../utils/TransitionSmoth";
 
 export default function Pemesanan({
   data = [],
   onSubmit,
   isLoading,
 }) {
+  const markerRef = useRef(null);
   const detailService = data.detail_services ?? [];
   const [coords, setCoords] = useState({ lat: -6.2, lng: 106.8 });
   const [map, setMap] = useState(null);
@@ -41,27 +42,55 @@ export default function Pemesanan({
   };
 
   useEffect(() => {
-
     getCurrentPosition(
       async (pos) => {
-        setCoords({ lat: pos.coords.latitude, lng: pos.coords.longitude });
         const { latitude, longitude } = pos.coords;
+        setCoords({ lat: latitude, lng: longitude });
         await fetchAlamat(latitude, longitude);
         setForm((prev) => ({
           ...prev,
           latitude,
-          longitude
-        }))
+          longitude,
+        }));
+  
         const userMap = L.map("map").setView([latitude, longitude], 15);
         L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
           attribution: "&copy; OpenStreetMap contributors",
         }).addTo(userMap);
-
-        L.marker([latitude, longitude])
-          .addTo(userMap)
-          .bindPopup("Lokasi Anda")
-          .openPopup();
-
+  
+        // 🔴 Buat marker pertama kali
+        const initialMarker = L.marker([latitude, longitude], {
+          draggable: true,
+        }).addTo(userMap);
+        markerRef.current = initialMarker;
+  
+        // Jika marker digeser manual
+        initialMarker.on("dragend", async (e) => {
+          const { lat, lng } = e.target.getLatLng();
+          setCoords({ lat, lng });
+          setForm((prev) => ({
+            ...prev,
+            latitude: lat,
+            longitude: lng,
+          }));
+          await fetchAlamat(lat, lng);
+        });
+  
+        // Jika peta diklik, pindahkan marker
+        userMap.on("click", async (e) => {
+          const { lat, lng } = e.latlng;
+          if (markerRef.current) {
+            markerRef.current.setLatLng([lat, lng]);
+          }
+          setCoords({ lat, lng });
+          setForm((prev) => ({
+            ...prev,
+            latitude: lat,
+            longitude: lng,
+          }));
+          await fetchAlamat(lat, lng);
+        });
+  
         setMap(userMap);
       },
       (err) => {
@@ -69,10 +98,12 @@ export default function Pemesanan({
         alert("Tidak bisa mengambil lokasi. Periksa pengaturan browser.");
       }
     );
-        return () => {
+  
+    return () => {
       if (map) map.remove();
     };
   }, []);
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -122,10 +153,7 @@ export default function Pemesanan({
         className="absolute inset-0 z-0 object-cover w-full h-[300px] sm:h-[300px] lg:h-[300px]"
       />
       <div className="relative z-10 ">
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+        <MotionDiv
         >
           <h2 className="pt-20 mb-2 text-2xl font-bold text-center text-black sm:pt-20">
             Form Pemesanan
@@ -133,14 +161,10 @@ export default function Pemesanan({
           <p className="mb-8 text-center text-black-600">
             Isi data yang dibutuhkan sesuai dengan keperluan anda!
           </p>
-        </motion.div>
+        </MotionDiv>
 
-        <motion.div
-          className="grid grid-cols-1 gap-6 mb-10 md:grid-cols-3"
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-        >
+      <MotionDiv>
+        <div className="grid grid-cols-1 gap-6 mb-10 md:grid-cols-3">
           <div className="w-full p-4 bg-white rounded-lg shadow-md h-fit">
             <img src={orang} alt="Bengkel" className="mb-3 rounded" />
             <h3 className="text-lg font-bold">Bengkel Andalan Motor</h3>
@@ -220,15 +244,15 @@ export default function Pemesanan({
                       <label>
                         <input
                           type="radio"
-                          value={item.type}
+                          value={item.list_service_id}
                           onChange={handleChange}
                           name="detail_service_name"
                           className="mr-2 border"
                         />
-                        {item.type}
+                        {item.list_service.type}
                       </label>
                       <p className="text-sm text-gray-600 mt-2">
-                        {item.description}
+                        {item.list_service.description}
                       </p>
                     </div>
                   ))}
@@ -302,7 +326,8 @@ export default function Pemesanan({
               </button>
             )}
           </form>
-        </motion.div>
+        </div>
+        </MotionDiv>
       </div>
     </section>
   );

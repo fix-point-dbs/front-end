@@ -1,5 +1,6 @@
 import { BookingModel } from '../../models/BookingModel';
 import { ReviewModel } from '../../models/ReviewModel';
+import { showErrorToast } from '../../utils/Toast';
 export class ConfirmationBookingPresenter {
     constructor( view ) {
         this.view = view;
@@ -22,10 +23,11 @@ export class ConfirmationBookingPresenter {
     async addReview(review){
         try {
             this.view.setIsLoading(true);
-            const res = await this.modelReview.createReview(review);
+            await this.modelReview.createReview(review);
             this.view.onSuccess();
         } catch (error) {
             console.log(error);
+            showErrorToast("Review gagal ditambahkan")
         }finally{
             this.view.setIsLoading(false);
         }

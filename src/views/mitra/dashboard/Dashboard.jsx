@@ -13,53 +13,7 @@ import {
   Legend,
 } from "recharts";
 import { FaReceipt } from "react-icons/fa";
-import { motion } from "framer-motion";
-
-const orders = [
-  {
-    id: 1,
-    noPemesanan: "#ORD1023",
-    namaPemesan: "Andi",
-    status: "Selesai",
-    created: "30 Mei 2025",
-  },
-  {
-    id: 2,
-    noPemesanan: "#ORD1024",
-    namaPemesan: "Budi",
-    status: "Proses",
-    created: "29 Mei 2025",
-  },
-  {
-    id: 3,
-    noPemesanan: "#ORD1025",
-    namaPemesan: "Siti",
-    status: "Menunggu Konfirmasi",
-    created: "28 Mei 2025",
-  },
-];
-
-const monthlyData = [
-  { month: "Jan", total: 1200 },
-  { month: "Feb", total: 2100 },
-  { month: "Mar", total: 800 },
-  { month: "Apr", total: 1600 },
-  { month: "May", total: 2200 },
-  { month: "Jun", total: 1400 },
-  { month: "Jul", total: 1800 },
-  { month: "Aug", total: 1000 },
-  { month: "Sep", total: 1500 },
-  { month: "Oct", total: 1300 },
-  { month: "Nov", total: 1700 },
-  { month: "Dec", total: 2400 },
-];
-
-const orderStatusData = [
-  { name: "Menunggu Konfirmasi", value: 8 },
-  { name: "Berlangsung", value: 15 },
-  { name: "Ditolak", value: 3 },
-  { name: "Selesai", value: 24 },
-];
+import dayjs from "dayjs";
 
 const renderCustomLabel = ({
   cx,
@@ -67,8 +21,6 @@ const renderCustomLabel = ({
   midAngle,
   innerRadius,
   outerRadius,
-  percent,
-  index,
   name,
 }) => {
   const RADIAN = Math.PI / 180;
@@ -93,7 +45,13 @@ const renderCustomLabel = ({
 
 const COLORS = ["#FACC15", "#60A5FA", "#EF4444", "#22C55E"];
 
-export default function Dashboard() {
+export default function Dashboard({ bookings, statistics, result }) {
+  const orderStatusData = [
+    { name: "Menunggu Konfirmasi", value: result?.pending },
+    { name: "Berlangsung", value: result?.approved },
+    { name: "Ditolak", value: result?.rejected },
+    { name: "Selesai", value: result?.done },
+  ];
   return (
     <div className="max-w-6xl px-4 mx-auto sm:px-6 lg:px-6">
       <div className="flex items-center justify-center gap-2 p-4 mb-6 bg-gray-100 border rounded-xl">
@@ -107,7 +65,7 @@ export default function Dashboard() {
           </h2>
 
           <ResponsiveContainer width="100%" height={250}>
-            <LineChart data={monthlyData}>
+            <LineChart data={statistics}>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="month" tick={{ fontSize: 10 }} />
               <YAxis tick={{ fontSize: 10 }} />
@@ -159,40 +117,37 @@ export default function Dashboard() {
         <table className="w-full text-sm text-center">
           <thead className="bg-blue-50 rounded-t-xl">
             <tr>
-              <th className="px-6 py-3">Id</th>
               <th className="px-6 py-3">No Pemesanan</th>
               <th className="px-6 py-3">Nama Pemesan</th>
+              <th className="px-6 py-3">Layanan</th>
               <th className="px-6 py-3">Status</th>
               <th className="px-6 py-3">Created</th>
             </tr>
           </thead>
           <tbody>
-            {orders.map((order, i) => (
-              <motion.tr
-                key={order.id}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.1 }}
+            {bookings?.map((service) => (
+              <tr
+                key={service.id}
                 className="text-center"
               >
-                <td className="px-4 py-2">{order.id}</td>
-                <td className="px-4 py-2">{order.noPemesanan}</td>
-                <td className="px-4 py-2">{order.namaPemesan}</td>
+                <td className="px-4 py-2">{service.id}</td>
+                <td className="px-4 py-2">{service.user.name}</td>
+                <td className="px-4 py-2">{service.detail_service_name}</td>
                 <td className="px-4 py-2">
                   <span
                     className={`inline-block px-2 py-1 text-xs font-semibold rounded-full ${
-                      order.status === "Selesai"
+                      service.status === "Selesai"
                         ? "text-green-800 bg-green-100"
-                        : order.status === "Proses"
+                        : service.status === "Proses"
                         ? "text-yellow-800 bg-yellow-100"
                         : "text-gray-800 bg-gray-100"
                     }`}
                   >
-                    {order.status}
+                    {service.status}
                   </span>
                 </td>
-                <td className="px-4 py-2">{order.created}</td>
-              </motion.tr>
+                <td className="px-4 py-2">{dayjs(service.created_at).format("D MMM YYYY")}</td>
+              </tr>
             ))}
           </tbody>
         </table>

@@ -1,32 +1,21 @@
 import React, { useState, useEffect, useRef } from "react";
 import { io } from "socket.io-client";
-// import { getMessages } from '../models/ChatModel';
 import { ArrowDownCircle, MessageSquare } from "lucide-react";
 import { ChatPresenter } from "../presenters/ChatPresenter";
-const socket = io("http://localhost:3000");
-import { getUserId, saveUserId } from "../lib/auth";
+const socket = io(import.meta.env.VITE_BASE_URL);
+import { getUser } from "../utils/LocalStorage";
 import { faTools, faClose } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import moment from "moment/moment";
-const users = {
-  1: { name: "Adza", avatar: "🧑🏻‍💻" },
-  4: { name: "Budi", avatar: "👨🏼" },
-  3: { name: "Citra", avatar: "👩🏻" },
-};
-const ChatPage = ({ isOpen, onClose, mitra_id }) => {
-  const user_id = Number(getUserId());
+import dayjs from "dayjs";
+const ChatPage = ({ isOpen, onClose, user_id, mitra_id, name }) => {
+
   const [messages, setMessages] = useState([]);
   const [chatId, setChatId] = useState(null);
-  const [senderId, setSenderId] = useState(user_id);
   const [input, setInput] = useState("");
   const [isAtBottom, setIsAtBottom] = useState(true);
   const scrollRef = useRef();
-
-  // const toggleChat = () => setIsOpen(!isOpen);
-  console.log(senderId);
-
-  const presenter = new ChatPresenter({ setMessages, setChatId, mitra_id });
-
+  const sender_id = getUser().id
+  const presenter = new ChatPresenter({ setMessages, setChatId, mitra_id, user_id });
   useEffect(() => {
     presenter.loadMessages()
     socket.emit("join_chat", chatId);
@@ -73,7 +62,7 @@ useEffect(() => {
     if (!input.trim()) return;
     socket.emit("send_message", {
       chat_id: chatId,
-      sender_id: senderId,
+      sender_id: sender_id,
       message: input,
     });
     setInput("");
@@ -82,26 +71,11 @@ useEffect(() => {
   return (
     <div className="fixed bottom-5 border bg-slate-50 rounded-lg right-5 z-[9999]">
       <div className="max-w-xl mx-auto p-4 space-y-4">
-        {/* Dropdown Login */}
-        {/* <div className="mb-2">
-        <label className="text-sm font-semibold mr-2">Login sebagai:</label>
-        <select
-          value={senderId}
-          onChange={(e) => setSenderId(Number(e.target.value))}
-          className="border rounded px-2 py-1"
-        >
-          {Object.entries(users).map(([id, user]) => (
-            <option key={id} value={id}>
-              {user.name}
-            </option>
-          ))}
-        </select>
-      </div> */}
 
         <div className="flex justify-between">
         <h1>
           <FontAwesomeIcon icon={faTools} className="mr-2" />
-          Bengkel Berkah Jaya
+          {name}
         </h1>
           <button onClick={onClose}>
             <FontAwesomeIcon icon={faClose} className="text-red-500 font-bold text-[20px]" />
@@ -114,11 +88,7 @@ useEffect(() => {
           onScroll={handleScroll}
         >
           {messages?.map((msg, i) => {
-            const isSender = msg.sender_id === senderId;
-            const user = users[msg.sender_id] || {
-              name: `User ${msg.sender_id}`,
-              avatar: "👤",
-            };
+            const isSender = msg.sender_id === sender_id;
 
             return (
               <div
@@ -139,11 +109,11 @@ useEffect(() => {
                   <span>{msg.message}</span>
                   {isSender ? (     
                   <span className="text-xs text-white block mt-1">
-                    {moment(msg.createdAt).format("HH:mm")}{" "}
+                    {dayjs(msg.createdAt).format("HH:mm")}{" "}
                   </span>
                   ) : (
                     <span className="text-xs text-black block mt-1">
-                      {moment(msg.createdAt).format("HH:mm")}{" "}
+                      {dayjs(msg.createdAt).format("HH:mm")}{" "}
                     </span>
                   )}
                 </div>

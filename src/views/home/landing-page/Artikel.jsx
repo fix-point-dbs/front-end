@@ -69,7 +69,7 @@ export default function Artikel() {
   };
 
   return (
-    <section className="relative w-[90%] max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 mt-[60px]">
+    <section data-aos="fade-up" className="relative w-[90%] max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 mt-[60px]">
       <div className="flex items-center justify-start">
         <p className="mx-4 mb-1 text-sm font-black text-biru">ARTIKEL</p>
         <div className="w-24 border-t border-biru"></div>

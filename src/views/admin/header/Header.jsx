@@ -6,7 +6,7 @@ import background from "../../../assets/images/bg-new-2.png";
 
 export default function Header() {
   return (
-    <section className="relative w-full h-72 overflow-visible rounded-xl">
+    <section className="relative w-full h-64 overflow-visible rounded-xl">
       <div className="absolute top-0 left-0 w-full h-full dark:bg-black/40 rounded-xl z-0"></div>
       <img
         src={background}
@@ -15,9 +15,9 @@ export default function Header() {
       />
 
       <div className="relative z-10 p-4 flex flex-col h-full justify-between">
-        <Breadcrumbs className="text-white dark:text-gray-200" />
+        {/* <Breadcrumbs className="text-white dark:text-gray-200" /> */}
 
-        <div className="-mb-14 bg-white/80 dark:bg-gray-800/80 backdrop-blur-md rounded-2xl shadow p-4 flex flex-col lg:flex-row items-center justify-between gap-4 z-20">
+        <div className="-mb-14 bg-white/80 mt-[100px] dark:bg-gray-800/80 backdrop-blur-md rounded-2xl shadow p-4 flex flex-col lg:flex-row items-center justify-between gap-4 z-20">
           <div className="flex items-center gap-4">
             <div className="relative">
               <img

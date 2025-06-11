@@ -1,9 +1,17 @@
 import React, { useEffect } from "react";
-import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
+import {
+  MapContainer,
+  TileLayer,
+  Marker,
+  Popup,
+  useMap,
+} from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import MotionDiv from "../../../utils/TransitionSmoth";
+import { MapModel } from "../../../models/MapModel";
 
+// Atur ikon marker
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
   iconRetinaUrl:
@@ -14,13 +22,57 @@ L.Icon.Default.mergeOptions({
     "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png",
 });
 
-function LocateButton({ position }) {
+// Fungsi reverse geocoding
+const fetchAddressFromLatLng = async (lat, lng) => {
+  
+  try {
+    const map = new MapModel();
+    const res = await map.reverseGeocode(lat, lng);
+    const data = res.data;
+    return {
+      address: data.display_name || "",
+      postal_code: data.address?.postcode || "",
+    };
+  } catch (error) {
+    console.error("Gagal mengambil alamat:", error);
+    return { address: "", postal_code: "" };
+  }
+};
+
+// Tombol "Lokasi Saya"
+function LocateButton({ setFormData }) {
   const map = useMap();
 
   const handleClick = () => {
-    if (position) {
-      map.flyTo(position, 15, { duration: 1.5 });
+    if (!navigator.geolocation) {
+      alert("Geolocation tidak didukung oleh browser Anda.");
+      return;
     }
+
+    navigator.geolocation.getCurrentPosition(
+      async (position) => {
+        const lat = position.coords.latitude;
+        const lng = position.coords.longitude;
+
+        // Ambil alamat dari koordinat
+        const { address, postal_code } = await fetchAddressFromLatLng(lat, lng);
+
+        // Update form data
+        setFormData((prev) => ({
+          ...prev,
+          latitude: lat,
+          longitude: lng,
+          address,
+          postal_code,
+        }));
+
+        // Arahkan peta ke lokasi baru
+        map.flyTo([lat, lng], 15, { duration: 1.5 });
+      },
+      () => {
+        alert("Gagal mengambil lokasi.");
+      }
+    );
   };
 
   return (
@@ -33,6 +85,37 @@ function LocateButton({ position }) {
   );
 }
 
+
+// Menangani klik di map
+function ClickableMap({ setFormData }) {
+  const map = useMap();
+
+  useEffect(() => {
+    const handleClick = async (e) => {
+      const { lat, lng } = e.latlng;
+
+      const { address, postal_code } = await fetchAddressFromLatLng(lat, lng);
+
+      setFormData((prev) => ({
+        ...prev,
+        latitude: lat,
+        longitude: lng,
+        address,
+        postal_code,
+      }));
+
+      map.flyTo([lat, lng], map.getZoom());
+    };
+
+    map.on("click", handleClick);
+    return () => {
+      map.off("click", handleClick);
+    };
+  }, [map, setFormData]);
+
+  return null;
+}
+
 const FormDetailLayanan = ({
   formData,
   setFormData,
@@ -42,23 +125,21 @@ const FormDetailLayanan = ({
   listService,
   position,
 }) => {
-  useEffect(() => {}, []);
-
   const handleCheckboxChange = (e) => {
     const { value, checked } = e.target;
-    const id = parseInt(value); // Jika item.id itu number
+    const id = parseInt(value);
 
     if (checked) {
-      // Tambahkan ke array
       setFormData({
         ...formData,
         list_service_id: [...formData.list_service_id, id],
       });
     } else {
-      // Hapus dari array
       setFormData({
         ...formData,
-        list_service_id: formData.list_service_id.filter((item) => item !== id),
+        list_service_id: formData.list_service_id.filter(
+          (item) => item !== id
+        ),
       });
     }
   };
@@ -67,11 +148,13 @@ const FormDetailLayanan = ({
     <MotionDiv>
       <div className="flex-1 p-8 bg-white shadow-md rounded-xl">
         <h4 className="pb-2 mb-2 font-bold border-b text-md">Detail Layanan</h4>
+
+        {/* Jenis kendaraan */}
         <div className="mb-4">
-          <label className="text-sm font-bold text-black sm:text-base text-block">
+          <label className="text-sm font-bold text-black sm:text-base">
             Layanan Kendaraan
           </label>
-          <p className="mb-2 text-sm text-gray-500 sm:text-base">
+          <p className="mb-2 text-sm text-gray-500">
             Silahkan pilih layanan kendaraan yang tersedia di layanan anda.
           </p>
           <div className="flex flex-wrap gap-4 text-sm">
@@ -90,7 +173,7 @@ const FormDetailLayanan = ({
                   name="vehicle_type"
                   value={item}
                   checked={formData.vehicle_type === item}
-                  onChange={(e) => handleChange(e)}
+                  onChange={handleChange}
                 />
                 {item}
               </label>
@@ -98,11 +181,12 @@ const FormDetailLayanan = ({
           </div>
         </div>
 
+        {/* Metode layanan */}
         <div className="mb-4">
-          <label className="text-sm font-bold text-black sm:text-base text-block">
+          <label className="text-sm font-bold text-black sm:text-base">
             Metode Penanganan Yang Disediakan
           </label>
-          <p className="mb-2 text-sm text-gray-500 sm:text-base">
+          <p className="mb-2 text-sm text-gray-500">
             Pilih salah satu metode yang disediakan oleh bengkel anda!
           </p>
           <div className="flex flex-wrap gap-6 text-sm">
@@ -110,7 +194,6 @@ const FormDetailLayanan = ({
               <label key={item.id} className="flex items-center gap-2">
                 <input
                   type="checkbox"
-                  className="border rounded"
                   name="list_service_id"
                   value={item.id}
                   checked={formData.list_service_id.includes(item.id)}
@@ -122,11 +205,12 @@ const FormDetailLayanan = ({
           </div>
         </div>
 
+        {/* Harga */}
         <div className="mb-4">
-          <label className="text-sm font-bold text-black sm:text-base text-block">
+          <label className="text-sm font-bold text-black sm:text-base">
             Range Harga
           </label>
-          <p className="mb-2 text-sm text-gray-500 sm:text-base">
+          <p className="mb-2 text-sm text-gray-500">
             Silahkan masukkan harga terendah dan tertinggi.
           </p>
           <div className="flex items-center gap-4 text-sm">
@@ -136,7 +220,7 @@ const FormDetailLayanan = ({
               className="w-full p-2 border rounded-md sm:w-40"
               name="start_price_range"
               value={formData.start_price_range}
-              onChange={(e) => handleChange(e)}
+              onChange={handleChange}
             />
             <span>—</span>
             <input
@@ -145,11 +229,12 @@ const FormDetailLayanan = ({
               className="w-full p-2 border rounded-md sm:w-40"
               name="end_price_range"
               value={formData.end_price_range}
-              onChange={(e) => handleChange(e)}
+              onChange={handleChange}
             />
           </div>
         </div>
 
+        {/* Spesialisasi */}
         <div className="mb-4">
           <label className="block mb-2 text-sm font-bold text-black sm:text-base">
             Jenis Keahlian Yang Dikuasai
@@ -160,12 +245,13 @@ const FormDetailLayanan = ({
             className="w-full p-2 text-sm border rounded-md"
             name="specialist_names"
             value={formData.specialist_names}
-            onChange={(e) => handleChange(e)}
+            onChange={handleChange}
           />
         </div>
 
+        {/* Lokasi */}
         <div className="relative mb-8 h-80">
-          <label className="mb-2 text-sm font-bold text-black sm:text-base text-block">
+          <label className="mb-2 text-sm font-bold text-black sm:text-base">
             Lokasi Layanan
           </label>
           {position ? (
@@ -180,10 +266,11 @@ const FormDetailLayanan = ({
                   url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                   attribution="&copy; OpenStreetMap contributors"
                 />
-                <Marker position={position}>
+                <Marker position={[formData.latitude, formData.longitude]}>
                   <Popup>Lokasi Anda Sekarang</Popup>
                 </Marker>
-                <LocateButton position={position} />
+                <LocateButton setFormData={setFormData} />
+                <ClickableMap setFormData={setFormData} />
               </MapContainer>
             </div>
           ) : (
@@ -193,9 +280,10 @@ const FormDetailLayanan = ({
           )}
         </div>
 
+        {/* Alamat */}
         <div className="grid grid-cols-1 gap-4 mb-4 md:grid-cols-2">
           <div>
-            <label className="mb-2 text-sm font-bold text-black sm:text-base text-block">
+            <label className="mb-2 text-sm font-bold text-black sm:text-base">
               Alamat
             </label>
             <input
@@ -206,7 +294,7 @@ const FormDetailLayanan = ({
             />
           </div>
           <div>
-            <label className="mb-2 text-sm font-bold text-black sm:text-base text-block">
+            <label className="mb-2 text-sm font-bold text-black sm:text-base">
               Kode Pos
             </label>
             <input
@@ -218,6 +306,7 @@ const FormDetailLayanan = ({
           </div>
         </div>
 
+        {/* Navigasi */}
         <div className="flex justify-between mt-6">
           <button
             onClick={handleBack}

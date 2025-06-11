@@ -6,13 +6,12 @@ import HistoryOrder from "../../views/mitra/dashboard/HistoryOrder";
 import { HistoryOrderPresenter } from "../../presenters/mitra/HistoryOrderPresenter";
 import Navbar from "../../views/mitra/dashboard/Navbar";
 import MotionDiv from "../../utils/TransitionSmoth";
-
+import { getUser } from "../../utils/LocalStorage";
 export function HistoryOrderPage() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const location = useLocation();
   const [isLoading, setIsLoading] = useState(false);
   const [orders, setOrders] = useState([]);
-  const id = 1;
+  const id = getUser().id;
 
   const presenter = new HistoryOrderPresenter({setOrders, setIsLoading, id});
 
@@ -20,7 +19,6 @@ export function HistoryOrderPage() {
   
   useEffect(() => {
     presenter.loadOrders();
-    
   }, []);
 
   return (

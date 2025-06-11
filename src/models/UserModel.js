@@ -1,34 +1,39 @@
+import api from "../lib/api";
+import { getToken } from '../utils/LocalStorage';
 export class UserModel {
-    baseUrl = 'http://localhost:3000/users'; 
-  
-    async getUsers() {
-      const res = await fetch(this.baseUrl);
-      return await res.json();
-    }
-  
-    async createUser(user) {
-      const res = await fetch(this.baseUrl, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(user),
-      });
-      return await res.json();
-    }
-  
-    async updateUser(id, user) {
-      const res = await fetch(`${this.baseUrl}/${id}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(user),
-      });
-      return await res.json();
-    }
-  
-    async deleteUser(id) {
-      const res = await fetch(`${this.baseUrl}/${id}`, {
-        method: 'DELETE',
-      });
-      return await res.json();
-    }
+  async getUsers() {
+    const res = await api.get("/users",{
+        headers: {
+            'Authorization': `Bearer ${getToken()}`,
+        }
+    });
+    return res.data;
   }
-  
+
+  async deleteUser(id) {
+    const res = await api.delete(`/users/${id}`,{
+        headers: {
+            'Authorization': `Bearer ${getToken()}`,
+        }
+    });
+    return res.data;
+  }
+
+  async updateUser(id, data){
+    const res = await api.put(`/users/${id}`,data,{
+        headers: {
+            'Authorization': `Bearer ${getToken()}`,
+        }
+    });
+    return res.data;
+  }
+
+  async changePassword(id, data){
+    const res = await api.put(`/users/${id}/change-password`,data,{
+        headers: {
+            'Authorization': `Bearer ${getToken()}`,
+        }
+    });
+    return res.data;
+  }
+}

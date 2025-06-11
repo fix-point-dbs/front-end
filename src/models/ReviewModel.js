@@ -1,10 +1,10 @@
 import api from "../lib/api";
-
+import { getToken } from '../utils/LocalStorage';
 export class ReviewModel {
     async createReview(data){
         const res = await api.post('/reviews',data,{
             headers: {
-                'Authorization': `Bearer f80ca753-eb98-4d6b-b365-e7f3a2895805`
+                'Authorization': `Bearer ${getToken()}`,
             }
         });
         return res.data;

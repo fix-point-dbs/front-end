@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import {
   FaPhone,
@@ -13,44 +13,17 @@ import {
   FaHistory,
 } from "react-icons/fa";
 import logo from "../../../assets/images/logo.png";
-import Swal from "sweetalert2";
-import withReactContent from "sweetalert2-react-content";
-
+import { useHandleLogout } from "../../../utils/Logout";
+import { getUser } from "../../../utils/LocalStorage";
 export default function Sidebar({ isOpen, onClose }) {
+  const logout = useHandleLogout();
   const navigate = useNavigate();
   const location = useLocation();
-  const MySwal = withReactContent(Swal);
-  const [pemesananOpen, setPemesananOpen] = useState(false);
-
   const handleLogout = () => {
-    MySwal.fire({
-      title: <p>Apakah anda yakin ingin keluar?</p>,
-      icon: "question",
-      showCancelButton: true,
-      confirmButtonText: "Ya, keluar",
-      cancelButtonText: "Tidak",
-      buttonsStyling: false,
-      customClass: {
-        cancelButton:
-          "bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-2 px-4 rounded ml-2",
-        confirmButton:
-          "bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded",
-        popup: "max-w-sm p-6 rounded-lg shadow-lg justify-between",
-        title: "text-lg font-semibold",
-        actions: "flex justify-between w-full",
-      },
-      reverseButtons: true,
-    }).then((result) => {
-      if (result.isConfirmed) {
-        localStorage.removeItem("token");
-        navigate("/mitra");
-      }
-    });
+        logout();
   };
 
   const activePage = location.pathname.split("/")[2];
-  const activeSubPage = location.pathname.split("/")[3];
-  const [jumlahPesananBaru, setJumlahPesananBaru] = useState(3); 
 
   useEffect(() => {
     // if (isOpen) onClose();
@@ -86,15 +59,15 @@ export default function Sidebar({ isOpen, onClose }) {
                   <div className="flex items-center justify-center w-20 h-20 mb-2 bg-orange-300 rounded-full">
                     <div className="w-10 h-10 bg-blue-600 rounded-full" />
                   </div>
-                  <h2 className="font-semibold">Bengkel Go</h2>
+                  <h2 className="font-semibold">{getUser().name}</h2>
                   <div className="mt-1 text-sm text-gray-600">
                     <div className="flex items-center justify-center gap-2">
                       <FaPhone className="text-blue-700" />
-                      <span>071929193919</span>
+                      <span>{getUser().phone}</span>
                     </div>
                     <div className="flex items-center justify-center gap-2 mt-1">
                       <FaEnvelope className="text-blue-700" />
-                      <span>etaksaja@gmail.com</span>
+                      <span>{getUser().email}</span>
                     </div>
                   </div>
                 </div>

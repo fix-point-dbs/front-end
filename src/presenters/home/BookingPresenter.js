@@ -1,5 +1,6 @@
 import { BookingModel } from '../../models/BookingModel';
 import { ServiceModel } from '../../models/ServiceModel';
+import { showErrorToast } from '../../utils/Toast';
 export class BookingPresenter {
     constructor(view){
         this.view = view;
@@ -13,6 +14,7 @@ export class BookingPresenter {
             this.view.setServices(services);
         } catch (error) {
             console.log(error);
+            showErrorToast("Gagal memuat layanan");
         }
     }
 
@@ -23,6 +25,7 @@ export class BookingPresenter {
             this.view.onSuccess(res.data.data.id);
         } catch (error) {
             console.log(error);
+            showErrorToast("Gagal menambahkan pemesanan");
         }finally{
             this.view.setIsLoading(false);
         }

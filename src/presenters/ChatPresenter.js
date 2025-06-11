@@ -8,8 +8,7 @@ export class ChatPresenter {
     async loadMessages() {
         try {
             // this.view.setIsLoading(true);
-            const chat = await this.chatModel.getChat(this.view.mitra_id);
-            console.log(chat.data.id);
+            const chat = await this.chatModel.getChat(this.view.user_id,this.view.mitra_id);
             this.view.setChatId(chat.data.id);
             const messages = await this.chatModel.getMessages(chat.data.id);
             this.view.setMessages(messages.data);

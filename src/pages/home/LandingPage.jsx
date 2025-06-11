@@ -20,9 +20,33 @@ import MotionDiv from "../../utils/TransitionSmoth";
 export function LandingPage() {
   const [services, setServices] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [showChat, setShowChat] = useState(false); // 👈 tambahkan state ini
+  const [showChat, setShowChat] = useState(false);
+  const [position, setPosition] = useState(null);
+  const [lat, setLat] = useState(null);
+  const [lng, setLng] = useState(null);
 
-  const presenter = new LandingPagePresenter({ setServices, setIsLoading });
+  const presenter = new LandingPagePresenter({ setServices, setIsLoading, lat, lng });
+  console.log(services);
+  
+
+  useEffect(() => {
+    getCurrentPosition(
+          (pos) => {
+            setPosition([pos.coords.latitude, pos.coords.longitude]);
+            setLat(pos.coords.latitude);
+            setLng(pos.coords.longitude);
+          },
+          (err) => {
+            console.error("Gagal ambil lokasi", err);
+            alert("Tidak bisa mengambil lokasi. Periksa pengaturan browser.");
+          }
+        );
+        AOS.init({
+          duration: 1000,
+          once: true,
+        });
+        
+  }, []);
 
   useEffect(() => {
     presenter.loadServices();
@@ -46,13 +70,12 @@ export function LandingPage() {
       <Navbar />
       <Hero />
       <Service data={services.data} isLoading={isLoading} />
-      <Lokasi data={services.data} />
+      <Lokasi data={services.data} position={position} />
       <About />
       <Artikel />
       <Question />
       <Member />
-        <Footer />
-      
+      <Footer />
     </>
   );
 }

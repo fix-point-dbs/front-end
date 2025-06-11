@@ -1,4 +1,4 @@
-import moment from "moment";
+import dayjs from "dayjs";
 import React, { useEffect, useState } from "react";
 import { FaReceipt } from "react-icons/fa";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
@@ -64,7 +64,7 @@ export default function RiwayatTransaksi({ bookings }) {
                 <span className="block text-sm font-semibold text-black">
                   Waktu Pemesanan
                 </span>
-                <p className="text-sm">{moment(item.createdAt).format("LLL")}</p>
+                <p className="text-sm">{dayjs(item.createdAt).format("LLL")}</p>
               </div>
               <div>
                 <span className="block text-sm font-semibold text-black">
