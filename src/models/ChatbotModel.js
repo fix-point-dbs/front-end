@@ -2,7 +2,7 @@ import axios from "axios";
 
 export class ChatbotModel {
     async getChatbot(data) {
-        const res = await axios.post("http://127.0.0.1:8000/chatbot-reply", data);
+        const res = await axios.post("https://flask.fixpoint.my.id/chatbot-reply", data);
         return res.data;
     }
 }
