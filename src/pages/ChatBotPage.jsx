@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import Image from "../assets/icons/current-location.png";
-import { SendHorizonal, X } from "lucide-react";
+import { SendHorizonal, X, Loader2 } from "lucide-react";
 import { ChatBotPresenter } from "../presenters/ChatBotPresenter";
 import { getCurrentPosition } from "../utils/GeoLocation";
 import { saveMessages, loadMessages } from "../utils/ChatStorage";
@@ -9,10 +9,16 @@ export default function ChatBoth({ visible, onClose }) {
   const [messages, setMessages] = useState([]);
   const [latitude, setLatitude] = useState(null);
   const [longitude, setLongitude] = useState(null);
-  const presenter = new ChatBotPresenter({ setMessages });
   const [input, setInput] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const endOfMessagesRef = useRef(null);
 
+  const presenter = new ChatBotPresenter({
+    setMessages: (newMessages) => {
+      setMessages(newMessages);
+    },
+    setIsLoading
+  });
 
   const handleSend = async () => {
     if (!input.trim()) return;
@@ -20,6 +26,8 @@ export default function ChatBoth({ visible, onClose }) {
     const userMessage = { sender: "user", text: input };
     setMessages((prev) => [...prev, userMessage]);
     setInput("");
+    setIsLoading(true); // Start loading
+
     const data = { text: input, latitude, longitude };
     presenter.sendMessage(data);
   };
@@ -29,6 +37,7 @@ export default function ChatBoth({ visible, onClose }) {
       const stored = await loadMessages();
       setMessages(stored);
     })();
+
     getCurrentPosition(
       (pos) => {
         setLatitude(pos.coords.latitude);
@@ -66,28 +75,35 @@ export default function ChatBoth({ visible, onClose }) {
         </div>
 
         <div className="mt-4 space-y-3 flex-1 overflow-y-auto pr-2">
-  {messages?.map((msg, i) => (
-    <div
-      key={i}
-      className={`flex ${msg.sender === "user" ? "justify-end" : "justify-start"}`}
-    >
-      {msg.sender === "bot" ? (
-        <div
-          className="inline-block px-4 py-2 rounded-lg text-sm bg-gray-100 text-gray-900 rounded-bl-none max-w-[85%]"
-          dangerouslySetInnerHTML={{ __html: msg.text }}
-        />
-      ) : (
-        <div className="inline-block px-4 py-2 rounded-lg text-sm whitespace-pre-line bg-blue-800 text-white rounded-br-none max-w-[85%]">
-          {msg.text}
+          {messages?.map((msg, i) => (
+            <div
+              key={i}
+              className={`flex ${msg.sender === "user" ? "justify-end" : "justify-start"}`}
+            >
+              {msg.sender === "bot" ? (
+                <div
+                  className="inline-block px-4 py-2 rounded-lg text-sm bg-gray-100 text-gray-900 rounded-bl-none max-w-[85%]"
+                  dangerouslySetInnerHTML={{ __html: msg.text }}
+                />
+              ) : (
+                <div className="inline-block px-4 py-2 rounded-lg text-sm whitespace-pre-line bg-blue-800 text-white rounded-br-none max-w-[85%]">
+                  {msg.text}
+                </div>
+              )}
+            </div>
+          ))}
+
+          {isLoading && (
+            <div className="flex justify-start">
+              <div className="inline-flex items-center px-4 py-2 rounded-lg text-sm bg-gray-100 text-gray-900 rounded-bl-none max-w-[85%]">
+                <Loader2 className="animate-spin mr-2 w-4 h-4" />
+                Bot sedang Memikir...
+              </div>
+            </div>
+          )}
+
+          <div ref={endOfMessagesRef} />
         </div>
-      )}
-    </div>
-  ))}
-
-  {/* Anchor for scroll-to-bottom */}
-  <div ref={endOfMessagesRef} />
-</div>
-
 
         <div className="flex items-center gap-2 mt-4">
           <input
@@ -97,10 +113,12 @@ export default function ChatBoth({ visible, onClose }) {
             placeholder="Message Chatbot.."
             className="flex-1 px-3 py-2 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
             onKeyDown={(e) => e.key === "Enter" && handleSend()}
+            disabled={isLoading}
           />
           <button
             onClick={handleSend}
             className="bg-blue-800 hover:bg-blue-900 p-2 rounded-lg"
+            disabled={isLoading}
           >
             <SendHorizonal className="text-white w-5 h-5" />
           </button>

@@ -8,6 +8,7 @@ export class ChatBotPresenter {
 
   async sendMessage(data) {
     try {
+      this.view.setIsLoading(true);
       const res = await this.chatbotModel.getChatbot(data);
       this.view.setMessages((prev) => [
         ...prev,
@@ -15,6 +16,8 @@ export class ChatBotPresenter {
       ]);
     } catch (error) {
       console.log(error);
+    } finally {
+      this.view.setIsLoading(false);
     }
   }
 }
