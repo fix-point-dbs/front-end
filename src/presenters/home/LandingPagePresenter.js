@@ -8,7 +8,7 @@ export class LandingPagePresenter {
     async loadServices(){
         try {
             this.view.setIsLoading(true);
-            const services = await this.model.getServices(`?lat=${this.view.lat}&lng=${this.view.lng}&status=approved`);
+            const services = await this.model.getServices(`?lat=${this.view.lat}&lng=${this.view.lng}&status=approved&maxDistance=5`);
             this.view.setServices(services);
         } catch (error) {
             console.log(error);

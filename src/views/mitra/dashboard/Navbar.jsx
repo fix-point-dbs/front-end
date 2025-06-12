@@ -1,4 +1,5 @@
 import { FaBars } from "react-icons/fa";
+import { getUser } from "../../../utils/LocalStorage";
 export default function Navbar({setSidebarOpen}) {
     return(
         <div className="px-10 py-6 bg-white border-b shadow">
@@ -10,7 +11,7 @@ export default function Navbar({setSidebarOpen}) {
             <FaBars />
           </button>
           <h1 className="text-base font-bold sm:text-base md:text-medium lg:text-medium text-biru">
-            Halo, Etak!
+            Halo, {getUser().name}!
           </h1>
         </div>
       </div>

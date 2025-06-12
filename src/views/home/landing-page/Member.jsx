@@ -12,6 +12,7 @@ export default function Member() {
       role: "Backend Developer",
       image: fotoZarif,
       category: "FE & BE",
+      desc: "Membuat backend menggunakan hapi, mysql, dan nodejs dan consume api di bagian front-end",
       linkedin: "https://www.linkedin.com/in/adzazarif/",
       github: "https://github.com/adzazarif",
       instagram: "https://www.instagram.com/adzazarifnur/",
@@ -21,6 +22,7 @@ export default function Member() {
       role: "Frontend Developer",
       image: fotoGreta,
       category: "FE & BE",
+      desc: "Membuat Design mockup dan Membuat frontend menggunakan reactjs",
       linkedin: "https://www.linkedin.com/in/greta-wahyu-dhita-mehdaliya-54144a326/",
       github: "https://github.com/",
       instagram: "https://www.instagram.com/ady_grt",
@@ -30,6 +32,7 @@ export default function Member() {
       role: "Frontend Developer",
       image: fotoAhkam,
       category: "FE & BE",
+      desc: "Membuat Design mockup dan Membuat frontend menggunakan reactjs",
       linkedin: "https://www.linkedin.com/in/hafidzulahkam/",
       github: "https://github.com/",
       instagram: "https://www.instagram.com/",
@@ -39,6 +42,7 @@ export default function Member() {
       role: "ML Engineer",
       image: fotoAsyam,
       category: "ML",
+      desc: "Mengumpul data dan membuat model menggunakan python",
       linkedin: "https://www.linkedin.com/in/riskyasyam/",
       github: "https://github.com/riskyasyam",
       instagram: "https://www.instagram.com/",
@@ -48,6 +52,7 @@ export default function Member() {
       role: "ML Engineer",
       image: fotoAngga,
       category: "ML",
+      desc: "Mengumpul data dan membuat model menggunakan python",
       linkedin: "https://www.linkedin.com/in/anggajulian14/",
       github: "https://github.com/anggajulian14",
       instagram: "https://www.instagram.com/",
@@ -57,6 +62,7 @@ export default function Member() {
       role: "ML Engineer",
       image: fotoAbim,
       category: "ML",
+      desc: "Mengumpul data dan membuat model menggunakan python",
       linkedin: "https://www.linkedin.com/in/maulana-malik-ibrahim-7b4539216/",
       github: "https://github.com/LuciferLovesMe",
       instagram: "https://www.instagram.com/",
@@ -99,8 +105,7 @@ export default function Member() {
 
             {/* Description */}
             <p className="text-xs text-gray-500 mb-4">
-              Glavi amet ritnisi libero molestie ante ut fringilla purus eros
-              quis glavrid from dolor amet iquam lorem bibendum
+              {member.desc}
             </p>
 
             {/* Social Media */}

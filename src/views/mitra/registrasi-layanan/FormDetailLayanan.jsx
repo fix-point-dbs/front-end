@@ -162,7 +162,7 @@ const FormDetailLayanan = ({
               "Sepeda Motor",
               "Mobil",
               "Truck",
-              "Semua (mobil, motor,truck)",
+              "Semua Kendaraan",
             ].map((item) => (
               <label
                 key={item}

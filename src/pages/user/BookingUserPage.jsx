@@ -32,7 +32,7 @@ export function BookingUserPage() {
               <FaBars />
             </button>
             <h1 className="text-base font-bold sm:text-base md:text-medium lg:text-medium text-biru">
-              Halo, Etak!
+              Halo, {getUser().name}!
             </h1>
           </div>
         </div>
